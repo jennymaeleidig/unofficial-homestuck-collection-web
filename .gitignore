@@ -38,3 +38,7 @@ webAppModTrees.json
 
 /tools/mspfa/*/
 /tools/mspfa/*.log
+
+assets
+
+build
