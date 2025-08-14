@@ -21,7 +21,7 @@ window.webAppOpinionatedDefaults = {
     // CHANGEME: Set these based on what mods you have installed and
     // want enabled by default
     // "tuhc-commentary",
-    "semantic",
+    {# "semantic",
     "tuhc-readmspa",
     "Plaintext-Images",
 
@@ -31,7 +31,7 @@ window.webAppOpinionatedDefaults = {
     "Nan Quest",
 
     "oddities",
-    "click.js",
+    "click.js", #}
     // "Nightfall_online",
     // "Psycholonials_online",
     // "HomestuckSlurReplacement",
@@ -59,7 +59,7 @@ window.webAppOpinionatedModDefaults = {
 // litepack includes them in the litepack, browser.js.j2 tells yarn to
 // include them in webpack
 
-{% set mods = [
+{# {% set mods = [
   "Psycholonials_online",
   "Ruby Quest_online",
   "Nan Quest_online",
@@ -79,7 +79,12 @@ window.webAppOpinionatedModDefaults = {
   "tuhc-damara",
   "tuhc-puzzlestuck",
   "click.js"
-] %}
+] %} #}
+
+{%
+  set mods = []
+%}
+
 
 // "zombocom.js",
 // "dequirk.js", // Breaks safari

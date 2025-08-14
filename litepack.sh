@@ -1,22 +1,21 @@
 #!/bin/bash
 
-shopt -s globstar
+# shopt -s globstar  # Not needed and causes issues on some systems
 
 # find "Asset Pack V2/" -iname "*.DELETE*" -delete
 
 # Asset Pack v2 has to be transformed to work in the webapp
 
 # The root folder containing "Asset Pack V2"
-assetdirsroot="/cygdrive/d/UHC"
+assetdirsroot="/Users/jennyleidig/Documents/Projects/unofficial-homestuck-collection-web/assets"
 
 # The root address of the webserver hosting the files
-ASSET_PACK_HREF="https://filedn.com/.../AssetPackV2Lite/"
+# ASSET_PACK_HREF="https://filedn.com/.../AssetPackV2Lite/"
 
 # Duplicate asset pack
 copyPack() {
 
 	rsync -ria "${assetdirsroot}/Asset Pack V2/" "${assetdirsroot}/AssetPackV2Lite/" \
-		--delete-during \
 		--exclude "mods" \
 		--no-p --no-g --chmod=ugo=rwX
 
@@ -40,7 +39,7 @@ copyPack() {
 
 # Copy imods to WAP
 copyImods() {
-	rsync -ria --delete-after "unofficial-homestuck-collection/src/imods/" "${assetdirsroot}/AssetPackV2Lite/archive/imods/"
+	rsync -ria "/Users/jennyleidig/Documents/Projects/unofficial-homestuck-collection-web/src/imods" "${assetdirsroot}/AssetPackV2Lite/archive/imods/"
 }
 
 
@@ -56,61 +55,92 @@ fixOB() {
 		(
 		mkdir -p "${assetdirsroot}/AssetPackV2Lite/storyfiles/hs2/$ob/"
 		rsync -ria "${assetdirsroot}/Asset Pack V2/storyfiles/hs2/$ob/" "${assetdirsroot}/AssetPackV2Lite/storyfiles/hs2/$ob/"
-		sed -i "s|assets://storyfiles/hs2/$ob/|./|g" "${assetdirsroot}/AssetPackV2Lite/storyfiles/hs2/$ob/"**/*ml
+		echo "Processing Openbound $ob files for URL replacement..."
+		find "${assetdirsroot}/AssetPackV2Lite/storyfiles/hs2/$ob/" -type f \( -name "*.html" -o -name "*.xml" \) 2>/dev/null | while read -r file; do
+			if [ -f "$file" ]; then
+				echo "  Processing: $file"
+				perl -i -pe "s|assets://storyfiles/hs2/$ob/|./|g" "$file"
+			fi
+		done
 		) &
 	done
 	wait
 }
 
-copyMods() {
-	mkdir -p "${assetdirsroot}/AssetPackV2Lite/mods/"
+# copyMods() {
+# 	mkdir -p "${assetdirsroot}/AssetPackV2Lite/mods/"
 
-	# CHANGEME
-	for dir in \
-		"click.js" \
-		; do
-		rsync -rit "${assetdirsroot}/Asset Pack V2/mods/${dir}" "${assetdirsroot}/AssetPackV2Lite/mods/" --exclude ".git" --copy-links
-	done
-}
+# 	# CHANGEME
+# 	for dir in \
+# 		"click.js" \
+# 		; do
+# 		rsync -rit "${assetdirsroot}/Asset Pack V2/mods/${dir}" "${assetdirsroot}/AssetPackV2Lite/mods/" --exclude ".git" --copy-links
+# 	done
+# }
 
 postprocessMods() {
-	for modjs in ${assetdirsroot}/AssetPackV2Lite/mods/*.js \
-		${assetdirsroot}/AssetPackV2Lite/mods/*/mod.js \
-		${assetdirsroot}/AssetPackV2Lite/archive/imods/*.js \
-		${assetdirsroot}/AssetPackV2Lite/archive/imods/*/mod.js; do
-		(
-		sed -i -E "s|api.readJson\('(.+)'\)|require('\1')|g" "$modjs"
-		sed -i -E 's|api.readJson\("(.+)"\)|require("\1")|g' "$modjs"
-		sed -i -E "s|api.readYaml\('(.+)'\)|require('\!yaml-loader\!\1').default|g" "$modjs"
-		sed -i -E 's|api.readYaml\("(.+)"\)|require("\!yaml-loader\!\1").default|g' "$modjs"
-		sed -i -E "s|api.readFile\('(.+)'\)|require('\!raw-loader\!\1').default|g" "$modjs"
-		sed -i -E 's|api.readFile\("(.+)"\)|require("\!raw-loader\!\1").default|g' "$modjs"
-
-		sed -i -E "s|await api.readJsonAsync\('(.+)'\)|(await import('\1'))\?.default|g" "$modjs"
-		sed -i -E 's|await api.readJsonAsync\("(.+)"\)|(await import("\1"))\?.default|g' "$modjs"
-		sed -i -E "s|await api.readYamlAsync\('(.+)'\)|(await import('\!yaml-loader\!\1')).default|g" "$modjs"
-		sed -i -E 's|await api.readYamlAsync\("(.+)"\)|(await import("\!yaml-loader\!\1")).default|g' "$modjs"
-		sed -i -E "s|await api.readFileAsync\('(.+)'\)|(await import('\!raw-loader\!\1')).default|g" "$modjs"
-		sed -i -E 's|await api.readFileAsync\("(.+)"\)|(await import("\!raw-loader\!\1")).default|g' "$modjs"
-		) &
+	echo "Processing mod files for webpack compatibility..."
+	
+	# Process imods files
+	find "${assetdirsroot}/AssetPackV2Lite/archive/imods" -name "*.js" -o -name "mod.js" 2>/dev/null | while read -r modjs; do
+		if [ -f "$modjs" ]; then
+			echo "Processing $modjs"
+			# Use perl instead of sed for better cross-platform compatibility
+			perl -i -pe 's|api\.readJson\('"'"'([^'"'"']+)'"'"'\)|require('"'"'$1'"'"')|g' "$modjs"
+			perl -i -pe 's|api\.readJson\("([^"]+)"\)|require("$1")|g' "$modjs"
+			perl -i -pe 's|api\.readYaml\('"'"'([^'"'"']+)'"'"'\)|require('"'"'!yaml-loader!$1'"'"').default|g' "$modjs"
+			perl -i -pe 's|api\.readYaml\("([^"]+)"\)|require("!yaml-loader!$1").default|g' "$modjs"
+			perl -i -pe 's|api\.readFile\('"'"'([^'"'"']+)'"'"'\)|require('"'"'!raw-loader!$1'"'"').default|g' "$modjs"
+			perl -i -pe 's|api\.readFile\("([^"]+)"\)|require("!raw-loader!$1").default|g' "$modjs"
+			
+			perl -i -pe 's|await api\.readJsonAsync\('"'"'([^'"'"']+)'"'"'\)|(await import('"'"'$1'"'"'))?.default|g' "$modjs"
+			perl -i -pe 's|await api\.readJsonAsync\("([^"]+)"\)|(await import("$1"))?.default|g' "$modjs"
+			perl -i -pe 's|await api\.readYamlAsync\('"'"'([^'"'"']+)'"'"'\)|(await import('"'"'!yaml-loader!$1'"'"')).default|g' "$modjs"
+			perl -i -pe 's|await api\.readYamlAsync\("([^"]+)"\)|(await import("!yaml-loader!$1")).default|g' "$modjs"
+			perl -i -pe 's|await api\.readFileAsync\('"'"'([^'"'"']+)'"'"'\)|(await import('"'"'!raw-loader!$1'"'"')).default|g' "$modjs"
+			perl -i -pe 's|await api\.readFileAsync\("([^"]+)"\)|(await import("!raw-loader!$1")).default|g' "$modjs"
+		fi
 	done
-	wait
+	
+	# Process regular mods files if they exist
+	if [ -d "${assetdirsroot}/AssetPackV2Lite/mods" ]; then
+		find "${assetdirsroot}/AssetPackV2Lite/mods" -name "*.js" -o -name "mod.js" 2>/dev/null | while read -r modjs; do
+			if [ -f "$modjs" ]; then
+				echo "Processing $modjs"
+				perl -i -pe 's|api\.readJson\('"'"'([^'"'"']+)'"'"'\)|require('"'"'$1'"'"')|g' "$modjs"
+				perl -i -pe 's|api\.readJson\("([^"]+)"\)|require("$1")|g' "$modjs"
+				perl -i -pe 's|api\.readYaml\('"'"'([^'"'"']+)'"'"'\)|require('"'"'!yaml-loader!$1'"'"').default|g' "$modjs"
+				perl -i -pe 's|api\.readYaml\("([^"]+)"\)|require("!yaml-loader!$1").default|g' "$modjs"
+				perl -i -pe 's|api\.readFile\('"'"'([^'"'"']+)'"'"'\)|require('"'"'!raw-loader!$1'"'"').default|g' "$modjs"
+				perl -i -pe 's|api\.readFile\("([^"]+)"\)|require("!raw-loader!$1").default|g' "$modjs"
+				
+				perl -i -pe 's|await api\.readJsonAsync\('"'"'([^'"'"']+)'"'"'\)|(await import('"'"'$1'"'"'))?.default|g' "$modjs"
+				perl -i -pe 's|await api\.readJsonAsync\("([^"]+)"\)|(await import("$1"))?.default|g' "$modjs"
+				perl -i -pe 's|await api\.readYamlAsync\('"'"'([^'"'"']+)'"'"'\)|(await import('"'"'!yaml-loader!$1'"'"')).default|g' "$modjs"
+				perl -i -pe 's|await api\.readYamlAsync\("([^"]+)"\)|(await import("!yaml-loader!$1")).default|g' "$modjs"
+				perl -i -pe 's|await api\.readFileAsync\('"'"'([^'"'"']+)'"'"'\)|(await import('"'"'!raw-loader!$1'"'"')).default|g' "$modjs"
+				perl -i -pe 's|await api\.readFileAsync\("([^"]+)"\)|(await import("!raw-loader!$1")).default|g' "$modjs"
+			fi
+		done
+	fi
+	
+	echo "Mod processing complete."
 }
 
 # exit
 
 # Host asset pack resources on ASSET_PACK_HREF
-copyPcloud() {
+# copyPcloud() {
 
-	echo Synchronizing pCloud
+# 	echo Synchronizing pCloud
 
-	pCloudRoot="/cygdrive/p/Public Folder/AssetPackV2Lite"
+# 	pCloudRoot="/cygdrive/p/Public Folder/AssetPackV2Lite"
 
-	rsync -ria --delete-after --size-only "${assetdirsroot}/AssetPackV2Lite/" "$pCloudRoot/" \
-		--delete-excluded \
-		--exclude "data/plugins"
+# 	rsync -ria --delete-after --size-only "${assetdirsroot}/AssetPackV2Lite/" "$pCloudRoot/" \
+# 		--delete-excluded \
+# 		--exclude "data/plugins"
 
-}
+# }
 # Manual rewrites
 
 # for ob in 05260 05305 05395; do
@@ -127,11 +157,11 @@ then
 	echo copyImods and fixOB and copyMods
 	copyImods &
 	fixOB &
-	copyMods &
+	# copyMods &
 	wait
 
 	postprocessMods
 
-	echo copyPcloud
-	copyPcloud
+	# echo copyPcloud
+	# copyPcloud
 fi
