@@ -1,5 +1,8 @@
 -include .env
 
+# Default asset server configuration
+ASSET_PACK_HREF ?= http://127.0.0.1:8413/
+
 CONFIG_JSON_PATH = "${APPDATA}/unofficial-homestuck-collection/config.json"
 
 .SECONDEXPANSION:
@@ -69,7 +72,7 @@ build/webAppModTrees.json: webapp/browser.js.j2
 .PHONY: webapp/browser.js
 webapp/browser.js:
 	env APP_VERSION=`jq -r '.version' < package.json` \
-		ASSET_PACK_HREF="http://localhost:8413/" \
+		ASSET_PACK_HREF="${ASSET_PACK_HREF}" \
 		ASSET_DIR="${ASSET_DIR_LITE}" \
 			jinja2 webapp/browser.js.j2 > webapp/browser.js
 
@@ -101,7 +104,7 @@ ensure-asset-server:
 serve: install ${SHARED_INTERMEDIATE} ${WEBAPP_INTERMEDIATE}
 	@trap 'printf "\nShutting down servers...\n"; pkill -f "python3.*httpserver.py" 2>/dev/null; kill $$(jobs -p) 2>/dev/null; rm -f .asset-server.pid; exit 0' EXIT INT TERM; \
 	make ensure-asset-server; \
-	env ASSET_PACK_HREF="http://localhost:8413/" $(NPM_ARCH) $(ARCH_PREFIX) yarn run vue-cli-service serve webapp/browser.js & \
+	env ASSET_PACK_HREF="${ASSET_PACK_HREF}" $(NPM_ARCH) $(ARCH_PREFIX) yarn run vue-cli-service serve webapp/browser.js & \
 	nodemon --exec "make webapp/browser.js" --watch "webapp" -e "j2" & \
 	wait || true
 

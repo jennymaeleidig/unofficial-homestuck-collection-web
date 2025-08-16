@@ -10,7 +10,8 @@
 assetdirsroot="/Users/jennyleidig/Documents/Projects/unofficial-homestuck-collection-web/assets"
 
 # The root address of the webserver hosting the files
-# ASSET_PACK_HREF="https://filedn.com/.../AssetPackV2Lite/"
+# Use environment variable or default to localhost
+: "${ASSET_PACK_HREF:=http://127.0.0.1:8413/}"
 
 # Duplicate asset pack
 copyPack() {
@@ -59,7 +60,10 @@ fixOB() {
 		find "${assetdirsroot}/AssetPackV2Lite/storyfiles/hs2/$ob/" -type f \( -name "*.html" -o -name "*.xml" \) 2>/dev/null | while read -r file; do
 			if [ -f "$file" ]; then
 				echo "  Processing: $file"
+				# Convert assets:// URLs to relative paths for local resources
 				perl -i -pe "s|assets://storyfiles/hs2/$ob/|./|g" "$file"
+				# Update other assets:// URLs to use configured asset server
+				perl -i -pe "s|assets://|${ASSET_PACK_HREF}|g" "$file"
 			fi
 		done
 		) &
