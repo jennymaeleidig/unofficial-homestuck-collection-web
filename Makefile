@@ -92,14 +92,18 @@ itest:
 
 .PHONY: ensure-asset-server
 ensure-asset-server:
-	curl http://localhost:8413 >/dev/null \
-	  || bash -c 'ROOT_DIR="${ASSET_DIR_LITE}" python3 webapp/httpserver.py' &
+	@if ! pgrep -f "python3.*httpserver.py" >/dev/null; then \
+		ROOT_DIR="${ASSET_DIR_LITE}" python3 webapp/httpserver.py & \
+		echo $$! > .asset-server.pid; \
+	fi
 
 .PHONY: serve
 serve: install ${SHARED_INTERMEDIATE} ${WEBAPP_INTERMEDIATE}
-	make ensure-asset-server
-	env ASSET_PACK_HREF="http://localhost:8413/" $(NPM_ARCH) $(ARCH_PREFIX) yarn run vue-cli-service serve webapp/browser.js &
-	nodemon --exec "make webapp/browser.js" --watch "webapp" -e "j2"
+	@trap 'printf "\nShutting down servers...\n"; pkill -f "python3.*httpserver.py" 2>/dev/null; kill $$(jobs -p) 2>/dev/null; rm -f .asset-server.pid; exit 0' EXIT INT TERM; \
+	make ensure-asset-server; \
+	env ASSET_PACK_HREF="http://localhost:8413/" $(NPM_ARCH) $(ARCH_PREFIX) yarn run vue-cli-service serve webapp/browser.js & \
+	nodemon --exec "make webapp/browser.js" --watch "webapp" -e "j2" & \
+	wait || true
 
 ## Building output
 
