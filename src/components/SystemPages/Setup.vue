@@ -1,56 +1,68 @@
 <template>
-<div class="setup">
-  <div class="header">
-    <TitleBar :style="{display: $isWebApp ? 'none' : 'inherit'}"/>
-  </div>
-  <div class="tabFrame">
-    <div class="pageBody">
+  <div class="setup">
+    <div class="header">
+      <TitleBar :style="{ display: $isWebApp ? 'none' : 'inherit' }" />
+    </div>
+    <div class="tabFrame">
+      <div class="pageBody">
+        <div class="card" v-if="isNewUser">
+          <SetupWizard />
+        </div>
 
-      <div class="card" v-if="isNewUser">
-        <SetupWizard />
-      </div>
+        <div class="card" v-else-if="hasLoadFailed">
+          <h2>Loading has failed.</h2>
+          <SetupErrorRecovery />
+        </div>
 
-      <div class="card" v-else-if="hasLoadFailed">
-        <h2>Loading has failed.</h2>
-        <SetupErrorRecovery />
-      </div>
+        <div v-else-if="isLoading || loadingTooLongTimeout">
+          <SetupComponentLoader />
+          <div class="card" v-if="loadingTooLongTimeout && !$isWebApp">
+            <div class="cardContent">
+              <p>
+                Loading is taking longer than normal. If you think it's stuck,
+                you can try to recover.
+              </p>
+              <SetupErrorRecovery />
+            </div>
+          </div>
+        </div>
 
-      <div v-else-if="isLoading || loadingTooLongTimeout">
-        <SetupComponentLoader />
-        <div class="card" v-if="loadingTooLongTimeout">
-          <div class="cardContent">
-            <p>Loading is taking longer than normal. If you think it's stuck, you can try to recover.</p>
+        <div v-else>
+          <SetupComponentLoader />
+          <div class="card" v-if="loadingTooLongTimeout && !$isWebApp">
+            <div class="cardContent">
+              <h2>Strange situation</h2>
+              <pre
+                v-text="{
+                  hasLoadFailed,
+                  isLoading,
+                  isNewUser,
+                  loadingTooLongTimeout,
+                  loadstate: $root.loadState
+                }"
+              />
+            </div>
             <SetupErrorRecovery />
           </div>
         </div>
       </div>
-
-      <div v-else>
-        <SetupComponentLoader />
-        <div class="card" v-if="loadingTooLongTimeout">
-          <div class="cardContent">
-            <h2>Strange situation</h2>
-            <pre v-text="{hasLoadFailed, isLoading, isNewUser, loadingTooLongTimeout, loadstate: $root.loadState}" />
-          </div>
-          <SetupErrorRecovery />
-        </div>
-      </div>
-
     </div>
   </div>
-</div>
 </template>
 
 <script>
-import TitleBar from '@/components/AppMenu/TitleBar.vue'
-import SetupErrorRecovery from '@/components/SystemPages/SetupErrorRecovery.vue'
-import SetupComponentLoader from '@/components/SystemPages/SetupComponentLoader.vue'
-import SetupWizard from '@/components/SystemPages/SetupWizard.vue'
+import TitleBar from "@/components/AppMenu/TitleBar.vue";
+import SetupErrorRecovery from "@/components/SystemPages/SetupErrorRecovery.vue";
+import SetupComponentLoader from "@/components/SystemPages/SetupComponentLoader.vue";
+import SetupWizard from "@/components/SystemPages/SetupWizard.vue";
 
 export default {
-  name: 'setup',
+  name: "setup",
   components: {
-    TitleBar,  SetupErrorRecovery, SetupComponentLoader, SetupWizard
+    TitleBar,
+    SetupErrorRecovery,
+    SetupComponentLoader,
+    SetupWizard
   },
   data: function() {
     return {
@@ -58,47 +70,48 @@ export default {
       copiedPath: undefined,
       newReaderToggle: true,
       loadingTooLongTimeout: false
-    }
+    };
   },
   computed: {
     hasLoadFailed() {
-      return (this.$root.loadError || this.$root.loadState == "ERROR")
+      return this.$root.loadError || this.$root.loadState == "ERROR";
     },
     isLoading() {
       // If not in a finished load state, it's still loading
-      return (this.$root.loadState != "ERROR") && (this.$root.loadState != "DONE")
+      return this.$root.loadState != "ERROR" && this.$root.loadState != "DONE";
     },
     isNewUser() {
       // If setup is being shown, but guest mode is true, it's just loading
-      if (this.$root.guestMode) return false
+      if (this.$root.guestMode) return false;
 
-      return !this.$localData.assetDir
+      return !this.$localData.assetDir;
     }
   },
   mounted() {
-    this.$watch('$root.loadStage', stage => {
+    this.$watch("$root.loadStage", stage => {
       if (this.debounce) {
-        clearTimeout(this.debounce)
+        clearTimeout(this.debounce);
       }
       if (stage != "DONE") {
-        this.loadingTooLongTimeout = false
-        this.debounce = setTimeout(function() {
-          this.$logger.error("Timed out")
-          this.loadingTooLongTimeout = true
-        }.bind(this), 15000)
+        this.loadingTooLongTimeout = false;
+        this.debounce = setTimeout(
+          function() {
+            this.$logger.error("Timed out");
+            this.loadingTooLongTimeout = true;
+          }.bind(this),
+          15000
+        );
       }
-    })
+    });
   },
-  methods: {
-  },
-  watch: {
-  },
+  methods: {},
+  watch: {},
   destroyed() {
     if (this.debounce) {
-      clearTimeout(this.debounce)
+      clearTimeout(this.debounce);
     }
   }
-}
+};
 </script>
 
 <style lang="scss">
@@ -137,7 +150,8 @@ export default {
   }
   div.scrollbox {
     background: #fff;
-    box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
+    box-shadow: inset -1px -1px #fff, inset 1px 1px grey,
+      inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
     display: block;
     margin: 0;
     padding: 12px 8px;
@@ -147,48 +161,50 @@ export default {
     text-align: center;
   }
 
-    h1, h2 {
-      text-align: center;
-    }
-    > div {
-      text-align: justify;
+  h1,
+  h2 {
+    text-align: center;
+  }
+  > div {
+    text-align: justify;
 
-      .tiny {
-        font-size: 11px;
-      }
-      .hint {
-        display: block;
-        font-size: 13px;
-        color: #888888;
-      }
-      .error, .hint.error {
-        color: crimson !important;
-        font-weight: bold;
-      }
+    .tiny {
+      font-size: 11px;
     }
-    hr {
-      border-top: 3px solid #c6c6c6;
+    .hint {
+      display: block;
+      font-size: 13px;
+      color: #888888;
     }
-    ol { 
-      margin-left: 1.5em;
+    .error,
+    .hint.error {
+      color: crimson !important;
+      font-weight: bold;
     }
-    button {
-      font-size: 110%;
-    }
-    input {
-      &[type="text"] {
-        border: 1px solid #777;
-        min-width: 35px;
-        border-radius: 2px;
-        padding: 2px 3px;
+  }
+  hr {
+    border-top: 3px solid #c6c6c6;
+  }
+  ol {
+    margin-left: 1.5em;
+  }
+  button {
+    font-size: 110%;
+  }
+  input {
+    &[type="text"] {
+      border: 1px solid #777;
+      min-width: 35px;
+      border-radius: 2px;
+      padding: 2px 3px;
 
-        &.invalid:not(:disabled) {
-          background: pink;
-          border-color: rgb(187, 0, 37);
-          box-shadow: 0 0 3px 1px red;
-        }
+      &.invalid:not(:disabled) {
+        background: pink;
+        border-color: rgb(187, 0, 37);
+        box-shadow: 0 0 3px 1px red;
       }
     }
+  }
   .card {
     @media (max-width: 650px) {
       width: 100%;

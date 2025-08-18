@@ -1,11 +1,13 @@
 {%- set ASSET_PACK_HREF = ASSET_PACK_HREF|default(environ('ASSET_PACK_HREF')) -%}
 {%- set ASSET_DIR = ASSET_DIR|default(environ('ASSET_DIR')) -%}
 {%- set APP_VERSION = APP_VERSION|default(environ('APP_VERSION')) -%}
+{%- set AUTH_SERVER_URL = AUTH_SERVER_URL|default(environ('AUTH_SERVER_URL')) -%}
 
 const store = require('@/../webapp/localstore.js')
 
 window.webAppAppVersion = "{{ APP_VERSION.strip() }}"
 window.webAppAssetPackHref = "{{ ASSET_PACK_HREF }}"
+window.webAppAuthServerUrl = "{{ AUTH_SERVER_URL }}"
 // External mod support removed - only supporting imods now
 // window.webAppModsDir = "{{ ASSET_DIR }}mods/" // Disabled
 window.webAppIModsDir = "{{ ASSET_DIR }}archive/imods/"

@@ -55,7 +55,8 @@
     "vue-async-computed": "^3.9.0",
     "vue-router": "^3.2.0",
     "vue-simple-suggest": "^1.11.1",
-    "vuedraggable": "^2.24.3"
+    "vuedraggable": "^2.24.3",
+    "axios": "^0.21.1"
   },
   "optionalDependencies": {},
   "devDependencies": {

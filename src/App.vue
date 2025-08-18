@@ -50,6 +50,7 @@
       <Setup ref="uistyle" />
       <ContextMenu ref="contextMenu" />
     </div>
+    <AuthModal :isVisible="showAuthModal" @auth-success="handleAuthSuccess" />
   </div>
 </template>
 
@@ -58,6 +59,7 @@ import Mods from "./mods.js";
 
 import Setup from "@/components/SystemPages/Setup.vue";
 import AppHeader from "@/components/AppMenu/AppHeader.vue";
+import AuthModal from "@/components/Auth/AuthModal.vue";
 
 const Notifications = () => import("@/components/UIElements/Notifications.vue");
 
@@ -95,18 +97,25 @@ export default {
     Notifications,
     UrlTooltip,
     Updater,
-    GuestBanner
+    GuestBanner,
+    AuthModal
   },
   data() {
     return {
       zoomLevel: 0,
       needCheckTheme: false,
-      stylesheets: [] // Mod optimization
+      stylesheets: [], // Mod optimization
+      showAuthModal: false // New data property for auth modal visibility
     };
   },
   computed: {
     canLoadApp() {
       if (DEBUG_LOAD_FOREVER) return false;
+
+      // Only load the app if a user is authenticated (or in guest mode)
+      if (!this.$localData.root.isAuthenticated && !this.$root.guestMode) {
+        return false;
+      }
 
       if (this.$archive == undefined) {
         // Cannot load components without archive
@@ -263,6 +272,22 @@ export default {
           ipcRenderer.send("set-sys-icon", app_icon_var);
         }
       });
+    },
+    handleAuthSuccess(data) {
+      // Update the Vue instance's data properties directly to ensure reactivity
+      this.$localData.root.saveData = data.saveData;
+      this.$localData.root.settings = data.settings;
+      this.$localData.root.isAuthenticated = true;
+      this.showAuthModal = false;
+
+      // Reload local data from server to ensure session/localStorage are in sync
+      this.$localData.root.reloadLocalStorage().then(() => {
+        this.$logger.info("Local data reloaded after login/signup:", {
+          saveData: this.$localData.root.saveData,
+          settings: this.$localData.root.settings,
+          isAuthenticated: this.$localData.root.isAuthenticated
+        });
+      });
     }
   },
   watch: {
@@ -280,8 +305,13 @@ export default {
     this.$nextTick(() => this.updateAppIcon());
     const user_path_target = window.location.pathname;
 
-    this.$localData.root.TABS_SWITCH_TO();
-    // Switch to the last tab (good) but replaces history (so we use the previously captured value)
+    // Check if user is authenticated, if not, show auth modal
+    if (!this.$localData.root.isAuthenticated) {
+      this.showAuthModal = true;
+    } else {
+      this.$localData.root.TABS_SWITCH_TO();
+      // Switch to the last tab (good) but replaces history (so we use the previously captured value)
+    }
 
     this.$root.loadStage = "MOUNTED";
 

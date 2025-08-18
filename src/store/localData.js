@@ -1,5 +1,13 @@
 import Vue from "vue";
+import axios from "axios";
 const semver = require("semver");
+
+const API_BASE_URL =
+  typeof window !== "undefined" && window.webAppAuthServerUrl
+    ? `${window.webAppAuthServerUrl}/api`
+    : typeof process !== "undefined" && process.env.AUTH_SERVER_URL
+    ? `${process.env.AUTH_SERVER_URL}/api`
+    : "http://localhost:8000/api";
 
 // isWebApp for main-process electron execution
 const isWebApp = (typeof window !== "undefined" && window.isWebApp) || false;
@@ -44,13 +52,13 @@ const migrations = {
   }
 };
 
-var store, log;
+var log;
 if (!window.isWebApp) {
   const Store = require("electron-store");
-  store = new Store({ migrations });
+  // store = new Store({ migrations }); // No longer needed
   log = require("Logger");
 } else {
-  store = require("@/../webapp/localstore.js");
+  // store = require("@/../webapp/localstore.js"); // No longer needed
   log = {
     scope() {
       return console;
@@ -181,16 +189,16 @@ const DEFAULT_SAVEDATA = {
 class LocalData {
   constructor(init) {
     const data = init || {
-      assetDir: "",
+      assetDir: "web", // Always set assetDir to "web"
       tabData: DEFAULT_TABDATA,
       saveData: DEFAULT_SAVEDATA,
-      settings: DEFAULT_SETTINGS,
-      store: store
+      settings: DEFAULT_SETTINGS
     };
 
     this.VM = new Vue({
       data: () => ({
         ...data,
+        isAuthenticated: false, // Add isAuthenticated property
         temp: {
           visited: [],
           loadedTabList: [],
@@ -225,44 +233,29 @@ class LocalData {
       },
       methods: {
         _migrateStorage(new_version) {
-          const MIGRATION_KEY = "last_migrated_version";
-
-          const prev_version = this.store.get(MIGRATION_KEY) || "2.5.0";
-
-          if (prev_version != new_version) {
-            console.log(
-              "Migrating storage from",
-              prev_version,
-              "to",
-              new_version
-            );
-            for (const migration_version in migrations) {
-              if (semver.gt(migration_version, prev_version)) {
-                console.log("Performing migration for", migration_version);
-                migrations[migration_version](this.store);
-                this.store.set(MIGRATION_KEY, migration_version);
-              }
-            }
-          }
+          // This method is a placeholder to prevent errors.
+          // Actual migration logic (if any) would go here.
+          // For now, we assume the data is already in the correct format.
+          console.log("Migration check for version", new_version, "skipped.");
         },
-        _saveLocalStorage() {
+        async _saveLocalStorage() {
           if (this.saveDebounce) {
             clearTimeout(this.saveDebounce);
             this.saveDebounce = undefined;
           }
-          const all = this.store.get();
-          delete all["__internal__"]; // Not allowed to save this key
-
-          all["timestamp"] = Date.now();
-          all["assetDir"] = this.assetDir;
-          all["tabData"] = this.tabData;
-          all["saveData"] = this.saveData;
-          all["settings"] = this.settings;
           try {
-            this.store.set(all);
+            await axios.put(
+              `${API_BASE_URL}/data`,
+              {
+                saveData: this.saveData,
+                settings: this.settings
+              },
+              { withCredentials: true }
+            );
+            this.$logger.info("Data saved to server.");
           } catch (e) {
-            this.$logger.debug(all);
-            throw e;
+            this.$logger.error("Failed to save data to server:", e);
+            // Optionally, fall back to local storage or show an error to the user
           }
         },
         applySaveIfPending() {
@@ -274,28 +267,39 @@ class LocalData {
           if (this.saveDebounce) clearTimeout(this.saveDebounce);
           this.saveDebounce = setTimeout(this._saveLocalStorage, 1000);
         },
-        clearLocalStorage() {
+        async reloadLocalStorage() {
           this.applySaveIfPending();
-          this.store.delete("timestamp");
-          this.store.delete("assetDir");
-          this.store.delete("tabData");
-          this.store.delete("saveData");
-          this.store.delete("settings");
-          this.reloadLocalStorage();
-        },
-        reloadLocalStorage() {
-          this.applySaveIfPending();
-          const all = this.store.get();
+          try {
+            const response = await axios.get(`${API_BASE_URL}/session`, {
+              withCredentials: true
+            });
+            const { saveData, settings } = response.data;
+            this.saveData = saveData;
+            this.settings = settings;
+            this.$logger.info("Data reloaded from server.");
+          } catch (e) {
+            this.$logger.error("Failed to reload data from server:", e);
+            // If no session or error, prompt for login/signup
+            // This part will be handled in the install method
+          }
+
+          // The rest of the reloadLocalStorage logic remains the same for tabData
+          // as tabData is not persisted on the server per user.
+          // If tabData needs to be persisted, it would require a separate API.
+          const all = {
+            assetDir: this.assetDir || "", // assetDir is not part of user data, so keep it local
+            tabData: this.tabData || DEFAULT_TABDATA // tabData is not part of user data, so keep it local
+          };
           const back = {
             assetDir: all["assetDir"] || "",
-            saveData: all["saveData"] || DEFAULT_SAVEDATA,
-            settings: { ...DEFAULT_SETTINGS, ...all["settings"] },
+            saveData: this.saveData || DEFAULT_SAVEDATA,
+            settings: { ...DEFAULT_SETTINGS, ...this.settings },
             tabData: all["tabData"] || DEFAULT_TABDATA
           };
 
-          this.assetDir = back.assetDir;
-          this.saveData = back.saveData;
-          this.settings = back.settings;
+          this.assetDir = "web"; // Always set assetDir to "web"
+          // this.saveData = back.saveData; // Already set from API
+          // this.settings = back.settings; // Already set from API
           if (this.settings.useTabbedBrowsing) {
             this.temp.isPoppingState = true;
             this.tabData = back.tabData;
@@ -307,7 +311,15 @@ class LocalData {
               });
             });
           }
-          // console.log(this.settings)
+        },
+        clearLocalStorage() {
+          // This method will now clear local client-side state, not server data
+          this.applySaveIfPending();
+          this.assetDir = "web"; // Always set assetDir to "web"
+          this.tabData = DEFAULT_TABDATA;
+          this.saveData = DEFAULT_SAVEDATA;
+          this.settings = DEFAULT_SETTINGS;
+          // No server call here, as this is a client-side reset
         },
         HISTORY_CLEAR() {
           this.tabData.tabList.forEach(k => {
@@ -445,7 +457,8 @@ class LocalData {
 
             let url = targetTab.url;
             const history = [...targetTab.history];
-            const future = [...targetTab.future];
+            const future = [...targetTab.future.slice(0, HISTORY_LIMIT)]; // Limit future history
+            while (history.length > HISTORY_LIMIT) history.shift(); // Limit history
 
             if (historyMode == "back") {
               future.push(url);
@@ -808,13 +821,44 @@ export default {
     const the_store = new LocalData();
     the_store.VM._migrateStorage(window.appVersion);
 
-    the_store.VM.reloadLocalStorage();
-    // the_store.VM.saveLocalStorage()
+    // Check for existing session on app start
+    const checkSession = (retries = 3) => {
+      axios
+        .get(`${API_BASE_URL}/session`, { withCredentials: true })
+        .then(response => {
+          the_store.VM.saveData = response.data.saveData;
+          the_store.VM.settings = response.data.settings;
+          the_store.VM.isAuthenticated = true; // Set authentication status
+          the_store.VM.$logger.info("Session found. Data loaded from server.");
+          the_store.VM.reloadLocalStorage(); // Reload local state (tabData, etc.)
+        })
+        .catch(error => {
+          the_store.VM.$logger.warn(
+            "No active session found or failed to load session:",
+            error
+          );
+          if (retries > 0) {
+            the_store.VM.$logger.info(
+              `Retrying session check (${retries} retries left)...`
+            );
+            setTimeout(() => checkSession(retries - 1), 1000); // Retry after 1 second
+            return;
+          }
+          // If no session, prompt user to login/signup
+          // This will be handled by a new component or a global event
+          // For now, we'll just load default data
+          the_store.VM.saveData = DEFAULT_SAVEDATA;
+          the_store.VM.settings = DEFAULT_SETTINGS;
+          the_store.VM.isAuthenticated = false; // Set authentication status
+          the_store.VM.reloadLocalStorage(); // Reload local state (tabData, etc.)
+        });
+    };
+
+    checkSession();
 
     Vue.mixin({
       beforeCreate() {
         this.$localData = the_store;
-        // this.reloadLocalStorage()
       }
     });
   }
