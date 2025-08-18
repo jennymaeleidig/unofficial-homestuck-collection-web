@@ -6,7 +6,8 @@ const store = require('@/../webapp/localstore.js')
 
 window.webAppAppVersion = "{{ APP_VERSION.strip() }}"
 window.webAppAssetPackHref = "{{ ASSET_PACK_HREF }}"
-window.webAppModsDir = "{{ ASSET_DIR }}mods/"
+// External mod support removed - only supporting imods now
+// window.webAppModsDir = "{{ ASSET_DIR }}mods/" // Disabled
 window.webAppIModsDir = "{{ ASSET_DIR }}archive/imods/"
 
 // Old-reader-only settings in the webhook for setup validateAndRestart
@@ -53,33 +54,11 @@ window.webAppOpinionatedModDefaults = {
   // "Nightfall_online",
 //"eraserhead.js",
 
-// CHANGEME
-// Whatever mods you bundle with the webapp have to be set in both
-// litepack.sh:copyMods and browser.js.j2:mods
-// litepack includes them in the litepack, browser.js.j2 tells yarn to
-// include them in webpack
+// EXTERNAL MOD SUPPORT REMOVED
+// Only imods (built-in mods) are supported now
+// External mods have been disabled to simplify webapp deployment
 
-{# {% set mods = [
-  "Psycholonials_online",
-  "Ruby Quest_online",
-  "Nan Quest_online",
-  "Ruby Quest",
-  "Nan Quest",
-
-  "semantic",
-  "Plaintext-Images",
-  "tuhc-commentary",
-  "tuhc-readmspa",
-
-  "HomestuckSlurReplacement",
-
-  "oddities",
-
-  "socialLinks",
-  "tuhc-damara",
-  "tuhc-puzzlestuck",
-  "click.js"
-] %} #}
+{# External mod template removed - only imods supported now #}
 
 {%
   set mods = []
@@ -317,6 +296,7 @@ window.webAppModJs = {
       }
     ]
   }),
+  {# External mod imports removed - only imods supported now #}
   {% for mod in mods -%}
   '{{ mod }}': import('{{ ASSET_DIR }}mods/{{ mod if mod.endswith(".js") else mod + "/mod.js" }}'),
   {% endfor %}

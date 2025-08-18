@@ -518,7 +518,7 @@ const log = window.isWebApp
         return console;
       }
     }
-  : require("electron-log");
+  : require("Logger");
 const ipcRenderer = require("IpcRenderer");
 
 export default {

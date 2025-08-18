@@ -395,9 +395,11 @@ export default {
     },
     drag(e) {
       if (!this.$isWebApp) {
-        e.dataTransfer.effectAllowed = "copy";
-        ipcRenderer.send("ondragstart", this.$mspaFileStream(this.url));
-        e.preventDefault();
+        if (!this.$isWebApp) {
+          e.dataTransfer.effectAllowed = "copy";
+          ipcRenderer.send("ondragstart", this.$mspaFileStream(this.url));
+          e.preventDefault();
+        }
       }
     },
     // Video

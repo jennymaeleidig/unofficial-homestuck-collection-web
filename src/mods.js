@@ -20,7 +20,7 @@ var store, store_mods, log;
 if (!isWebApp) {
   var { ipcMain } = require("electron");
 
-  log = require("electron-log");
+  log = require("Logger");
   log.transports.console.level = "info";
 
   const Store = require("electron-store");
@@ -67,9 +67,8 @@ const ipcRenderer = require("IpcRenderer");
 const logger = log.scope("Mods");
 
 const assetDir = store.has("assetDir") ? store.get("assetDir") : undefined;
-const modsDir =
-  (isWebApp && window.webAppModsDir) ||
-  (assetDir ? path.join(assetDir, "mods") : undefined);
+// External mod support removed - only supporting imods now
+const modsDir = undefined; // Disabled external mods
 const modsAssetsRoot = "assets://mods/";
 
 const imodsDir =
@@ -91,8 +90,8 @@ if (ipcMain) {
 let validatedState = false;
 function expectWorkingState() {
   if (validatedState || isWebApp) return true;
-  validatedState =
-    modsDir && assetDir && fs.existsSync(path.join(assetDir, "archive"));
+  // External mods removed - only check for archive directory now
+  validatedState = assetDir && fs.existsSync(path.join(assetDir, "archive"));
   return validatedState;
 }
 
@@ -289,10 +288,26 @@ function onModLoadFail(responsible_mods, e) {
     window.doErrorRecover = () => {
       removeModsFromEnabledList(responsible_mods);
       // Have to invoke reload because we probably don't even have the VM at this point
-      ipcRenderer.invoke("reload");
+      if (!isWebApp) {
+        ipcRenderer.invoke("reload");
+      } else {
+        window.location.reload();
+      }
     };
-    window.doReloadNoRecover = () => ipcRenderer.invoke("reload");
-    window.doFullRestart = () => ipcRenderer.invoke("restart");
+    window.doReloadNoRecover = () => {
+      if (!isWebApp) {
+        ipcRenderer.invoke("reload");
+      } else {
+        window.location.reload();
+      }
+    };
+    window.doFullRestart = () => {
+      if (!isWebApp) {
+        ipcRenderer.invoke("restart");
+      } else {
+        window.location.reload();
+      }
+    };
 
     function sanitizeHTML(str) {
       var temp = document.createElement("div");
@@ -481,7 +496,8 @@ function getEnabledMods() {
 async function getEnabledModsJsAsync(opts) {
   // Get the array of currently enabled mod modules. opts are passed to getModJs (i.e. reload)
   var options = opts || {};
-  if (!modsDir) {
+  // External mods removed - only load imods and webapp-bundled mods now
+  if (!imodsDir && !isWebApp) {
     logger.warn("No asset directory set, can't load any mods.");
     return [];
   }
@@ -548,10 +564,8 @@ async function crawlFileTree(root, recursive = false) {
   // Gives a object that represents the file tree, starting at root
   // Values are objects for directories or true for files that exist
   if (isWebApp) {
-    const try_roots = [
-      root.replace(window.webAppIModsDir, ""),
-      root.replace(window.webAppModsDir, "")
-    ];
+    // External mod support removed - only check imods directory
+    const try_roots = [root.replace(window.webAppIModsDir, "")];
     for (const try_root of try_roots) {
       const result = await searchWebAppModTrees(try_root);
       if (result) {
@@ -686,23 +700,29 @@ async function buildApi(mod) {
 
 async function getModJsAsync(mod_dir, options = {}) {
   // Tries to load a mod (`require'd module) from a directory
-  // If mod_dir/mod.js is not found, tries to load mod_dir.js as a single file
+  // External mod support removed - only loads imods and webapp-bundled mods
   // Errors passed to onModLoadFail and raised
   let modjs_path; // full path to js file
   let modjs_name; // relative path to js file from mods dir
 
   try {
-    // const use_webpack_require = false
-
     const is_internal = mod_dir.startsWith("_");
 
-    // Global, but let us overwrite it for some cases
-    let thisModsDir = modsDir;
-    let thisModsAssetRoot = modsAssetsRoot;
+    // Only support imods (internal) or webapp-bundled mods now
+    let thisModsDir = imodsDir;
+    let thisModsAssetRoot = imodsAssetsRoot;
     let is_singlefile = false;
 
+    if (!is_internal && !isWebApp) {
+      // External mods no longer supported in non-webapp mode
+      logger.warn(
+        `External mod ${mod_dir} not supported - only imods available`
+      );
+      removeModsFromEnabledList([mod_dir]);
+      return null;
+    }
+
     if (is_internal) {
-      // use_webpack_require = true
       thisModsDir = imodsDir;
       thisModsAssetRoot = imodsAssetsRoot;
     }
@@ -756,7 +776,11 @@ async function getModJsAsync(mod_dir, options = {}) {
         if (!Boolean(mod_module)) {
           removeModsFromEnabledList(mod_dir);
           console.error("Mod missing from static webapp build", mod_dir);
-          ipcRenderer.invoke("reload");
+          if (!isWebApp) {
+            ipcRenderer.invoke("reload");
+          } else {
+            window.location.reload();
+          }
           // onModLoadFail([mod_dir], new Error("Mod missing from static webapp build"))
           return;
         }
@@ -1528,85 +1552,22 @@ function jsToChoice(js, dir) {
   };
 }
 
-async function tryExtractZipsForFilesystemIlliteratesAsync(tree) {
-  // Extract zips left incorrectly in mods folder
-
-  const zip_archives = Object.keys(tree).filter(p => /\.zip$/.test(p));
-  if (zip_archives.length > 0) {
-    const unzipper = require("unzipper");
-    const outpath = modsDir; // path.join(assetDir, "mods")
-
-    await Promise.all(
-      zip_archives.map(async zip_name => {
-        const zip_path = path.join(modsDir, zip_name);
-        console.log(`Extracting ${zip_path} to ${outpath}`);
-        fs.createReadStream(zip_path)
-          .pipe(
-            unzipper.Extract({
-              path: outpath,
-              concurrency: 5
-            })
-          )
-          .on("finish", function() {
-            setTimeout(
-              () =>
-                fs.unlink(zip_path, err => {
-                  if (err) console.log(err);
-                }),
-              1000
-            ); // OS doesn't release it right away even after finish
-          });
-      })
-    );
-  }
-}
+// tryExtractZipsForFilesystemIlliteratesAsync removed - no longer supporting external mods
 
 async function loadModChoicesAsync() {
   // Get the list of mods players can choose to enable/disable
+  // External mod support removed - only webapp-bundled mods and imods
   var mod_folders;
 
   if (isWebApp) {
+    // Only show webapp-bundled mods (both external and imods)
     mod_folders = Object.keys(window.webAppModJs);
-  } else if (assetDir == undefined) {
-    // No mod folder at all. That's okay.
-    logger.info("Asset dir not yet defined. (First run)");
-    return [];
   } else {
-    try {
-      if ((await fsExistsAsync(assetDir)) && !(await fsExistsAsync(modsDir))) {
-        logger.warn(
-          "Asset pack exists but mods dir doesn't, making empty folder"
-        );
-        fs.mkdirSync(modsDir);
-      }
-      const tree = await crawlFileTree(modsDir, false);
-
-      try {
-        await tryExtractZipsForFilesystemIlliteratesAsync(tree);
-      } catch (e) {
-        logger.info(e, "(who cares?)");
-      }
-
-      async function isRootValidMod(file_name) {
-        if (/\.js$/.test(file_name)) return true;
-        if (tree[file_name] === undefined) {
-          if (await fsExistsAsync(path.join(modsDir, file_name, "mod.js")))
-            return true;
-        }
-        logger.warn("Not a mod:", file_name, path.join(file_name, "mod.js"));
-        return false;
-      }
-
-      // .js file or folder of some sort
-
-      const roots = Object.keys(tree);
-      const filter = await Promise.all(roots.map(isRootValidMod));
-      mod_folders = roots.filter((_, i) => filter[i]);
-    } catch (e) {
-      // No mod folder at all. That's okay.
-      logger.error(e);
-      return [];
-    }
+    // Non-webapp mode: only support imods, no external mods
+    logger.info(
+      "External mod support disabled - only imods available in non-webapp mode"
+    );
+    return [];
   }
 
   const choice_promises = mod_folders.map(async dir => {

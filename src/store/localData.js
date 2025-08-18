@@ -48,7 +48,7 @@ var store, log;
 if (!window.isWebApp) {
   const Store = require("electron-store");
   store = new Store({ migrations });
-  log = require("electron-log");
+  log = require("Logger");
 } else {
   store = require("@/../webapp/localstore.js");
   log = {
@@ -347,6 +347,11 @@ class LocalData {
             console.warn("Tab key element not loaded in document", key);
           }
 
+          if (window.isWebApp) {
+            // In webapp mode, use browser history
+            window.history.pushState({ tabData: this.tabData }, "", url);
+          }
+
           this.tabData.tabs[key].history.push(this.tabData.tabs[key].url);
           this.tabData.tabs[key].future = [];
           while (this.tabData.tabs[key].history.length > HISTORY_LIMIT)
@@ -358,7 +363,7 @@ class LocalData {
         },
 
         TABS_NEW(url = "/", adjacent = false) {
-          if (!this.settings.useTabbedBrowsing) {
+          if (!this.settings.useTabbedBrowsing || window.isWebApp) {
             return this.TABS_PUSH_URL(url);
           }
           let key;

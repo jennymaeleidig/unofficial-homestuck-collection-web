@@ -8,45 +8,32 @@ CONFIG_JSON_PATH = "${APPDATA}/unofficial-homestuck-collection/config.json"
 .SECONDEXPANSION:
 .SUFFIXES:
 
-# Optional prefix to force running under Rosetta (x86_64) on Apple Silicon.
-# Example: make ARCH_PREFIX="arch -x86_64" install
-ARCH_PREFIX ?=
-
-# When ARCH_PREFIX is set to force x86_64, also set npm_config_arch=x64 so
-# @electron/get requests the x64 binary instead of darwin-arm64.
-ifeq ($(ARCH_PREFIX),)
-	NPM_ARCH =
-else
-	NPM_ARCH = env npm_config_arch=x64
-endif
-
-default: test
+default: serve
 
 ## Setup
 
 # We do actually use a dummy install file to track this
 yarn.lock: package.json
-	$(NPM_ARCH) $(ARCH_PREFIX) yarn install --ignore-optional --ignore-engines
+	yarn install --ignore-optional --ignore-engines
 	touch yarn.lock
 
 install: package.json yarn.lock
-	$(NPM_ARCH) $(ARCH_PREFIX) yarn install --ignore-engines
+	yarn install --ignore-engines
 
 ## Prep actions
 
 .PHONY: clean
 clean:
-	$(NPM_ARCH) $(ARCH_PREFIX) yarn cache clean
+	yarn cache clean
 	-rm yarn-error.log
 	-rm ./install src/imods.tar.gz
 	-rm -r node_modules/.cache/
-	-rm -r dist/ dist_electron/* dist_electron/*/
+	-rm -r dist/
 	-rm build/webAppModTrees.json
 
 .PHONY: lint
 lint: install
-	$(NPM_ARCH) $(ARCH_PREFIX) yarn run vue-cli-service lint
-	# yarn lint
+	yarn run vue-cli-service lint
 
 ## Intermediate files
 
@@ -59,14 +46,16 @@ src/imods.tar.gz: $(wildcard src/imods/*) $(wildcard src/imods/*/*)
 # 	-mv ${CONFIG_JSON_PATH}.tmp ${CONFIG_JSON_PATH}
 
 src/js/crc_imods.json: src/imods.tar.gz
-	$(NPM_ARCH) $(ARCH_PREFIX) yarn exec node src/js/validation.js src/imods/ src/js/crc_imods.json
+	yarn exec node src/js/validation.js src/imods/ src/js/crc_imods.json
 
 # browser.js must be built with known environment variables, not static
 WEBAPP_INTERMEDIATE=build/webAppModTrees.json
 
-build/webAppModTrees.json: webapp/browser.js.j2
+build/webAppModTrees.json: webapp/browser.js.j2 .env
 	mkdir -p build/
-	(cd ${ASSET_DIR_LITE}; tree archive/imods mods -J | jq '. | walk(if type == "object" then (if .type == "file" then ({"key": (.name), "value": true}) elif has("contents") then {"key": (.name), "value": .contents|from_entries} else . end) else . end) | .[:-1] | from_entries') > build/webAppModTrees.json
+	# External mod support removed - only scan imods directory
+	# Source .env to get ASSET_DIR_LITE
+	bash -c 'set -a; source .env; set +a; cd "$${ASSET_DIR_LITE}"; tree archive/imods -J | jq '"'"'. | walk(if type == "object" then (if .type == "file" then ({"key": (.name), "value": true}) elif has("contents") then {"key": (.name), "value": .contents|from_entries} else . end) else . end) | .[:-1] | from_entries'"'"'' > build/webAppModTrees.json
 
 # Requires `python3 -m pip install jinja2-cli`
 .PHONY: webapp/browser.js
@@ -83,15 +72,9 @@ webapp/browser.js:
 
 ## Running live
 
-# Run 'rm src/imods.tar.gz; SERVE_FLAGS="--reset-last-version" make src/imods.tar.gz test' to make imods and pass --reset-last-version through
+# Legacy target for compatibility - redirects to serve
 .PHONY: test
-test: install ${SHARED_INTERMEDIATE}
-	$(NPM_ARCH) $(ARCH_PREFIX) yarn run vue-cli-service electron:serve $(SERVE_FLAGS)
-
-.PHONY: itest
-itest:
-	-rm src/imods.tar.gz
-	SERVE_FLAGS="--reset-last-version" make src/imods.tar.gz test
+test: serve
 
 .PHONY: ensure-asset-server
 ensure-asset-server:
@@ -104,34 +87,21 @@ ensure-asset-server:
 serve: install ${SHARED_INTERMEDIATE} ${WEBAPP_INTERMEDIATE}
 	@trap 'printf "\nShutting down servers...\n"; pkill -f "python3.*httpserver.py" 2>/dev/null; kill $$(jobs -p) 2>/dev/null; rm -f .asset-server.pid; exit 0' EXIT INT TERM; \
 	make ensure-asset-server; \
-	env ASSET_PACK_HREF="${ASSET_PACK_HREF}" $(NPM_ARCH) $(ARCH_PREFIX) yarn run vue-cli-service serve webapp/browser.js & \
+	env ASSET_PACK_HREF="${ASSET_PACK_HREF}" yarn run vue-cli-service serve webapp/browser.js & \
 	nodemon --exec "make webapp/browser.js" --watch "webapp" -e "j2" & \
 	wait || true
 
 ## Building output
 
 .PHONY: build
-build: install ${SHARED_INTERMEDIATE}
-	env NODE_OPTIONS=--max_old_space_size=8192 \
-		$(NPM_ARCH) $(ARCH_PREFIX) yarn run vue-cli-service electron:build
-
-.PHONY: publish-release
-publish-release: install ${SHARED_INTERMEDIATE}
-	env NODE_OPTIONS=--max_old_space_size=8192 \
-		$(NPM_ARCH) $(ARCH_PREFIX) yarn run vue-cli-service electron:build -p always
-	# Don't bundle non-unified NSIS builds
-	-rm dist_electron/*-win-ia32.exe
-	-rm dist_electron/*-win-x64.exe
-
-.PHONY: webapp
-webapp: install ${SHARED_INTERMEDIATE} ${WEBAPP_INTERMEDIATE} 
+build: install ${SHARED_INTERMEDIATE} ${WEBAPP_INTERMEDIATE}
 	env ASSET_DIR="${ASSET_DIR_LITE}" \
 		ASSET_PACK_HREF="${ASSET_PACK_HREF}" \
 			make webapp/browser.js
 	env NODE_OPTIONS=--max_old_space_size=8192 \
 		ASSET_DIR="${ASSET_DIR_LITE}" \
 		ASSET_PACK_HREF="${ASSET_PACK_HREF}" \
-			$(NPM_ARCH) $(ARCH_PREFIX) yarn run vue-cli-service build webapp/browser.js
+			yarn run vue-cli-service build webapp/browser.js
 			
 			
 .PHONY: help

@@ -44,3 +44,7 @@ webAppModTrees.json
 /build
 
 .env
+
+/.roo
+
+/aiplans
