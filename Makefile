@@ -4,7 +4,7 @@
 ASSET_PACK_HREF ?= http://localhost:8413/
 
 # Default auth server configuration
-AUTH_SERVER_URL ?= http://localhost:8000
+AUTH_SERVER_URL ?= http://localhost:9413
 
 CONFIG_JSON_PATH = "${APPDATA}/unofficial-homestuck-collection/config.json"
 

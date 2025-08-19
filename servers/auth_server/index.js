@@ -3,87 +3,39 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const db = require("./database.js");
 const bcrypt = require("bcrypt");
-const session = require("express-session");
-const FileStore = require("session-file-store")(session);
+const jwt = require("jsonwebtoken");
+
+const JWT_SECRET = "a very secret key"; // Should be in env in production
+const JWT_EXPIRES_IN = "7d";
 
 const app = express();
 
 app.use(
   cors({
-    origin: function(origin, callback) {
-      // Allow requests with no origin (like mobile apps or curl requests)
-      if (!origin) return callback(null, true);
-
-      // Allow requests from localhost and the IP address in the .env file
-      const allowedOrigins = [
-        "http://localhost:8080",
-        "http://192.168.1.236:8080"
-      ];
-
-      if (allowedOrigins.indexOf(origin) !== -1) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: "*",
     credentials: true
   })
 );
 app.use(bodyParser.json());
-app.use((req, res, next) => {
-  console.log("Request headers:", req.headers);
 
-  // Force clear invalid session cookie if session file is missing (ENOENT)
-  if (
-    req.sessionID &&
-    req.sessionStore &&
-    typeof req.sessionStore.get === "function"
-  ) {
-    req.sessionStore.get(req.sessionID, (err, session) => {
-      if (err && err.code === "ENOENT") {
-        res.clearCookie("connect.sid", {
-          path: "/",
-          sameSite: "none",
-          secure: true
-        });
-        console.log(
-          "Force-cleared invalid session cookie for sessionID:",
-          req.sessionID
-        );
+// JWT authentication middleware
+function authenticateJWT(req, res, next) {
+  const authHeader = req.headers.authorization;
+  if (authHeader && authHeader.startsWith("Bearer ")) {
+    const token = authHeader.split(" ")[1];
+    jwt.verify(token, JWT_SECRET, (err, user) => {
+      if (err) {
+        return res.status(401).json({ error: "Invalid or expired token" });
       }
+      req.user = user;
       next();
     });
   } else {
-    next();
+    res.status(401).json({ error: "No token provided" });
   }
-});
+}
 
-app.use(
-  session({
-    store: new FileStore({
-      path: "./sessions",
-      ttl: 60 * 60 * 24 * 7,
-      retries: 5
-    }),
-    secret: "a very secret key",
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      secure: true,
-      httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24 * 7,
-      sameSite: "none"
-    },
-    proxy: true
-  })
-);
-
-app.use((req, res, next) => {
-  console.log("Session after middleware:", req.sessionID, req.session);
-  next();
-});
-
-const HTTP_PORT = 8000;
+const HTTP_PORT = 9413;
 
 // Start server
 app.listen(HTTP_PORT, "0.0.0.0", () => {
@@ -202,20 +154,16 @@ app.post("/api/login", (req, res, next) => {
       }
 
       if (result) {
-        req.session.userId = row.id;
-        req.session.username = row.username;
-        req.session.save(err => {
-          if (err) {
-            console.error("Failed to save session:", err);
-            res.status(500).json({ error: "Failed to save session" });
-            return;
-          }
-          console.log("Session saved successfully, session ID:", req.sessionID);
-          res.json({
-            message: "success",
-            saveData: JSON.parse(row.saveData),
-            settings: JSON.parse(row.settings)
-          });
+        const token = jwt.sign(
+          { userId: row.id, username: row.username },
+          JWT_SECRET,
+          { expiresIn: JWT_EXPIRES_IN }
+        );
+        res.json({
+          message: "success",
+          token,
+          saveData: JSON.parse(row.saveData),
+          settings: JSON.parse(row.settings)
         });
       } else {
         res.status(401).json({ error: "Invalid username or password" });
@@ -225,61 +173,48 @@ app.post("/api/login", (req, res, next) => {
 });
 
 app.post("/api/logout", (req, res, next) => {
-  req.session.destroy(err => {
+  // JWT logout is handled client-side by deleting the token.
+  res.json({ message: "Logged out" });
+});
+
+app.get("/api/session", authenticateJWT, (req, res, next) => {
+  const sql = "select * from user where id = ?";
+  db.get(sql, [req.user.userId], (err, row) => {
     if (err) {
       res.status(500).json({ error: err.message });
       return;
     }
-    res.json({ message: "Logged out" });
+
+    if (!row) {
+      res.status(401).json({ error: "User not found" });
+      return;
+    }
+
+    res.json({
+      username: row.username,
+      saveData: JSON.parse(row.saveData),
+      settings: JSON.parse(row.settings)
+    });
   });
 });
 
-app.get("/api/session", (req, res, next) => {
-  if (req.session.userId) {
-    const sql = "select * from user where id = ?";
-    db.get(sql, [req.session.userId], (err, row) => {
+app.put("/api/data", authenticateJWT, (req, res, next) => {
+  const { saveData, settings } = req.body;
+  const update = "UPDATE user set saveData = ?, settings = ? WHERE id = ?";
+  db.run(
+    update,
+    [JSON.stringify(saveData), JSON.stringify(settings), req.user.userId],
+    function(err, result) {
       if (err) {
-        res.status(500).json({ error: err.message });
+        res.status(500).json({ error: res.message });
         return;
       }
-
-      if (!row) {
-        res.status(401).json({ error: "User not found" });
-        return;
-      }
-
       res.json({
-        username: row.username,
-        saveData: JSON.parse(row.saveData),
-        settings: JSON.parse(row.settings)
+        message: "success",
+        changes: this.changes
       });
-    });
-  } else {
-    res.status(401).json({ error: "Not logged in" });
-  }
-});
-
-app.put("/api/data", (req, res, next) => {
-  if (req.session.userId) {
-    const { saveData, settings } = req.body;
-    const update = "UPDATE user set saveData = ?, settings = ? WHERE id = ?";
-    db.run(
-      update,
-      [JSON.stringify(saveData), JSON.stringify(settings), req.session.userId],
-      function(err, result) {
-        if (err) {
-          res.status(500).json({ error: res.message });
-          return;
-        }
-        res.json({
-          message: "success",
-          changes: this.changes
-        });
-      }
-    );
-  } else {
-    res.status(401).json({ error: "Not logged in" });
-  }
+    }
+  );
 });
 
 // Default response for any other request

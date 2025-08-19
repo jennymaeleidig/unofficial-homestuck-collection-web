@@ -346,10 +346,10 @@
         <!-- TODO v-if="$isNewReader"> -->
         <h2>Controversial Content</h2>
         <p class="settingDesc">
-          The Unofficial Homestuck Collection allows you to restore some
-          material that was included in the original publication, but was since
-          officially replaced by MSPA for various reasons. These options allow
-          you to view those pages before they were edited.
+          The Unofficial Homestuck Collection: Web Edition allows you to restore
+          some material that was included in the original publication, but was
+          since officially replaced by MSPA for various reasons. These options
+          allow you to view those pages before they were edited.
         </p>
 
         <div v-if="$isNewReader">
@@ -898,20 +898,20 @@ export default {
     },
     scrollToSec(sectionClass) {
       this.$el.querySelector(`.settings.${sectionClass}`).scrollIntoView(true);
-    },
-    trackSettings() {
-      // Log settings, for debugging
-      this.$logger.info(this.$localData.settings);
     }
+    // trackSettings() {
+    //   // Log settings, for debugging
+    //   this.$logger.info(this.$localData.settings);
+    // }
   },
   mounted() {
     if (this.routeParams.sec) {
       this.$nextTick(() => this.scrollToSec(this.routeParams.sec));
     }
   },
-  destroyed() {
-    this.trackSettings();
-  },
+  // destroyed() {
+  //   this.trackSettings();
+  // },
   watch: {
     "tab.history": function(to, from) {
       if (this.routeParams.sec) {

@@ -1,3 +1,5 @@
-module.exports = { 
-  scope() { return console; }
-}
+module.exports = {
+  scope() {
+    return console;
+  }
+};

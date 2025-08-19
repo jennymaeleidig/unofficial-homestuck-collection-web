@@ -45,7 +45,8 @@ module.exports = {
         chunks: false,
         chunkModules: false,
         modules: false
-      }
+      },
+      port: 8413
     },
     // devtool: "source-map",
     devtool: "eval-source-map",
@@ -140,20 +141,3 @@ module.exports = {
     }
   }
 };
-
-if (
-  process.env.ASSET_PACK_HREF &&
-  !process.env.ASSET_PACK_HREF.includes("localhost")
-) {
-  // Production web app builds only
-
-  const { sentryWebpackPlugin } = require("@sentry/webpack-plugin");
-
-  module.exports.configureWebpack.plugins.push(
-    sentryWebpackPlugin({
-      org: process.env.SENTRY_ORG,
-      project: process.env.SENTRY_PROJECT,
-      authToken: process.env.SENTRY_AUTH_TOKEN
-    })
-  );
-}

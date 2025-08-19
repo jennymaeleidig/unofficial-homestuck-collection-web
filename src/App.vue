@@ -28,7 +28,7 @@
         :ref="$localData.tabData.activeTabKey"
         :tabKey="$localData.tabData.activeTabKey"
       />
-      <Notifications :class="theme" ref="notifications" />
+      <MobileNotification />
       <ContextMenu :class="theme" ref="contextMenu" v-if="!$isWebApp" />
       <Updater ref="Updater" v-if="!$isWebApp" />
       <GuestBanner ref="GuestBanner" v-if="$root.guestMode" />
@@ -95,6 +95,8 @@ export default {
     TabFrame,
     ContextMenu,
     Notifications,
+    MobileNotification: () =>
+      import("@/components/UIElements/MobileNotification.vue"),
     UrlTooltip,
     Updater,
     GuestBanner,
@@ -105,7 +107,8 @@ export default {
       zoomLevel: 0,
       needCheckTheme: false,
       stylesheets: [], // Mod optimization
-      showAuthModal: false // New data property for auth modal visibility
+      showAuthModal: false, // New data property for auth modal visibility
+      sessionChecked: false // New data property to track session check completion
     };
   },
   computed: {
@@ -298,6 +301,16 @@ export default {
       if (to != undefined) this.$root.tabTheme = to;
     }
   },
+  watch: {
+    sessionChecked(to, from) {
+      if (to === true) {
+        // Session check has completed, now decide whether to show auth modal
+        if (!this.$localData.root.isAuthenticated) {
+          this.showAuthModal = true;
+        }
+      }
+    }
+  },
   updated() {
     if (this.$isWebApp) this.filterLinksAndImages(window.document.body);
   },
@@ -305,10 +318,9 @@ export default {
     this.$nextTick(() => this.updateAppIcon());
     const user_path_target = window.location.pathname;
 
-    // Check if user is authenticated, if not, show auth modal
-    if (!this.$localData.root.isAuthenticated) {
-      this.showAuthModal = true;
-    } else {
+    // We'll handle showing the auth modal in a watcher for sessionChecked
+    // to ensure we wait for the session check to complete
+    if (this.$localData.root.isAuthenticated) {
       this.$localData.root.TABS_SWITCH_TO();
       // Switch to the last tab (good) but replaces history (so we use the previously captured value)
     }

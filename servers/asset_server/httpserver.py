@@ -5,8 +5,8 @@ import os
 
 root_dir = os.environ['ROOT_DIR']
 
-host = sys.argv[2] if len(sys.argv) > 2 else '0.0.0.0'
-port = int(sys.argv[3]) if len(sys.argv) > 1 else 8413
+host = '0.0.0.0'
+port = 7413
 
 
 class CORSRequestHandler(SimpleHTTPRequestHandler):

@@ -35,7 +35,7 @@ const API_BASE_URL =
     ? `${window.webAppAuthServerUrl}/api`
     : typeof process !== "undefined" && process.env.AUTH_SERVER_URL
     ? `${process.env.AUTH_SERVER_URL}/api`
-    : "http://localhost:8000/api";
+    : "http://localhost:9413/api";
 
 export default {
   name: "AuthModal",
@@ -65,23 +65,15 @@ export default {
       try {
         let response;
         if (this.isLogin) {
-          response = await axios.post(
-            `${API_BASE_URL}/login`,
-            {
-              username: this.username,
-              password: this.password
-            },
-            { withCredentials: true }
-          );
+          response = await axios.post(`${API_BASE_URL}/login`, {
+            username: this.username,
+            password: this.password
+          });
         } else {
-          response = await axios.post(
-            `${API_BASE_URL}/signup`,
-            {
-              username: this.username,
-              password: this.password
-            },
-            { withCredentials: true }
-          );
+          response = await axios.post(`${API_BASE_URL}/signup`, {
+            username: this.username,
+            password: this.password
+          });
         }
 
         if (
@@ -89,6 +81,10 @@ export default {
           response.data.success ||
           response.status === 201
         ) {
+          // Store JWT token if present
+          if (response.data.token) {
+            localStorage.setItem("jwt_token", response.data.token);
+          }
           if (this.isLogin) {
             // For login, emit success immediately
             this.$emit("auth-success", response.data);

@@ -23,7 +23,8 @@
     "serve": "vue-cli-service serve webapp/browser.js",
     "build": "vue-cli-service build webapp/browser.js",
     "lint": "vue-cli-service lint",
-    "dev": "vue-cli-service serve webapp/browser.js"
+    "dev": "vue-cli-service serve webapp/browser.js",
+    "pretty": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json}\""
   },
   "dependencies": {
     "@babel/core": "^7.0.0-0",
@@ -31,7 +32,6 @@
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/vue-fontawesome": "^2.0.10",
-    "@sentry/vue": "^7.60.1",
     "array.prototype.toreversed": "^1.1.1",
     "crc": "^4.3.2",
     "encoding": "^0.1.12",
@@ -64,7 +64,6 @@
     "@babel/plugin-transform-nullish-coalescing-operator": "^7.24",
     "@babel/plugin-transform-optional-chaining": "^7.24",
     "@babel/preset-env": "^7.21.4",
-    "@sentry/webpack-plugin": "^2.5.0",
     "@vue/cli-plugin-e2e-webdriverio": "^5.0.8",
     "@vue/cli-plugin-router": "^4.5",
     "@vue/cli-service": "^4.5",

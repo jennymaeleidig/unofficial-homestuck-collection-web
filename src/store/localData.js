@@ -2,12 +2,24 @@ import Vue from "vue";
 import axios from "axios";
 const semver = require("semver");
 
+// Set up axios to use JWT token from localStorage
+axios.interceptors.request.use(
+  config => {
+    const token = localStorage.getItem("jwt_token");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  error => Promise.reject(error)
+);
+
 const API_BASE_URL =
   typeof window !== "undefined" && window.webAppAuthServerUrl
     ? `${window.webAppAuthServerUrl}/api`
     : typeof process !== "undefined" && process.env.AUTH_SERVER_URL
     ? `${process.env.AUTH_SERVER_URL}/api`
-    : "http://localhost:8000/api";
+    : "http://localhost:9413/api";
 
 // isWebApp for main-process electron execution
 const isWebApp = (typeof window !== "undefined" && window.isWebApp) || false;
@@ -244,14 +256,10 @@ class LocalData {
             this.saveDebounce = undefined;
           }
           try {
-            await axios.put(
-              `${API_BASE_URL}/data`,
-              {
-                saveData: this.saveData,
-                settings: this.settings
-              },
-              { withCredentials: true }
-            );
+            await axios.put(`${API_BASE_URL}/data`, {
+              saveData: this.saveData,
+              settings: this.settings
+            });
             this.$logger.info("Data saved to server.");
           } catch (e) {
             this.$logger.error("Failed to save data to server:", e);
@@ -270,9 +278,7 @@ class LocalData {
         async reloadLocalStorage() {
           this.applySaveIfPending();
           try {
-            const response = await axios.get(`${API_BASE_URL}/session`, {
-              withCredentials: true
-            });
+            const response = await axios.get(`${API_BASE_URL}/session`);
             const { saveData, settings } = response.data;
             this.saveData = saveData;
             this.settings = settings;
@@ -824,7 +830,7 @@ export default {
     // Check for existing session on app start
     const checkSession = (retries = 3) => {
       axios
-        .get(`${API_BASE_URL}/session`, { withCredentials: true })
+        .get(`${API_BASE_URL}/session`)
         .then(response => {
           the_store.VM.saveData = response.data.saveData;
           the_store.VM.settings = response.data.settings;
@@ -833,6 +839,10 @@ export default {
           the_store.VM.reloadLocalStorage(); // Reload local state (tabData, etc.)
         })
         .catch(error => {
+          // If unauthorized, clear token
+          if (error.response && error.response.status === 401) {
+            localStorage.removeItem("jwt_token");
+          }
           the_store.VM.$logger.warn(
             "No active session found or failed to load session:",
             error
@@ -851,6 +861,12 @@ export default {
           the_store.VM.settings = DEFAULT_SETTINGS;
           the_store.VM.isAuthenticated = false; // Set authentication status
           the_store.VM.reloadLocalStorage(); // Reload local state (tabData, etc.)
+        })
+        .finally(() => {
+          // Set sessionChecked to true in the root Vue instance
+          if (window.vm && window.vm.$refs.App) {
+            window.vm.$refs.App.sessionChecked = true;
+          }
         });
     };
 

@@ -242,20 +242,6 @@ window.webAppModJs = {
       //     trackSettings($super) {
       //       $super()
       //       try {
-      //         import("@sentry/vue").then(Sentry => {
-      //           ;[
-      //             ...this.settingListBoolean,
-      //             ...this.settingListSystem,
-      //             ...this.enhancementListBoolean,
-      //             ...this.controversialList
-      //           ].forEach(modelSetting => {
-      //             Sentry.setContext(modelSetting.model, this.$localData.settings[modelSetting.model]);
-      //             Sentry.captureMessage(`${modelSetting.model} = ${this.$localData.settings[modelSetting.model]}`);
-      //           })
-      //         })
-      //       } catch (e) {
-      //         this.$logger.error(e)
-      //       }
       //     }
       //   }
       // },

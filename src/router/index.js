@@ -1,7 +1,7 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from "vue";
+import VueRouter from "vue-router";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 // Generally speaking, routes aren't necessary to get a page working in this application.
 // If it doesn't have any subsequent routes, then you don't have to add it here at all! As long as it's defined in TabFrame.vue, you can run it just fine.
@@ -13,249 +13,249 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/map/:mode',
+    path: "/map/:mode",
     props: true
   },
   {
-    path: '/log/:mode',
+    path: "/log/:mode",
     props: true
   },
   {
-    path: '/help/:mode',
+    path: "/help/:mode",
     props: true
   },
   {
-    path: '/search/:query',
+    path: "/search/:query",
     props: true
   },
   {
-    path: '/credits/:mode',
+    path: "/credits/:mode",
     props: true,
     children: [
       {
-        path: '/credits/soundcredits',
-        redirect: '/music/features'
+        path: "/credits/soundcredits",
+        redirect: "/music/features"
       }
     ]
   },
   {
-    path: '/mspa',
+    path: "/mspa",
     props: true,
     children: [
       {
-        path: '',
-        redirect: '001901'
+        path: "",
+        redirect: "001901"
       },
       {
-        path: '1',
-        redirect: '000002'
+        path: "1",
+        redirect: "000002"
       },
       {
-        path: '2',
-        redirect: '000136'
+        path: "2",
+        redirect: "000136"
       },
       {
-        path: '3',
-        redirect: 'mc0001'
+        path: "3",
+        redirect: "mc0001"
       },
       {
-        path: '4',
-        redirect: '000219'
+        path: "4",
+        redirect: "000219"
       },
       {
-        path: '5',
-        redirect: '001893'
+        path: "5",
+        redirect: "001893"
       },
       {
-        path: '6',
-        redirect: '001901'
+        path: "6",
+        redirect: "001901"
       },
       {
-        path: ':p'
+        path: ":p"
       }
     ]
   },
   {
-    path: '/jailbreak',
+    path: "/jailbreak",
     props: true,
     children: [
       {
-        path: '',
-        redirect: '1'
+        path: "",
+        redirect: "1"
       },
       {
-        path: ':p'
+        path: ":p"
       }
     ]
   },
   {
-    path: '/bard-quest',
+    path: "/bard-quest",
     props: true,
     children: [
       {
-        path: '',
-        redirect: '1'
+        path: "",
+        redirect: "1"
       },
       {
-        path: ':p'
+        path: ":p"
       }
     ]
   },
   {
-    path: '/blood-spade',
+    path: "/blood-spade",
     props: true,
     children: [
       {
-        path: '',
-        redirect: '1'
+        path: "",
+        redirect: "1"
       },
       {
-        path: ':p'
+        path: ":p"
       }
     ]
   },
   {
-    path: '/problem-sleuth',
+    path: "/problem-sleuth",
     props: true,
     children: [
       {
-        path: '',
-        redirect: '1'
+        path: "",
+        redirect: "1"
       },
       {
-        path: ':p'
+        path: ":p"
       }
     ]
   },
   {
-    path: '/beta',
+    path: "/beta",
     props: true,
     children: [
       {
-        path: '',
-        redirect: '1'
+        path: "",
+        redirect: "1"
       },
       {
-        path: ':p'
+        path: ":p"
       }
     ]
   },
   {
-    path: '/story/:p',
-    redirect: '/homestuck/:p'
+    path: "/story/:p",
+    redirect: "/homestuck/:p"
   },
   {
-    path: '/homestuck',
+    path: "/homestuck",
     props: true,
     children: [
       {
-        path: '',
-        redirect: '1'
+        path: "",
+        redirect: "1"
       },
       {
-        path: ':p'
+        path: ":p"
       }
     ]
   },
   {
-    path: '/disc2',
-    redirect: '/mspa/005644'
+    path: "/disc2",
+    redirect: "/mspa/005644"
   },
   {
-    path: '/disc2fixed',
-    redirect: '/mspa/005985'
+    path: "/disc2fixed",
+    redirect: "/mspa/005985"
   },
   {
-    path: '/ryanquest',
+    path: "/ryanquest",
     props: true,
     children: [
       {
-        path: '',
-        redirect: '000001'
+        path: "",
+        redirect: "000001"
       },
       {
-        path: ':p'
+        path: ":p"
       }
     ]
   },
   {
-    path: '/waywardvagabond/:p',
+    path: "/waywardvagabond/:p",
     props: true
   },
   {
-    path: '/faqs/:p',
+    path: "/faqs/:p",
     props: true
   },
   {
-    path: '/unlock/:p',
+    path: "/unlock/:p",
     props: true
   },
   {
-    path: '/decode/:mode',
+    path: "/decode/:mode",
     props: true
   },
   {
-    path: '/dstrider/:id',
+    path: "/dstrider/:id",
     props: true
   },
   {
-    path: '/blogspot/:id',
+    path: "/blogspot/:id",
     props: true
   },
   {
-    path: '/formspring/:id',
+    path: "/formspring/:id",
     props: true
   },
   {
-    path: '/tumblr/:id',
+    path: "/tumblr/:id",
     props: true
   },
   {
-    path: '/news/:id',
+    path: "/news/:id",
     props: true
   },
   {
-    path: '/settings/:sec',
+    path: "/settings/:sec",
     props: true
   },
   {
-    path: '/music',
+    path: "/music",
     props: true,
     children: [
       {
-        path: ':mode',
+        path: ":mode",
         children: [
           {
-            path: '/music/track',
-            redirect: '/music'
+            path: "/music/track",
+            redirect: "/music"
           },
           {
-            path: '/music/album',
-            redirect: '/music'
+            path: "/music/album",
+            redirect: "/music"
           },
           {
-            path: ':id'
+            path: ":id"
           }
         ]
       }
     ]
   },
   {
-    path: '/sbahj',
-    alias: '/sweetbroandhellajeff',
+    path: "/sbahj",
+    alias: "/sweetbroandhellajeff",
     props: true,
     children: [
       {
-        path: '',
-        redirect: '1'
+        path: "",
+        redirect: "1"
       },
       {
-        path: ':cid'
+        path: ":cid"
       }
     ]
   },
   {
-    path: '/pxs/:cid',
+    path: "/pxs/:cid",
     props: true,
     children: [
       // {
@@ -263,86 +263,86 @@ const routes = [
       //   redirect: '1'
       // },
       {
-        path: ':pid'
+        path: ":pid"
       }
     ]
   },
   {
-    path: '/pxs/:cid',
+    path: "/pxs/:cid",
     props: true,
     children: [
       {
-        path: '',
-        redirect: '1'
+        path: "",
+        redirect: "1"
       },
       {
-        path: ':pid'
+        path: ":pid"
       }
     ]
   },
   {
-    path: '/tso/:cid',
+    path: "/tso/:cid",
     props: true,
     children: [
       {
-        path: '',
-        redirect: '1'
+        path: "",
+        redirect: "1"
       },
       {
-        path: ':pid'
+        path: ":pid"
       }
     ]
   },
   {
-    path: '/snaps/:cid',
+    path: "/snaps/:cid",
     props: true,
     children: [
       {
-        path: '',
-        redirect: '1'
+        path: "",
+        redirect: "1"
       },
       {
-        path: ':pid'
+        path: ":pid"
       }
     ]
   },
   {
-    path: '/wizardyherbert/:p',
+    path: "/wizardyherbert/:p",
     props: true
   },
   {
-    path: '/namcohigh/:play',
+    path: "/namcohigh/:play",
     props: true
   },
   {
-    path: '/skaianet/:cursed_history',
+    path: "/skaianet/:cursed_history",
     props: true
   },
   {
-    path: '/epilogues/:volume',
+    path: "/epilogues/:volume",
     props: true,
     children: [
       {
-        path: ''
+        path: ""
         // redirect: '1'
       },
       {
-        path: ':page'
+        path: ":page"
       }
     ]
   },
   {
-    path: '/mspfa/:story/:p',
+    path: "/mspfa/:story/:p",
     props: true
   },
   {
-    path: '/mspfa/:story',
-    redirect: '/mspfa/:story/1'
+    path: "/mspfa/:story",
+    redirect: "/mspfa/:story/1"
   }
-]
+];
 
 const router = new VueRouter({
   routes
-})
+});
 
-export default router
+export default router;

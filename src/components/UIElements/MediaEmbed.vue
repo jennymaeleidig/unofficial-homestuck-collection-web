@@ -215,21 +215,34 @@ export default {
     ruffleEmbed() {
       // At some point between 2025.3.14 and 2025.4.13 ruffle stopped supporting our old runtime. Damn. -->
       if (this.$localData.settings.ruffleFallback) {
+        let scriptTag;
         if (this.$isWebApp) {
-          return '<script src="https://unpkg.com/@ruffle-rs/ruffle"><\/script>';
+          scriptTag =
+            '<script src="https://unpkg.com/@ruffle-rs/ruffle"><\/script>';
         } else {
-          // 0.1.0-nightly.2024.04.13 OK
-          // ...
-          // 0.1.0-nightly.2024.07.19 OK
-          // 0.1.0-nightly.2024.07.20 scale issue
-          // ...
-          // 0.1.0-nightly.2025.04.07 scale issue
-          // 0.1.0-nightly.2025.04.13 syntax issue
-          // return '<script src="https://unpkg.com/@ruffle-rs/ruffle@0.1.0-nightly.2024.7.19"><\/script>'
-          return `<script src="${this.$getResourceURL(
+          scriptTag = `<script src="${this.$getResourceURL(
             "assets://js/ruffle/ruffle.js"
           )}"><\/script>`;
         }
+        // Inject Ruffle config for iOS Safari workaround (see ruffle#10620)
+        return `
+          <script>
+            (function() {
+              function isIOS() {
+                return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+              }
+              function isSafari() {
+                return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+              }
+              if (isIOS() && isSafari()) {
+                window.RufflePlayer = window.RufflePlayer || {};
+                window.RufflePlayer.config = window.RufflePlayer.config || {};
+                window.RufflePlayer.config.preferredRenderer = "webgl";
+              }
+            })();
+          <\/script>
+          ${scriptTag}
+        `;
       } else {
         return "<!-- Using real flash -->";
       }
