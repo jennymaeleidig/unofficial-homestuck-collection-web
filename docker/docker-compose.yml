@@ -6,19 +6,21 @@ services:
       context: ..
       dockerfile: docker/webapp/Dockerfile
       args:
-        - ASSET_PACK_HREF=http://asset_server:7413/
-        - AUTH_SERVER_URL=http://auth_server:9413
+        - ASSET_PACK_HREF=http://asset_server:${ASSET_PACK_PORT:-7413}/
+        - AUTH_SERVER_URL=http://auth_server:${AUTH_PORT:-9413}
         - APP_VERSION=2.7.2
         - ASSET_DIR=/assets/
     ports:
-      - "8413:80"
+      - "${WEB_PORT:-8413}:80"
     environment:
-      - ASSET_PACK_HREF=http://asset_server:7413/
-      - AUTH_SERVER_URL=http://auth_server:9413
+      - ASSET_PACK_HREF=http://asset_server:${ASSET_PACK_PORT:-7413}/
+      - AUTH_SERVER_URL=http://auth_server:${AUTH_PORT:-9413}
       - APP_VERSION=2.7.2
       - ASSET_DIR=/assets/
     volumes:
       - assets:/assets
+      # For Unraid deployment, you can replace the named volume with a direct path:
+      # - /path/to/your/assets:/assets
     depends_on:
       - asset_server
       - auth_server
@@ -28,23 +30,29 @@ services:
       context: ..
       dockerfile: docker/asset_server/Dockerfile
     ports:
-      - "7413:7413"
+      - "${ASSET_PACK_PORT:-7413}:${ASSET_PACK_PORT:-7413}"
     volumes:
       - assets:/assets
+      # For Unraid deployment, you can replace the named volume with a direct path:
+      # - /path/to/your/assets:/assets
     environment:
-      - ROOT_DIR=/assets
+      - ASSET_DIR=/assets
 
   auth_server:
     build:
       context: ..
       dockerfile: docker/auth_server/Dockerfile
     ports:
-      - "9413:9413"
+      - "${AUTH_PORT:-9413}:${AUTH_PORT:-9413}"
     volumes:
       - auth_db:/data
+      # For Unraid deployment, you can replace the named volume with a direct path:
+      # - /path/to/your/auth/db:/data
     environment:
       - DB_PATH=/data/db.sqlite
 
 volumes:
   assets:
+    # Named volume for assets - can be replaced with direct path mapping for Unraid
   auth_db:
+    # Named volume for auth database - can be replaced with direct path mapping for Unraid

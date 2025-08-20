@@ -27,16 +27,18 @@ RUN yarn install --frozen-lockfile --ignore-engines
 COPY . .
 
 # Define build arguments with default values
-ARG ASSET_PACK_HREF=http://asset_server:7413/
-ARG AUTH_SERVER_URL=http://auth_server:9413
+ARG ASSET_PACK_HREF=http://asset_server:${ASSET_PACK_PORT:-7413}/
+ARG AUTH_SERVER_URL=http://auth_server:${AUTH_PORT:-9413}
 ARG APP_VERSION=2.7.2
 ARG ASSET_DIR=/assets/
+ARG WEB_PORT=8413
 
 # Set environment variables from build arguments
 ENV ASSET_PACK_HREF=${ASSET_PACK_HREF}
 ENV AUTH_SERVER_URL=${AUTH_SERVER_URL}
 ENV APP_VERSION=${APP_VERSION}
 ENV ASSET_DIR=${ASSET_DIR}
+ENV WEB_PORT=${WEB_PORT}
 
 # Render browser.js from browser.js.j2 template
 # Explicitly pass environment variables to ensure correct path generation
@@ -44,6 +46,7 @@ RUN ASSET_PACK_HREF=${ASSET_PACK_HREF} \
     ASSET_DIR=${ASSET_DIR} \
     APP_VERSION=${APP_VERSION} \
     AUTH_SERVER_URL=${AUTH_SERVER_URL} \
+    WEB_PORT=${WEB_PORT} \
     jinja2 webapp/browser.js.j2 -o webapp/browser.js
 
 # Generate intermediate files required by the application

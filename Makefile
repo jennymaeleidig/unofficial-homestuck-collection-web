@@ -57,15 +57,15 @@ WEBAPP_INTERMEDIATE=build/webAppModTrees.json
 build/webAppModTrees.json: webapp/browser.js.j2 .env
 	mkdir -p build/
 	# External mod support removed - only scan imods directory
-	# Source .env to get ASSET_DIR_LITE
-	bash -c 'set -a; source .env; set +a; cd "$${ASSET_DIR_LITE}"; tree archive/imods -J | jq '"'"'. | walk(if type == "object" then (if .type == "file" then ({"key": (.name), "value": true}) elif has("contents") then {"key": (.name), "value": .contents|from_entries} else . end) else . end) | .[:-1] | from_entries'"'"'' > build/webAppModTrees.json
+	# Source .env to get ASSET_DIR
+	bash -c 'set -a; source .env; set +a; cd "$${ASSET_DIR}"; tree archive/imods -J | jq '"'"'. | walk(if type == "object" then (if .type == "file" then ({"key": (.name), "value": true}) elif has("contents") then {"key": (.name), "value": .contents|from_entries} else . end) else . end) | .[:-1] | from_entries'"'"'' > build/webAppModTrees.json
 
 # Requires `python3 -m pip install jinja2-cli`
 .PHONY: webapp/browser.js
 webapp/browser.js:
 	env APP_VERSION=`jq -r '.version' < package.json` \
 		ASSET_PACK_HREF="${ASSET_PACK_HREF}" \
-		ASSET_DIR="${ASSET_DIR_LITE}" \
+		ASSET_DIR="${ASSET_DIR}" \
 		AUTH_SERVER_URL="${AUTH_SERVER_URL}" \
 			jinja2 webapp/browser.js.j2 > webapp/browser.js
 
@@ -83,7 +83,7 @@ test: serve
 .PHONY: ensure-asset-server
 ensure-asset-server:
 	@if ! pgrep -f "python3.*httpserver.py" >/dev/null; then \
-		ROOT_DIR="${ASSET_DIR_LITE}" python3 servers/asset_server/httpserver.py & \
+		ROOT_DIR="${ASSET_DIR}" python3 servers/asset_server/httpserver.py & \
 		echo $$! > .asset-server.pid; \
 	fi
 
@@ -107,12 +107,12 @@ serve: install ${SHARED_INTERMEDIATE} ${WEBAPP_INTERMEDIATE} webapp/browser.js
 
 .PHONY: build
 build: install ${SHARED_INTERMEDIATE} ${WEBAPP_INTERMEDIATE}
-	env ASSET_DIR="${ASSET_DIR_LITE}" \
+	env ASSET_DIR="${ASSET_DIR}" \
 		ASSET_PACK_HREF="${ASSET_PACK_HREF}" \
 		AUTH_SERVER_URL="${AUTH_SERVER_URL}" \
 			make webapp/browser.js
 	env NODE_OPTIONS=--max_old_space_size=8192 \
-		ASSET_DIR="${ASSET_DIR_LITE}" \
+		ASSET_DIR="${ASSET_DIR}" \
 		ASSET_PACK_HREF="${ASSET_PACK_HREF}" \
 		AUTH_SERVER_URL="${AUTH_SERVER_URL}" \
 			yarn run vue-cli-service build webapp/browser.js

@@ -46,7 +46,7 @@ function authenticateJWT(req, res, next) {
   }
 }
 
-const HTTP_PORT = 9413;
+const HTTP_PORT = process.env.AUTH_PORT || 9413;
 
 // Start server
 app.listen(HTTP_PORT, "0.0.0.0", () => {

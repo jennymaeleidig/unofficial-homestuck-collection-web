@@ -13,17 +13,18 @@ RUN npm ci --only=production
 # Copy source code
 COPY servers/auth_server/ .
 
-# Apply patch to use DB_PATH environment variable
-RUN sed -i 's/const DBSOURCE = "db.sqlite";/const DBSOURCE = process.env.DB_PATH || "db.sqlite";/' database.js
+# Define build argument with default value
+ARG AUTH_PORT=9413
 
-# Expose port 9413
-EXPOSE 9413
+# Set environment variable for database path and port
+ENV DB_PATH=/data/db.sqlite
+ENV AUTH_PORT=${AUTH_PORT}
+
+# Expose port
+EXPOSE ${AUTH_PORT}
 
 # Define volume for database
 VOLUME ["/data"]
-
-# Set environment variable for database path
-ENV DB_PATH=/data/db.sqlite
 
 # Run the server
 CMD ["node", "index.js"]

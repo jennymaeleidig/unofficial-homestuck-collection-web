@@ -6,15 +6,15 @@ services:
       context: ..
       dockerfile: docker/webapp/Dockerfile.dev
       args:
-        - ASSET_PACK_HREF=http://192.168.1.236:7413/
-        - AUTH_SERVER_URL=http://192.168.1.236:9413
+        - ASSET_PACK_HREF=http://192.168.1.236:${ASSET_PACK_PORT:-7413}/
+        - AUTH_SERVER_URL=http://192.168.1.236:${AUTH_PORT:-9413}
         - APP_VERSION=2.7.2
         - ASSET_DIR=/assets/
     ports:
-      - "8413:8413"
+      - "${WEB_PORT:-8413}:${WEB_PORT:-8413}"
     environment:
-      - ASSET_PACK_HREF=http://192.168.1.236:7413/
-      - AUTH_SERVER_URL=http://192.168.1.236:9413
+      - ASSET_PACK_HREF=http://192.168.1.236:${ASSET_PACK_PORT:-7413}/
+      - AUTH_SERVER_URL=http://192.168.1.236:${AUTH_PORT:-9413}
       - APP_VERSION=2.7.2
       - ASSET_DIR=/assets/
     volumes:
@@ -29,22 +29,23 @@ services:
       context: ..
       dockerfile: docker/asset_server/Dockerfile
     ports:
-      - "7413:7413"
+      - "${ASSET_PACK_PORT:-7413}:${ASSET_PACK_PORT:-7413}"
     volumes:
       - ../assets/AssetPackV2Lite:/assets
+      # For Unraid deployment, you can replace the relative path with a direct path:
+      # - /path/to/your/assets:/assets
     environment:
-      - ROOT_DIR=/assets
+      - ASSET_DIR=/assets
 
   auth_server:
     build:
       context: ..
       dockerfile: docker/auth_server/Dockerfile
     ports:
-      - "9413:9413"
+      - "${AUTH_PORT:-9413}:${AUTH_PORT:-9413}"
     volumes:
-      - auth_db:/data
+      - /Users/jennyleidig/Documents/Projects/unofficial-homestuck-collection-web/servers/auth_server/db:/data
+      # For Unraid deployment, you can replace the absolute path with a direct path:
+      # - /path/to/your/auth/db:/data
     environment:
       - DB_PATH=/data/db.sqlite
-
-volumes:
-  auth_db:

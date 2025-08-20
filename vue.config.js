@@ -17,7 +17,7 @@ module.exports = {
         chunkModules: false,
         modules: false
       },
-      port: 8413
+      port: process.env.WEB_PORT || 8413
     },
     // devtool: "source-map",
     devtool: "eval-source-map",

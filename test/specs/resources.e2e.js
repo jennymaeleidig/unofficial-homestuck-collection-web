@@ -1,6 +1,6 @@
 // const Resources = require('./resources.js')
 
-const assets_root = "http://localhost:8413/";
+const assets_root = `http://localhost:${process.env.WEB_PORT || 8413}/`;
 
 async function testArchiveMusic() {
   const archive = window.vm.archive;

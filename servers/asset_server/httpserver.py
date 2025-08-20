@@ -3,16 +3,16 @@ from http.server import BaseHTTPRequestHandler, HTTPServer, SimpleHTTPRequestHan
 import sys
 import os
 
-root_dir = os.environ['ROOT_DIR']
+asset_dir = os.environ.get('ASSET_DIR', '/assets')
+
+port = int(os.environ.get('ASSET_PACK_PORT', 7413))
 
 host = '0.0.0.0'
-port = 7413
-
 
 class CORSRequestHandler(SimpleHTTPRequestHandler):
 
     def __init__(self, *args, directory=None, **kwargs):
-        directory = root_dir
+        directory = asset_dir
         self.directory = os.fspath(directory)
         super(BaseHTTPRequestHandler, self).__init__(*args, **kwargs)
         
@@ -27,6 +27,6 @@ class CORSRequestHandler(SimpleHTTPRequestHandler):
         self.send_response(200)
         self.end_headers()
 
-print("Listening on {}:{} at root {}".format(host, port, root_dir))
+print("Listening on {}:{} at root {}".format(host, port, asset_dir))
 httpd = HTTPServer((host, port), CORSRequestHandler)
 httpd.serve_forever()
