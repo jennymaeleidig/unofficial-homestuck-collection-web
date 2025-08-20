@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  webapp:
+    build:
+      context: ..
+      dockerfile: docker/webapp/Dockerfile
+      args:
+        - ASSET_PACK_HREF=http://asset_server:7413/
+        - AUTH_SERVER_URL=http://auth_server:9413
+        - APP_VERSION=2.7.2
+        - ASSET_DIR=/assets/
+    ports:
+      - "8413:80"
+    environment:
+      - ASSET_PACK_HREF=http://asset_server:7413/
+      - AUTH_SERVER_URL=http://auth_server:9413
+      - APP_VERSION=2.7.2
+      - ASSET_DIR=/assets/
+    volumes:
+      - assets:/assets
+    depends_on:
+      - asset_server
+      - auth_server
+
+  asset_server:
+    build:
+      context: ..
+      dockerfile: docker/asset_server/Dockerfile
+    ports:
+      - "7413:7413"
+    volumes:
+      - assets:/assets
+    environment:
+      - ROOT_DIR=/assets
+
+  auth_server:
+    build:
+      context: ..
+      dockerfile: docker/auth_server/Dockerfile
+    ports:
+      - "9413:9413"
+    volumes:
+      - auth_db:/data
+    environment:
+      - DB_PATH=/data/db.sqlite
+
+volumes:
+  assets:
+  auth_db:

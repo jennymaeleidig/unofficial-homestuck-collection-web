@@ -13,10 +13,21 @@ const app = express();
 app.use(
   cors({
     origin: "*",
-    credentials: true
+    credentials: false,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: [
+      "Origin",
+      "X-Requested-With",
+      "Content-Type",
+      "Accept",
+      "Authorization"
+    ]
   })
 );
 app.use(bodyParser.json());
+
+// Explicitly handle OPTIONS requests for CORS preflight
+app.options("*", cors());
 
 // JWT authentication middleware
 function authenticateJWT(req, res, next) {
@@ -40,6 +51,18 @@ const HTTP_PORT = 9413;
 // Start server
 app.listen(HTTP_PORT, "0.0.0.0", () => {
   console.log("Server running on port %PORT%".replace("%PORT%", HTTP_PORT));
+  console.log("CORS configuration:", {
+    origin: "*",
+    credentials: false,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: [
+      "Origin",
+      "X-Requested-With",
+      "Content-Type",
+      "Accept",
+      "Authorization"
+    ]
+  });
 });
 
 // API endpoints will be added here
@@ -126,6 +149,11 @@ app.post("/api/signup", (req, res, next) => {
 });
 app.get("/", (req, res, next) => {
   res.json({ message: "Ok" });
+});
+
+// Health check endpoint
+app.get("/health", (req, res, next) => {
+  res.json({ status: "OK", timestamp: new Date().toISOString() });
 });
 
 app.post("/api/login", (req, res, next) => {

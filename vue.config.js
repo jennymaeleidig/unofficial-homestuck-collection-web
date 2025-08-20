@@ -1,35 +1,6 @@
 const webpack = require("webpack");
 const { execSync } = require("child_process");
 
-const git_branch = execSync("git rev-parse --abbrev-ref HEAD").toString();
-
-var build_info = {
-  "process.env.BUILD_BRANCH": JSON.stringify(git_branch.trim()),
-  "process.env.BUILD_DATE": JSON.stringify(new Date().toISOString()),
-  "process.env.BUILD_PLATFORM": JSON.stringify(process.platform),
-  "process.env.BUILD_GIT_REVISION": JSON.stringify(
-    execSync("git rev-parse HEAD")
-      .toString()
-      .trim()
-  )
-};
-
-try {
-  const git_remote = execSync(
-    `git config --get branch.${git_branch.trim()}.remote`
-  ).toString();
-  const git_remote_url = execSync(
-    `git config --get remote.${git_remote.trim()}.url`
-  ).toString();
-
-  build_info["process.env.BUILD_GIT_REMOTE"] = JSON.stringify(
-    git_remote_url.trim()
-  );
-} catch (e) {
-  build_info["process.env.BUILD_GIT_REMOTE"] = JSON.stringify("(no remote)");
-  console.warn("No git remote");
-}
-
 const is_webapp = Boolean(process.env.ASSET_PACK_HREF);
 
 module.exports = {
@@ -104,8 +75,6 @@ module.exports = {
     }
   },
   chainWebpack: config => {
-    config.plugin("buildinfo").use(webpack.DefinePlugin, [build_info]);
-
     if (process.env.ASSET_PACK_HREF) {
       console.log("Replacing for asset href", process.env.ASSET_PACK_HREF);
       const srl_options = options => {
