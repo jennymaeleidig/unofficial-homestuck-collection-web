@@ -10,14 +10,18 @@
     {
       "name": "GiovanH",
       "url": "https://giovanh.com"
+    },
+    {
+      "name": "Jenny Leidig",
+      "url": "https://jennyleidig.straw.page/"
     }
   ],
   "engines": {
     "node": "18.20"
   },
-  "version": "2.7.2",
+  "version": "1.0.0",
   "license": "GPL-3.0*",
-  "repository": "github:GiovanH/unofficial-homestuck-collection",
+  "repository": "https://github.com/jennymaeleidig/unofficial-homestuck-collection-web",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve webapp/browser.js",

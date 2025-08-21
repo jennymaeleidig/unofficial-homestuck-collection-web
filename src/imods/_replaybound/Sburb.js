@@ -6293,7 +6293,8 @@ var Sburb = (function(Sburb) {
     var loadedFiles = "";
     var loadedFilesExist = false;
 
-    for (var key in Sburb.loadedFiles) { // Not sburbInst.loadedFiles ?
+    for (var key in Sburb.loadedFiles) {
+      // Not sburbInst.loadedFiles ?
       if (!Sburb.loadedFiles.hasOwnProperty(key)) continue;
       loadedFiles = loadedFiles + (loadedFilesExist ? "," : "") + key;
       loadedFilesExist = true;

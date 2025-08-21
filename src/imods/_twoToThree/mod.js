@@ -1,3 +1,5 @@
+const epiloguesYaml = require("./epilogues.yaml");
+
 module.exports = {
   title: "twoToThree",
   author: "GiovanH",
@@ -24,7 +26,6 @@ module.exports = {
   },
   edit: true,
   async asyncComputed(api) {
-    const epiloguesYaml = await api.readYamlAsync("./epilogues.yaml");
     return {
       edit(archive) {
         // Precompute password pages

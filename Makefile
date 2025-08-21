@@ -30,8 +30,8 @@ clean:
 	yarn cache clean
 	-rm yarn-error.log
 	-rm ./install src/imods.tar.gz
-	-rm -r node_modules/.cache/
-	-rm -r dist/
+	-rm -rf node_modules/.cache/
+	-rm -rf dist/
 	-rm build/webAppModTrees.json
 
 .PHONY: lint
@@ -83,7 +83,7 @@ test: serve
 .PHONY: ensure-asset-server
 ensure-asset-server:
 	@if ! pgrep -f "python3.*httpserver.py" >/dev/null; then \
-		ROOT_DIR="${ASSET_DIR}" python3 servers/asset_server/httpserver.py & \
+		ASSET_DIR="${ASSET_DIR}" python3 servers/asset_server/httpserver.py & \
 		echo $$! > .asset-server.pid; \
 	fi
 

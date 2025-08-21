@@ -986,19 +986,30 @@ async function editArchiveAsync(archive) {
     return;
   }
 
-  try {
-    fs.lstatSync(path.resolve(imodsDir, "_replaybound/Sburb.dev.js"));
-  } catch {
-    logger.warn(
-      `Sburb.dev.js missing from disk. Overzealous antivirus? Repairing...`
-    );
-    want_imods_extracted = true;
+  if (!isWebApp) {
+    try {
+      console.log(
+        fs.lstatSync(path.resolve(imodsDir, "_replaybound/Sburb.dev.js"))
+      );
+    } catch {
+      logger.warn(
+        `Sburb.dev.js missing from disk. Overzealous antivirus? Repairing...`
+      );
+      want_imods_extracted = true;
+    }
   }
 
   if (want_imods_extracted) {
-    logger.info("Extracting imods");
-    await extractimods();
-    want_imods_extracted = false; // we did it
+    if (isWebApp) {
+      logger.warn(
+        "Refusing to extract imods in webapp mode. Should not have called this!"
+      );
+      want_imods_extracted = false; // Clear the flag to prevent future attempts
+    } else {
+      logger.info("Extracting imods");
+      await extractimods();
+      want_imods_extracted = false; // we did it
+    }
   }
 
   setLoadStage("READ_MODS");

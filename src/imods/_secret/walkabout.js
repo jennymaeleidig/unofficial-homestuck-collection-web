@@ -60886,7 +60886,8 @@ var SDL = {
         if (
           event.type !== "keydown" ||
           (!SDL.unicode && !SDL.textInput) ||
-          event.keyCode === 8 || event.keyCode === 9
+          event.keyCode === 8 ||
+          event.keyCode === 9
         ) {
         }
         if (event.type == "mousedown") {

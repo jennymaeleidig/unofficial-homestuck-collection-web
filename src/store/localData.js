@@ -248,7 +248,10 @@ class LocalData {
           // This method is a placeholder to prevent errors.
           // Actual migration logic (if any) would go here.
           // For now, we assume the data is already in the correct format.
-          console.log("Migration check for version", new_version, "skipped.");
+          // Skip migration logs in webapp mode to reduce console noise
+          if (!window.isWebApp) {
+            console.log("Migration check for version", new_version, "skipped.");
+          }
         },
         async _saveLocalStorage() {
           if (this.saveDebounce) {
@@ -260,7 +263,11 @@ class LocalData {
               saveData: this.saveData,
               settings: this.settings
             });
-            this.$logger.info("Data saved to server.");
+            if (window.isWebApp) {
+              this.$logger.debug("Data saved to server.");
+            } else {
+              this.$logger.info("Data saved to server.");
+            }
           } catch (e) {
             this.$logger.error("Failed to save data to server:", e);
             // Optionally, fall back to local storage or show an error to the user
@@ -282,7 +289,11 @@ class LocalData {
             const { saveData, settings } = response.data;
             this.saveData = saveData;
             this.settings = settings;
-            this.$logger.info("Data reloaded from server.");
+            if (window.isWebApp) {
+              this.$logger.debug("Data reloaded from server.");
+            } else {
+              this.$logger.info("Data reloaded from server.");
+            }
           } catch (e) {
             this.$logger.error("Failed to reload data from server:", e);
             // If no session or error, prompt for login/signup
@@ -835,7 +846,15 @@ export default {
           the_store.VM.saveData = response.data.saveData;
           the_store.VM.settings = response.data.settings;
           the_store.VM.isAuthenticated = true; // Set authentication status
-          the_store.VM.$logger.info("Session found. Data loaded from server.");
+          if (window.isWebApp) {
+            the_store.VM.$logger.debug(
+              "Session found. Data loaded from server."
+            );
+          } else {
+            the_store.VM.$logger.info(
+              "Session found. Data loaded from server."
+            );
+          }
           the_store.VM.reloadLocalStorage(); // Reload local state (tabData, etc.)
         })
         .catch(error => {

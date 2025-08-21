@@ -10,7 +10,7 @@ window.webAppAssetPackHref = "{{ ASSET_PACK_HREF }}"
 window.webAppAuthServerUrl = "{{ AUTH_SERVER_URL }}"
 // External mod support removed - only supporting imods now
 // window.webAppModsDir = "{{ ASSET_DIR }}mods/" // Disabled
-window.webAppIModsDir = "{{ ASSET_DIR }}archive/imods/"
+window.webAppIModsDir = "../src/imods/"
 
 // Old-reader-only settings in the webhook for setup validateAndRestart
 
@@ -132,14 +132,14 @@ window.webAppModJs = {
   // 'cdn.js': lockmod(require('@/../webapp/mod_cdn.js')),
   'fallback.js': require('@/../webapp/mod_fallback.js'),
 
-  _bolin: import('{{ ASSET_DIR }}archive/imods/_bolin.js'),
-  _hqAudio: import('{{ ASSET_DIR }}archive/imods/_hqAudio.js'),
-  _pxsTavros: import('{{ ASSET_DIR }}archive/imods/_pxsTavros.js'),
-  _replaybound: import('{{ ASSET_DIR }}archive/imods/_replaybound/mod.js'),
-  _secret: import('{{ ASSET_DIR }}archive/imods/_secret/mod.js'),
-  _soluslunes: import('{{ ASSET_DIR }}archive/imods/_soluslunes.js'),
-  _twoToThree: import('{{ ASSET_DIR }}archive/imods/_twoToThree/mod.js'),
-  _unpeachy: import('{{ ASSET_DIR }}archive/imods/_unpeachy.js'),
+  _bolin: import('../src/imods/_bolin.js'),
+  _hqAudio: import('../src/imods/_hqAudio.js'),
+  _pxsTavros: import('../src/imods/_pxsTavros.js'),
+  _replaybound: import('../src/imods/_replaybound/mod.js'),
+  _secret: import('../src/imods/_secret/mod.js'),
+  _soluslunes: import('../src/imods/_soluslunes.js'),
+  _twoToThree: import('../src/imods/_twoToThree/mod.js'),
+  _unpeachy: import('../src/imods/_unpeachy.js'),
   serveropts: lockmod({
     title: "Server customization layer",
     author: "GiovanH",
@@ -216,7 +216,7 @@ window.webAppModJs = {
               "35-2040-2424-PreparingAlterniaC.txt",
               "36-RIPHIC.txt"
             ] %}
-              "/archive/skaianet/FORBIDDEN_ENTRIES/{{txtpath}}": (await import("!raw-loader!{{ASSET_DIR}}archive/skaianet/FORBIDDEN_ENTRIES/{{txtpath}}")).default,
+              "/archive/skaianet/FORBIDDEN_ENTRIES/{{txtpath}}": (await import("!raw-loader!../src/data/forbidden_entries/{{txtpath}}")).default,
             {%- endfor %}
             }
           })();
@@ -283,11 +283,7 @@ window.webAppModJs = {
         }
       }
     ]
-  }),
-  {# External mod imports removed - only imods supported now #}
-  {% for mod in mods -%}
-  '{{ mod }}': import('{{ ASSET_DIR }}mods/{{ mod if mod.endswith(".js") else mod + "/mod.js" }}'),
-  {% endfor %}
+  })
 }
 
 window.webAppModTrees = require('../build/webAppModTrees.json')
@@ -296,14 +292,14 @@ async function getArchiveData() {
 
   // NB webpack require mandates full literal strings here, no paramterization.
   const imports = {
-    version: import('{{ ASSET_DIR }}archive/data/version.json'),
-    mspa: import('{{ ASSET_DIR }}archive/data/mspa.json'),
-    social: import('{{ ASSET_DIR }}archive/data/social.json'),
-    news: import('{{ ASSET_DIR }}archive/data/news.json'),
-    music: import('{{ ASSET_DIR }}archive/data/music.json'),
-    comics: import('{{ ASSET_DIR }}archive/data/comics.json'),
-    extras: import('{{ ASSET_DIR }}archive/data/extras.json'),
-    tweaks: import('{{ ASSET_DIR }}archive/data/tweaks.json'),
+    version: import('../src/data/version.json'),
+    mspa: import('../src/data/mspa.json'),
+    social: import('../src/data/social.json'),
+    news: import('../src/data/news.json'),
+    music: import('../src/data/music.json'),
+    comics: import('../src/data/comics.json'),
+    extras: import('../src/data/extras.json'),
+    tweaks: import('../src/data/tweaks.json'),
   }
 
   const modules = Object.fromEntries(

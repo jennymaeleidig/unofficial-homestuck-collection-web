@@ -258,11 +258,20 @@ export default {
         <script>
           // JS Enhancements: ${this.$localData.settings.jsFlashes}
           // HQ Audio: ${this.$localData.settings.hqAudio}
+          
+          // Check if this is the intro SWF and set up completion detection
+          const isIntroSwf = "${this.url}".includes('intro.swf');
+          if (isIntroSwf) {
+            // Set a timeout based on the original code value of 32.0830 seconds
+            setTimeout(() => {
+              window.parent.postMessage({ type: 'swfFinished', url: "${
+                this.url
+              }" }, '*');
+            }, 32083);
+          }
 
           // Network request interception for webapp CORS fix
           if (window.parent && window.parent.isWebApp) {
-            console.log("Setting up network request interception for webapp CORS fix")
-            
             // Store original functions
             const originalFetch = window.fetch
             const originalXHROpen = XMLHttpRequest.prototype.open
@@ -281,12 +290,9 @@ export default {
                     // Also handle any file with common asset extensions
                     /\.(swf|mp3|wav|mp4|webm|mov|jpg|png|gif|txt|html)$/i.test(url)) {
                   
-                  console.log("Intercepting external URL:", url)
-                  
                   // Use parent window's resource resolution
                   if (window.parent.vm && window.parent.vm.$getResourceURL) {
                     const resolvedUrl = window.parent.vm.$getResourceURL(url)
-                    console.log("Resolved URL:", url, "->", resolvedUrl)
                     return resolvedUrl
                   }
                 }
@@ -302,7 +308,6 @@ export default {
               const resolvedUrl = resolveUrl(url)
               
               if (resolvedUrl !== url) {
-                console.log("Fetch intercepted:", url, "->", resolvedUrl)
                 return originalFetch.call(this, resolvedUrl, init)
               }
               return originalFetch.call(this, input, init)
@@ -313,7 +318,6 @@ export default {
               const resolvedUrl = resolveUrl(url)
               
               if (resolvedUrl !== url) {
-                console.log("XHR intercepted:", url, "->", resolvedUrl)
                 return originalXHROpen.call(this, method, resolvedUrl, async, user, password)
               }
               return originalXHROpen.call(this, method, url, async, user, password)
@@ -322,8 +326,6 @@ export default {
 
           // Frag IPC
           window.onhashchange = (e) => {
-            console.debug("srcdoc hash change: ", e, window.location.hash)
-
             if (window.location.hash != '#unset') {
               let hash = window.location.hash.substr(1).split('&')
               window.location.hash = '#unset';
@@ -332,26 +334,20 @@ export default {
               })
             }
           }
-
+ 
           // Intercept navigation events
           window.open = function(url, name, features, replace) {
-            console.log("Flash invoked window.open")
             vm.invokeFromFlash("link?" + url)
           }
-
+ 
           if (typeof navigation !== 'undefined') {
             navigation.addEventListener("navigate", (e) => {
-              console.log("srcdoc navigating: ", e, e.destination,
-                e.destination.url
-              )
               if (!e.destination.sameDocument && !e.destination.url.startsWith('about:srcdoc')) {
-                console.log(e.destination.url)
                 vm.invokeFromFlash("link?" + e.destination.url)
               } else {
                 // Workaround for ruffle bug https://github.com/ruffle-rs/ruffle/issues/2092
-                console.log("Internal frame navigation", e.destination, e.destination.url)
                 e.preventDefault()
-
+ 
                 const target = new URL(e.destination.url)
                 const hash = target.hash.substr(1).split('&')
                 hash.forEach((func)=>{
@@ -359,8 +355,6 @@ export default {
                 })
               }
             })
-          } else {
-            console.debug("Browser does not support 'navigation' listener")
           }
         <\/script>
         ${this.ruffleEmbed}
@@ -372,7 +366,9 @@ export default {
           data="${this.$getResourceURL(this.url)}">
             <param name='movie' value="${this.$getResourceURL(this.url)}"/>
             <param name='play' value="true"/>
-            <param name='loop' value="true"/>
+            <param name='loop' value="${
+              this.url.includes("intro.swf") ? "false" : "true"
+            }"/>
             <param name='quality' value="high" />
             <param name='bgcolor' value="${this.flashProps.bgcolor}"/>
             <param name='devicefont' value="false"/>
@@ -425,7 +421,6 @@ export default {
       if (pauseAt) {
         const pause = function() {
           if (this.currentTime > pauseAt) {
-            console.log("pausing video at", this.currentTime);
             this.controls = true;
             this.pause();
             this.removeEventListener("timeupdate", pause);
@@ -452,22 +447,18 @@ export default {
         // ensaften webviews
         if (this.shouldEnsaftenWebviews) {
           webview.executeJavaScript(`
-console.log("initHtmlFrame")
-
 document.addEventListener('click', function (e) {
   let shouldBlockClick = false
-
+ 
   var url = e.target.href;
   shouldBlockClick = shouldBlockClick || (url === undefined)
-
+ 
   const is_outlink = /^http(s{0,1}):\\/\\//.test(url) && !/^http(s{0,1}):\\/\\/localhost/.test(url)  // see src/resources.js
-  shouldBlockClick = shouldBlockClick || is_outlink  
-
-  console.log('element-clicked with path', url, "is_outlink:", is_outlink, "should block:", shouldBlockClick);
+  shouldBlockClick = shouldBlockClick || is_outlink
+ 
   if (shouldBlockClick) {
     e.preventDefault()
     e.stopPropagation()
-    console.log("!!onDisabledEvent")
     return false
   }
 }, true)

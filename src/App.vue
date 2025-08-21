@@ -168,7 +168,11 @@ export default {
         };
         return page_theme;
       } else {
-        this.$logger.warn("App.vue:tabTheme: No active tab! Using default");
+        if (window.isWebApp) {
+          this.$logger.debug("App.vue:tabTheme: No active tab! Using default");
+        } else {
+          this.$logger.warn("App.vue:tabTheme: No active tab! Using default");
+        }
         return { defined: "default", rendered: "default" };
       }
     },

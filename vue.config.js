@@ -70,6 +70,10 @@ module.exports = {
         {
           test: /\.node$/,
           loader: "node-loader"
+        },
+        {
+          test: /\.ya?ml$/,
+          use: "yaml-loader"
         }
       ]
     }

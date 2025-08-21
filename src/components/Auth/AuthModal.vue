@@ -89,16 +89,23 @@ export default {
             // For login, emit success immediately
             this.$emit("auth-success", response.data);
           } else {
-            // For signup, show success message and then emit success
-            this.successMessage = `Account created successfully! Welcome, ${response
-              .data.username || this.username}!`;
-            // Clear form fields
-            this.username = "";
-            this.password = "";
-            // Emit success event after a short delay to allow user to see success message
-            setTimeout(() => {
-              this.$emit("auth-success", response.data);
-            }, 1500);
+            // For signup, automatically log in the user
+            this.successMessage = `Account created successfully! Signing you in...`;
+            try {
+              const loginResponse = await axios.post(`${API_BASE_URL}/login`, {
+                username: this.username,
+                password: this.password
+              });
+              if (loginResponse.data.token) {
+                localStorage.setItem("jwt_token", loginResponse.data.token);
+              }
+              this.$emit("auth-success", loginResponse.data);
+            } catch (loginError) {
+              this.errorMessage =
+                loginError.response?.data?.error ||
+                "Account created, but automatic sign-in failed. Please try logging in.";
+              console.error("Auto-login error:", loginError);
+            }
           }
         }
       } catch (error) {

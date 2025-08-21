@@ -2,8 +2,9 @@
   <div class="pageBody customStyles homepage">
     <NavBanner useCustomStyles="true" />
     <div class="card logoCard">
-      <a href="/" class="cardContent">
+      <a href="/" class="cardContent logo-link" style="position:relative;">
         <Logo />
+        <span class="web-edition-label">WEB</span>
       </a>
       <div class="cardContent collection">
         <!-- <div class="links">
@@ -687,7 +688,30 @@ export default {
 };
 </script>
 
+@font-face { font-family: 'Courierstuck'; src:
+url('@/css/fonts/courierstuck.ttf') format('truetype'); font-display: swap; }
 <style scoped lang="scss">
+.web-edition-label {
+  position: absolute;
+  top: 85%;
+  right: 89%;
+  font-family: "Courierstuck", monospace;
+  font-size: 40pt;
+  color: #c4d63b;
+  background: transparent;
+  pointer-events: none;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+  font-smooth: never;
+  text-shadow: 2px 2px 0 #679433, 4px 4px 0 #1a2e1f, -1px -1px 0 #e6f8a3,
+    0 0 2px #679433, 1px 0 #679433, -1px 0 #679433, 0 1px #679433,
+    0 -1px #679433;
+  text-rendering: geometricPrecision;
+  padding-bottom: 2px;
+  user-select: none;
+  letter-spacing: 1px;
+  z-index: 10;
+}
 @mixin tablet-size {
   @media (max-width: 950px) {
     @content;

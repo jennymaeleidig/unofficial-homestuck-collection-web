@@ -498,7 +498,7 @@ Vue.mixin({
     $popNotifFromPageId(pageId) {
       // Don't error even if triggered from setup page
       const notifications = this.$root.$children[0].$refs.notifications;
-      if (notifications) {
+      if (notifications && !isWebApp) {
         notifications.queueFromPageId(pageId);
       } else {
         this.$logger.error("Missing notifications ref!");
@@ -507,7 +507,7 @@ Vue.mixin({
     $pushNotif(notif) {
       // Don't error even if triggered from setup page
       const notifications = this.$root.$children[0].$refs.notifications;
-      if (notifications) {
+      if (notifications && !isWebApp) {
         notifications.queueNotif(notif);
       } else {
         this.$logger.error("Missing notifications ref!");
