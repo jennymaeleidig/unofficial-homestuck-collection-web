@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  webapp:
+    build:
+      context: ..
+      dockerfile: docker/webapp/Dockerfile.dev
+      args:
+        - ASSET_PACK_HREF=[PUT SERVER HOSTNAME]:${ASSET_PACK_PORT:-7413}/
+        - AUTH_SERVER_URL=[PUT SERVER HOSTNAME]:${AUTH_PORT:-9413}
+        - APP_VERSION=1.0.0
+        - ASSET_DIR=/assets/
+    ports:
+      - "${WEB_PORT:-8413}:${WEB_PORT:-8413}"
+    environment:
+      - ASSET_PACK_HREF=[PUT SERVER HOSTNAME]:${ASSET_PACK_PORT:-7413}/
+      - AUTH_SERVER_URL=[PUT SERVER HOSTNAME]:${AUTH_PORT:-9413}
+      - APP_VERSION=1.0.0
+      - ASSET_DIR=/assets/
+    volumes:
+      - /path/to/your/app:/app
+      - /path/to/your/assets:/assets
+    depends_on:
+      - asset_server
+      - auth_server
+
+  asset_server:
+    build:
+      context: ..
+      dockerfile: docker/asset_server/Dockerfile
+    ports:
+      - "${ASSET_PACK_PORT:-7413}:${ASSET_PACK_PORT:-7413}"
+    volumes:
+      - /path/to/your/assets:/assets
+      # For Unraid deployment, you can replace the relative path with a direct path:
+      # - /path/to/your/assets:/assets
+    environment:
+      - ASSET_DIR=/assets
+
+  auth_server:
+    build:
+      context: ..
+      dockerfile: docker/auth_server/Dockerfile
+    ports:
+      - "${AUTH_PORT:-9413}:${AUTH_PORT:-9413}"
+    volumes:
+      - /path/to/your/auth/db:/data
+      # For Unraid deployment, you can replace the absolute path with a direct path:
+      # - /path/to/your/auth/db:/data
+    environment:
+      - DB_PATH=/data/db.sqlite

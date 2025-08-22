@@ -1,406 +1,525 @@
 <template>
-  <div id="window" :class="[
-    theme, 
-    $root.platform // webapp or electron
-  ]">
-    <div id="app"
+  <div
+    id="window"
+    :class="[
+      theme,
+      $root.platform // webapp or electron
+    ]"
+  >
+    <div
+      id="app"
       :class="[
         $localData.settings.showAddressBar ? 'addressBar' : 'noAddressBar',
-        $localData.settings.reducedMotion ? 'reducedMotion' : '',
-      ]" v-if="canLoadApp">
+        $localData.settings.reducedMotion ? 'reducedMotion' : ''
+      ]"
+      v-if="canLoadApp"
+    >
       <AppHeader :class="theme" ref="uistyle" />
-      <TabFrame v-for="key in tabList" :key="key" :ref="key"  :tabKey="key"/>
-      <Notifications :class="theme" ref="notifications" />
+      <TabFrame
+        v-if="!$isWebApp"
+        v-for="key in tabList"
+        :key="key"
+        :ref="key"
+        :tabKey="key"
+      />
+      <TabFrame
+        v-else
+        :key="$localData.tabData.activeTabKey"
+        :ref="$localData.tabData.activeTabKey"
+        :tabKey="$localData.tabData.activeTabKey"
+      />
+      <MobileNotification />
       <ContextMenu :class="theme" ref="contextMenu" v-if="!$isWebApp" />
       <Updater ref="Updater" v-if="!$isWebApp" />
       <GuestBanner ref="GuestBanner" v-if="$root.guestMode" />
-      <UrlTooltip :class="theme" ref="urlTooltip" v-if="$localData.settings.urlTooltip && !$isWebApp"/>
-      <component is="style" v-for="s in stylesheets" :id="s.id" :key="s.id" rel="stylesheet" v-text="s.body"/>
+      <UrlTooltip
+        :class="theme"
+        ref="urlTooltip"
+        v-if="$localData.settings.urlTooltip && !$isWebApp"
+      />
+      <component
+        is="style"
+        v-for="s in stylesheets"
+        :id="s.id"
+        :key="s.id"
+        rel="stylesheet"
+        v-text="s.body"
+      />
     </div>
-    <div id="app" class="mspa"  v-else>
+    <div id="app" class="mspa" v-else>
       <Setup ref="uistyle" />
       <ContextMenu ref="contextMenu" />
     </div>
+    <AuthModal :isVisible="showAuthModal" @auth-success="handleAuthSuccess" />
   </div>
 </template>
 
 <script>
-  import Mods from "./mods.js"
+import Mods from "./mods.js";
 
-  import Setup from '@/components/SystemPages/Setup.vue'
-  import AppHeader from '@/components/AppMenu/AppHeader.vue'
+import Setup from "@/components/SystemPages/Setup.vue";
+import AppHeader from "@/components/AppMenu/AppHeader.vue";
+import AuthModal from "@/components/Auth/AuthModal.vue";
 
-  const Notifications = () => import('@/components/UIElements/Notifications.vue')
+const Notifications = () => import("@/components/UIElements/Notifications.vue");
 
-  const ContextMenu = () => import('@/components/UIElements/ContextMenu.vue')
-  const UrlTooltip = () => import('@/components/UIElements/UrlTooltip.vue')
-  const Updater = () => import('@/components/UIElements/Updater.vue')
-  const TabFrame = () => import('@/components/TabFrame.vue')
+const ContextMenu = () => import("@/components/UIElements/ContextMenu.vue");
+const UrlTooltip = () => import("@/components/UIElements/UrlTooltip.vue");
+const Updater = () => import("@/components/UIElements/Updater.vue");
+const TabFrame = () => import("@/components/TabFrame.vue");
 
-  const GuestBanner = () => import('@/components/UIElements/GuestBanner.vue')
+const GuestBanner = () => import("@/components/UIElements/GuestBanner.vue");
 
-  const ipcRenderer = require('IpcRenderer')
+const ipcRenderer = require("IpcRenderer");
 
-  var mixins = []
-  var webFrame = undefined
+var mixins = [];
+var webFrame = undefined;
 
-  const DEBUG_LOAD_FOREVER = false
+const DEBUG_LOAD_FOREVER = false;
 
-  if (!window.isWebApp) {
-    webFrame = require('electron').webFrame
-    mixins = [Mods.getMainMixin()]
-  }
+if (!window.isWebApp) {
+  webFrame = require("electron").webFrame;
+  mixins = [Mods.getMainMixin()];
+} else {
+  const Resources = require("./resources.js");
+  mixins = [Mods.getMainMixin(), Resources.UrlFilterMixin];
+  webFrame = undefined;
+}
 
-  export default {
-    name: 'HomestuckCollection',
-    mixins,
-    components: {
-      Setup, AppHeader, TabFrame, ContextMenu, Notifications, UrlTooltip, Updater, GuestBanner
+export default {
+  name: "HomestuckCollection",
+  mixins,
+  components: {
+    Setup,
+    AppHeader,
+    TabFrame,
+    ContextMenu,
+    Notifications,
+    MobileNotification: () =>
+      import("@/components/UIElements/MobileNotification.vue"),
+    UrlTooltip,
+    Updater,
+    GuestBanner,
+    AuthModal
+  },
+  data() {
+    return {
+      zoomLevel: 0,
+      needCheckTheme: false,
+      stylesheets: [], // Mod optimization
+      showAuthModal: false, // New data property for auth modal visibility
+      sessionChecked: false // New data property to track session check completion
+    };
+  },
+  computed: {
+    canLoadApp() {
+      if (DEBUG_LOAD_FOREVER) return false;
+
+      // Only load the app if a user is authenticated (or in guest mode)
+      if (!this.$localData.root.isAuthenticated && !this.$root.guestMode) {
+        return false;
+      }
+
+      if (this.$archive == undefined) {
+        // Cannot load components without archive
+        return false;
+      } else {
+        // Archive data exists; possible to load
+        if (this.$localData.assetDir) {
+          // Asset dir is defined (setup finished)
+          if (this.$root.loadState === "RELOAD") {
+            return false;
+          }
+          if (this.$root.loadState !== "ERROR") {
+            // loadState is not known error
+            // (only look for error, don't destroy app during soft reload)
+            return true;
+          }
+        }
+        // Setup wizard not complete
+        if (this.$root.guestMode) {
+          // Preview page directly despite incomplete setup
+          return true;
+        }
+      }
+      // Setup not completed, or loadState is error
+      return false;
     },
-    data() {
-      return {
-        zoomLevel: 0,
-        needCheckTheme: false,
-        stylesheets: [] // Mod optimization
+    tabList() {
+      return this.$localData.tabData.tabList;
+    },
+    activeTabComponent() {
+      // eslint-disable-next-line no-unused-expressions
+      this.needCheckTheme; // what a truly awful hack. vue's fault
+
+      // (it's because $refs isn't reactive)
+      const tab_components = this.$refs[this.$localData.tabData.activeTabKey];
+      if (tab_components) {
+        return tab_components[0];
+      }
+      return undefined;
+    },
+    tabTheme() {
+      if (this.activeTabComponent) {
+        // Get theme from inner tab
+        const page_theme = {
+          defined: this.activeTabComponent.contentTheme,
+          rendered: this.activeTabComponent.theme
+        };
+        return page_theme;
+      } else {
+        if (window.isWebApp) {
+          this.$logger.debug("App.vue:tabTheme: No active tab! Using default");
+        } else {
+          this.$logger.warn("App.vue:tabTheme: No active tab! Using default");
+        }
+        return { defined: "default", rendered: "default" };
       }
     },
-    computed: {
-      canLoadApp() {
-        if (DEBUG_LOAD_FOREVER) return false
+    theme() {
+      const set_theme = this.$localData.settings.themeOverrideUI;
+      // Default UI theme should be whatever the page is using
 
-        if (this.$archive == undefined) {
-          // Cannot load components without archive
-          return false
-        } else {
-          // Archive data exists; possible to load
-          if (this.$localData.assetDir) {
-            // Asset dir is defined (setup finished)
-            if (this.$root.loadState === 'RELOAD') {
-              return false
-            }
-            if (this.$root.loadState !== 'ERROR') {
-              // loadState is not known error
-              // (only look for error, don't destroy app during soft reload)
-              return true
-            }
-          }
-          // Setup wizard not complete
-          if (this.$root.guestMode) {
-            // Preview page directly despite incomplete setup
-            return true
-          }
-        }
-        // Setup not completed, or loadState is error
-        return false
-      },
-      tabList() {
-        return this.$localData.tabData.tabList
-      },
-      activeTabComponent() {
-        // eslint-disable-next-line no-unused-expressions
-        this.needCheckTheme; // what a truly awful hack. vue's fault
+      // If there is a theme override and a UI theme override,
+      // the UI theme override should apply even if force is unset
+      let theme = this.tabTheme.rendered;
 
-        // (it's because $refs isn't reactive)
-        const tab_components = this.$refs[this.$localData.tabData.activeTabKey]
-        if (tab_components) {
-          return tab_components[0]
-        }
-        return undefined
-      },
-      tabTheme() {
-        if (this.activeTabComponent) {
-          // Get theme from inner tab
-          const page_theme = {
-            defined: this.activeTabComponent.contentTheme, 
-            rendered: this.activeTabComponent.theme
-          }
-          return page_theme
-        } else {
-          this.$logger.warn("App.vue:tabTheme: No active tab! Using default")
-          return {defined: 'default', rendered: 'default'}
-        }
-      },
-      theme() {
-        const set_theme = this.$localData.settings.themeOverrideUI
-        // Default UI theme should be whatever the page is using
-
-        // If there is a theme override and a UI theme override,
-        // the UI theme override should apply even if force is unset
-        let theme = this.tabTheme.rendered
-
-        if (set_theme != 'default') {
-          // User has a specified theme
-          if (this.tabTheme.defined != 'default') {
-            // Page has a theme
-            if (this.$localData.settings.forceThemeOverrideUI) {
-              // If force is on, use the override theme
-              theme = set_theme
-            } else {
-              // Page takes priority over setting
-              theme = this.tabTheme.defined
-              // If this were this.tabThem.rendered, you would get
-              // page themes escaping to become app themes.
-            }
+      if (set_theme != "default") {
+        // User has a specified theme
+        if (this.tabTheme.defined != "default") {
+          // Page has a theme
+          if (this.$localData.settings.forceThemeOverrideUI) {
+            // If force is on, use the override theme
+            theme = set_theme;
           } else {
-            // User specified a theme, page did not
-            theme = set_theme
-          } 
-        }
-        return (theme == 'default' ? 'mspa' : theme)
-      }
-    },
-    methods: {
-      resetZoom() {
-        this.zoomLevel = 0
-        webFrame.setZoomLevel(this.zoomLevel)
-      },
-      checkTheme() {
-        this.needCheckTheme = !this.needCheckTheme
-      },
-      zoomIn() {
-        if (this.zoomLevel < 5) {
-          this.zoomLevel += 0.5
-          webFrame.setZoomLevel(this.zoomLevel)
-        }
-      },
-      zoomOut() {
-        if (this.zoomLevel > -5) {
-          this.zoomLevel -= 0.5
-          webFrame.setZoomLevel(this.zoomLevel)
-        }
-      },
-      archiveReload() {
-        this.memoizedClearAll()
-
-        this.$root.loadState = "LOADING"
-        this.$nextTick(function () {
-          // Don't show loading screen, "soft" reload
-          // this.$root.loadState = "LOADING"
-          this.$localData.root.applySaveIfPending()
-          ipcRenderer.send('RELOAD_ARCHIVE_DATA')
-        })
-      },
-      openJumpbox() {
-        if (this.$localData.settings.showAddressBar) {
-          document.querySelector('#jumpBox input').select()
-        } else {
-          this.activeTabComponent.$refs.jumpbox.toggle()
-        }
-      },
-      updateAppIcon(){ 
-        this.$nextTick(() => {
-          if (!this.$refs["uistyle"]) {
-            this.$logger.warn("trying to updateAppIcon, but no uistyle (appheader/setup) element yet")
-            setTimeout(() => this.updateAppIcon(), 2000)
-            return
+            // Page takes priority over setting
+            theme = this.tabTheme.defined;
+            // If this were this.tabThem.rendered, you would get
+            // page themes escaping to become app themes.
           }
-          let app_icon_var = window.getComputedStyle(this.$refs["uistyle"].$el).getPropertyValue('--app-icon')
-          let match
-          // eslint-disable-next-line no-cond-assign
-          if (match = /url\(\\\/(.+)\\\/\)/.exec(app_icon_var)) {
-            app_icon_var = this.$mspaFileStream(match[1].replace(/\\/g, ''))
-          // eslint-disable-next-line no-cond-assign
-          } else if (match = /"(.+)"/.exec(app_icon_var)) {
-            app_icon_var = match[1]
-          } else {
-            this.$logger.error(`Couldn't match '${app_icon_var}'`)
-            return
-          }
-          this.$logger.info("Requesting icon change to", app_icon_var)
-          ipcRenderer.send('set-sys-icon', app_icon_var)
-        })
-      }
-    },
-    watch: {
-      'theme'(to, from) {
-        this.updateAppIcon()
-      },
-      'tabTheme'(to, from) {
-        if (to != undefined)
-          this.$root.tabTheme = to
-      }
-    },
-    updated() {
-      if (this.$isWebApp) this.filterLinksAndImages(window.document.body)
-    },
-    mounted () {
-      this.$nextTick(() => this.updateAppIcon())
-      const user_path_target = window.location.pathname
-
-      this.$localData.root.TABS_SWITCH_TO()
-      // Switch to the last tab (good) but replaces history (so we use the previously captured value)
-
-      this.$root.loadStage = "MOUNTED"
-
-      if (window.isWebApp) {
-        if (user_path_target != "/" && !this.$localData.assetDir) {
-          this.$root.guestMode = true
-        }
-        if (user_path_target != this.$localData.root.activeTabObject.url) {
-          this.$logger.warn("Navigating user to", user_path_target)
-          this.$nextTick(() => {
-            // this.$localData.root.TABS_PUSH_URL(user_path_target)
-            this.$localData.root.TABS_NEW(user_path_target)
-          })
         } else {
-          this.$logger.debug(this.$localData.root.activeTabObject.url, "and", user_path_target, "match")
+          // User specified a theme, page did not
+          theme = set_theme;
         }
       }
-
-      webFrame && webFrame.setZoomFactor(1)
-
-      // Sets up listener for the main process
-      ipcRenderer.on('TABS_NEW', (event, payload) => {
-        if (payload.url) {
-          this.$localData.root.TABS_NEW(this.$resolvePath(payload.url), payload.adjacent)
-        } else {
-          this.$localData.root.TABS_NEW()
-        }
-      })
-      ipcRenderer.on('TABS_CLOSE', (event, key) => {
-        this.$localData.root.TABS_CLOSE(key)
-      })
-      ipcRenderer.on('TABS_DUPLICATE', (event) => {
-        this.$localData.root.TABS_DUPLICATE()
-      })
-      ipcRenderer.on('TABS_RESTORE', (event) => {
-        this.$localData.root.TABS_RESTORE()
-      })
-      ipcRenderer.on('TABS_CYCLE', (event, payload) => {
-        this.$localData.root.TABS_CYCLE(payload.amount)
-      })
-      ipcRenderer.on('TABS_PUSH_URL', (event, to) => {
-        this.$pushURL(to)
-      })
-      ipcRenderer.on('TABS_HISTORY_BACK', (event) => {
-        this.$localData.root.TABS_HISTORY_BACK()
-      })
-      ipcRenderer.on('TABS_HISTORY_FORWARD', (event) => {
-        this.$localData.root.TABS_HISTORY_FORWARD()
-      })
-      ipcRenderer.on('ZOOM_IN', (event) => {
-        this.zoomIn()
-      })
-      ipcRenderer.on('ZOOM_OUT', (event) => {
-        this.zoomOut()
-      })
-      ipcRenderer.on('ZOOM_RESET', (event) => {
-        this.resetZoom()
-      })
-      ipcRenderer.on('OPEN_FINDBOX', (event) => {
-        this.activeTabComponent.$refs.findbox.open()
-      })
-      ipcRenderer.on('OPEN_JUMPBOX', (event) => {
-        this.openJumpbox()
-      })
-
-      ipcRenderer.on('RELOAD_LOCALDATA', (event) => {
-        this.$localData.VM.reloadLocalStorage()
-      })
-
-      ipcRenderer.on('SET_LOAD_STATE', (event, state) => {
-        this.$root.loadState = state
-      })
-
-      ipcRenderer.on('SET_LOAD_STAGE', (event, stage) => {
-        this.$root.loadStage = stage
-      })
-      ipcRenderer.on('SET_LOAD_ERROR', (event, e_str) => {
-        this.$root.loadError = JSON.parse(e_str)
-      })
-
-      ipcRenderer.on('ARCHIVE_UPDATE', async (event, archive) => {
-        this.$root.loadStage = "LOADED_ARCHIVE_VANILLA"
-        try {
-          this.$root.loadStage = "MODS"
-          await Mods.editArchiveAsync(archive)
-          this.$root.loadStage = "FREEZE"
-          this.$root.archive = Object.freeze(archive)
-          this.$nextTick(() => {
-            if (this.$root.loadStage == "MODS")
-              this.$root.loadState = "DONE"
-          })
-        } catch (e) {
-          this.$logger.error(e)
-          this.$root.loadError = e
-          this.$root.archive = undefined
-          this.$root.loadState = "ERROR"
-        }
-      })
-
-      // Ask for a fresh copy of the archive
-      // Root must exist to receive it, so this calls from inside the app
-      // and the app must have registered the receipt listener first to accept it!
-      this.$root.loadState = "WAITING_ON_DATA"
-      ipcRenderer.send("RELOAD_ARCHIVE_DATA")
-
-      document.addEventListener('dragover', event => event.preventDefault())
-      document.addEventListener('drop', event => event.preventDefault())
-
-      window.addEventListener('keydown', event => {
-        if (event.key === "l" && (event.ctrlKey || event.metaKey)) {
-          event.preventDefault()
-          this.openJumpbox()
-        }
-        const activeFrame = document.getElementById(this.$localData.tabData.activeTabKey)
-        if (activeFrame && !activeFrame.contains(document.activeElement) && document.activeElement.tagName != "INPUT") activeFrame.focus()
-      })
-
-      const app = this
-
-      const parentLinkElement = (target) => {
-        while (target && (target.tagName !== 'A' && target.tagName !== 'AREA')) target = target.parentNode
-        return target
-      }
-
-      const onLinkClick = (event, force_aux_click=false) => {
-        // ensure we use the link, in case the click has been received by a subelement
-        const resolvedTarget = parentLinkElement(event.target)
-        if (resolvedTarget && resolvedTarget.href) {
-          // some sanity checks taken from vue-router:
-          // https://github.com/vuejs/vue-router/blob/dev/src/components/link.js#L106
-          if (event.defaultPrevented) return // don't handle when preventDefault called
-          const targetBlank = (resolvedTarget.getAttribute) ? (/\b_blank\b/i.test(resolvedTarget.getAttribute('target'))) : false // don't handle if `target="_blank"`
-
-          if (event.preventDefault) {
-            event.preventDefault()
-            const { altKey, ctrlKey, metaKey, shiftKey } = event
-            const auxClick = (metaKey || altKey || ctrlKey || shiftKey) || targetBlank
-
-            app.$openLink(resolvedTarget.href, auxClick || force_aux_click)
-            // const resolved_href = Resources.resolveURL(resolvedTarget.href)
-            // app.$openLink(resolved_href, auxClick || force_aux_click)
-          }
-        }
-      }
-
-      window.addEventListener('click', event => {
-        if (event.button !== undefined && event.button !== 0) return // only handle left clicks
-        onLinkClick(event)
-      })
-
-      window.addEventListener('auxclick', event => {
-        // ensure we use the link, in case the click has been received by a subelement
-        if (event.button == 2 && this.$refs.contextMenu) {
-          event.preventDefault()
-          this.$refs.contextMenu.open(event, event.target)
-        } else {
-          if (event.button !== undefined && event.button !== 1) return // only handle middle clicks
-          onLinkClick(event, true)
-        }
-      })
-
-      window.addEventListener("mousedown", (event) => {
-        if (event.button == 3) {
-          event.preventDefault()
-          this.$localData.root.TABS_HISTORY_BACK()
-        } else if (event.button == 4) {
-          event.preventDefault()
-          this.$localData.root.TABS_HISTORY_FORWARD()
-        }
-      })
+      return theme == "default" ? "mspa" : theme;
     }
+  },
+  methods: {
+    resetZoom() {
+      this.zoomLevel = 0;
+      if (!window.isWebApp && webFrame) {
+        webFrame.setZoomLevel(this.zoomLevel);
+      }
+    },
+    checkTheme() {
+      this.needCheckTheme = !this.needCheckTheme;
+    },
+    zoomIn() {
+      if (this.zoomLevel < 5) {
+        this.zoomLevel += 0.5;
+        if (!window.isWebApp && webFrame) {
+          webFrame.setZoomLevel(this.zoomLevel);
+        }
+      }
+    },
+    zoomOut() {
+      if (this.zoomLevel > -5) {
+        this.zoomLevel -= 0.5;
+        if (!window.isWebApp && webFrame) {
+          webFrame.setZoomLevel(this.zoomLevel);
+        }
+      }
+    },
+    archiveReload() {
+      this.memoizedClearAll();
+
+      this.$root.loadState = "LOADING";
+      this.$nextTick(function() {
+        // Don't show loading screen, "soft" reload
+        // this.$root.loadState = "LOADING"
+        this.$localData.root.applySaveIfPending();
+        if (!window.isWebApp) {
+          ipcRenderer.send("RELOAD_ARCHIVE_DATA");
+        }
+      });
+    },
+    openJumpbox() {
+      if (this.$localData.settings.showAddressBar) {
+        document.querySelector("#jumpBox input").select();
+      } else {
+        this.activeTabComponent.$refs.jumpbox.toggle();
+      }
+    },
+    updateAppIcon() {
+      this.$nextTick(() => {
+        if (!this.$refs["uistyle"]) {
+          this.$logger.warn(
+            "trying to updateAppIcon, but no uistyle (appheader/setup) element yet"
+          );
+          setTimeout(() => this.updateAppIcon(), 2000);
+          return;
+        }
+        let app_icon_var = window
+          .getComputedStyle(this.$refs["uistyle"].$el)
+          .getPropertyValue("--app-icon");
+        let match;
+        // eslint-disable-next-line no-cond-assign
+        if ((match = /url\(\\\/(.+)\\\/\)/.exec(app_icon_var))) {
+          app_icon_var = this.$mspaFileStream(match[1].replace(/\\/g, ""));
+          // eslint-disable-next-line no-cond-assign
+        } else if ((match = /"(.+)"/.exec(app_icon_var))) {
+          app_icon_var = match[1];
+        } else {
+          this.$logger.error(`Couldn't match '${app_icon_var}'`);
+          return;
+        }
+        this.$logger.info("Requesting icon change to", app_icon_var);
+        if (!window.isWebApp) {
+          ipcRenderer.send("set-sys-icon", app_icon_var);
+        }
+      });
+    },
+    handleAuthSuccess(data) {
+      // Update the Vue instance's data properties directly to ensure reactivity
+      this.$localData.root.saveData = data.saveData;
+      this.$localData.root.settings = data.settings;
+      this.$localData.root.isAuthenticated = true;
+      this.showAuthModal = false;
+
+      // Reload local data from server to ensure session/localStorage are in sync
+      this.$localData.root.reloadLocalStorage().then(() => {
+        this.$logger.info("Local data reloaded after login/signup:", {
+          saveData: this.$localData.root.saveData,
+          settings: this.$localData.root.settings,
+          isAuthenticated: this.$localData.root.isAuthenticated
+        });
+      });
+    }
+  },
+  watch: {
+    theme(to, from) {
+      this.updateAppIcon();
+    },
+    tabTheme(to, from) {
+      if (to != undefined) this.$root.tabTheme = to;
+    }
+  },
+  watch: {
+    sessionChecked(to, from) {
+      if (to === true) {
+        // Session check has completed, now decide whether to show auth modal
+        if (!this.$localData.root.isAuthenticated) {
+          this.showAuthModal = true;
+        }
+      }
+    }
+  },
+  updated() {
+    if (this.$isWebApp) this.filterLinksAndImages(window.document.body);
+  },
+  mounted() {
+    this.$nextTick(() => this.updateAppIcon());
+    const user_path_target = window.location.pathname;
+
+    // We'll handle showing the auth modal in a watcher for sessionChecked
+    // to ensure we wait for the session check to complete
+    if (this.$localData.root.isAuthenticated) {
+      this.$localData.root.TABS_SWITCH_TO();
+      // Switch to the last tab (good) but replaces history (so we use the previously captured value)
+    }
+
+    this.$root.loadStage = "MOUNTED";
+
+    if (window.isWebApp) {
+      if (user_path_target != "/" && !this.$localData.assetDir) {
+        this.$root.guestMode = true;
+      }
+      if (user_path_target != this.$localData.root.activeTabObject.url) {
+        this.$logger.warn("Navigating user to", user_path_target);
+        this.$nextTick(() => {
+          // this.$localData.root.TABS_PUSH_URL(user_path_target)
+          this.$localData.root.TABS_NEW(user_path_target);
+        });
+      } else {
+        this.$logger.debug(
+          this.$localData.root.activeTabObject.url,
+          "and",
+          user_path_target,
+          "match"
+        );
+      }
+    }
+
+    if (!window.isWebApp && webFrame) {
+      webFrame.setZoomFactor(1);
+    }
+
+    // Sets up listener for the main process
+    ipcRenderer.on("TABS_NEW", (event, payload) => {
+      if (payload.url) {
+        this.$localData.root.TABS_NEW(
+          this.$resolvePath(payload.url),
+          payload.adjacent
+        );
+      } else {
+        this.$localData.root.TABS_NEW();
+      }
+    });
+    ipcRenderer.on("TABS_CLOSE", (event, key) => {
+      this.$localData.root.TABS_CLOSE(key);
+    });
+    ipcRenderer.on("TABS_DUPLICATE", event => {
+      this.$localData.root.TABS_DUPLICATE();
+    });
+    ipcRenderer.on("TABS_RESTORE", event => {
+      this.$localData.root.TABS_RESTORE();
+    });
+    ipcRenderer.on("TABS_CYCLE", (event, payload) => {
+      this.$localData.root.TABS_CYCLE(payload.amount);
+    });
+    ipcRenderer.on("TABS_PUSH_URL", (event, to) => {
+      this.$pushURL(to);
+    });
+    ipcRenderer.on("TABS_HISTORY_BACK", event => {
+      this.$localData.root.TABS_HISTORY_BACK();
+    });
+    ipcRenderer.on("TABS_HISTORY_FORWARD", event => {
+      this.$localData.root.TABS_HISTORY_FORWARD();
+    });
+    ipcRenderer.on("ZOOM_IN", event => {
+      this.zoomIn();
+    });
+    ipcRenderer.on("ZOOM_OUT", event => {
+      this.zoomOut();
+    });
+    ipcRenderer.on("ZOOM_RESET", event => {
+      this.resetZoom();
+    });
+    ipcRenderer.on("OPEN_FINDBOX", event => {
+      this.activeTabComponent.$refs.findbox.open();
+    });
+    ipcRenderer.on("OPEN_JUMPBOX", event => {
+      this.openJumpbox();
+    });
+
+    ipcRenderer.on("RELOAD_LOCALDATA", event => {
+      this.$localData.VM.reloadLocalStorage();
+    });
+
+    ipcRenderer.on("SET_LOAD_STATE", (event, state) => {
+      this.$root.loadState = state;
+    });
+
+    ipcRenderer.on("SET_LOAD_STAGE", (event, stage) => {
+      this.$root.loadStage = stage;
+    });
+    ipcRenderer.on("SET_LOAD_ERROR", (event, e_str) => {
+      this.$root.loadError = JSON.parse(e_str);
+    });
+
+    ipcRenderer.on("ARCHIVE_UPDATE", async (event, archive) => {
+      this.$root.loadStage = "LOADED_ARCHIVE_VANILLA";
+      try {
+        this.$root.loadStage = "MODS";
+        await Mods.editArchiveAsync(archive);
+        this.$root.loadStage = "FREEZE";
+        this.$root.archive = Object.freeze(archive);
+        this.$nextTick(() => {
+          if (this.$root.loadStage == "MODS") this.$root.loadState = "DONE";
+        });
+      } catch (e) {
+        this.$logger.error(e);
+        this.$root.loadError = e;
+        this.$root.archive = undefined;
+        this.$root.loadState = "ERROR";
+      }
+    });
+
+    // Ask for a fresh copy of the archive
+    // Root must exist to receive it, so this calls from inside the app
+    // and the app must have registered the receipt listener first to accept it!
+    this.$root.loadState = "WAITING_ON_DATA";
+    ipcRenderer.send("RELOAD_ARCHIVE_DATA");
+
+    document.addEventListener("dragover", event => event.preventDefault());
+    document.addEventListener("drop", event => event.preventDefault());
+
+    window.addEventListener("keydown", event => {
+      if (event.key === "l" && (event.ctrlKey || event.metaKey)) {
+        event.preventDefault();
+        this.openJumpbox();
+      }
+      const activeFrame = document.getElementById(
+        this.$localData.tabData.activeTabKey
+      );
+      if (
+        activeFrame &&
+        !activeFrame.contains(document.activeElement) &&
+        document.activeElement.tagName != "INPUT"
+      )
+        activeFrame.focus();
+    });
+
+    const app = this;
+
+    const parentLinkElement = target => {
+      while (target && target.tagName !== "A" && target.tagName !== "AREA")
+        target = target.parentNode;
+      return target;
+    };
+
+    const onLinkClick = (event, force_aux_click = false) => {
+      // ensure we use the link, in case the click has been received by a subelement
+      const resolvedTarget = parentLinkElement(event.target);
+      if (resolvedTarget && resolvedTarget.href) {
+        // some sanity checks taken from vue-router:
+        // https://github.com/vuejs/vue-router/blob/dev/src/components/link.js#L106
+        if (event.defaultPrevented) return; // don't handle when preventDefault called
+        const targetBlank = resolvedTarget.getAttribute
+          ? /\b_blank\b/i.test(resolvedTarget.getAttribute("target"))
+          : false; // don't handle if `target="_blank"`
+
+        if (event.preventDefault) {
+          event.preventDefault();
+          const { altKey, ctrlKey, metaKey, shiftKey } = event;
+          const auxClick =
+            metaKey || altKey || ctrlKey || shiftKey || targetBlank;
+
+          app.$openLink(resolvedTarget.href, auxClick || force_aux_click);
+          // const resolved_href = Resources.resolveURL(resolvedTarget.href)
+          // app.$openLink(resolved_href, auxClick || force_aux_click)
+        }
+      }
+    };
+
+    window.addEventListener("click", event => {
+      if (event.button !== undefined && event.button !== 0) return; // only handle left clicks
+      onLinkClick(event);
+    });
+
+    window.addEventListener("auxclick", event => {
+      // ensure we use the link, in case the click has been received by a subelement
+      if (event.button == 2 && this.$refs.contextMenu) {
+        event.preventDefault();
+        this.$refs.contextMenu.open(event, event.target);
+      } else {
+        if (event.button !== undefined && event.button !== 1) return; // only handle middle clicks
+        onLinkClick(event, true);
+      }
+    });
+
+    window.addEventListener("mousedown", event => {
+      if (event.button == 3) {
+        event.preventDefault();
+        this.$localData.root.TABS_HISTORY_BACK();
+      } else if (event.button == 4) {
+        event.preventDefault();
+        this.$localData.root.TABS_HISTORY_FORWARD();
+      }
+    });
   }
+};
 </script>
 
 <style lang="scss">
@@ -408,140 +527,163 @@
 @import "@/css/fa/scss/fontawesome.scss";
 @import "@/css/fa/scss/solid.scss";
 
-@import '@/css/mspaThemes.scss';
+@import "@/css/mspaThemes.scss";
 
-  #window {
-    position: relative;
-    height: 100%;
-    width: 100%;
-  }
+#window {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
 
-  #app.busy {
-    cursor: progress;
-  }
+#app.busy {
+  cursor: progress;
+}
 
-  // TODO: Replace --headerHeight with dynamic sizing
-  .addressBar {
-    --headerHeight: 82px;
-    &.webapp {
-      --headerHeight: 29px;
-    }
+// TODO: Replace --headerHeight with dynamic sizing
+.addressBar {
+  --headerHeight: 82px;
+  &.webapp {
+    --headerHeight: 29px;
   }
-  .noAddressBar {
-    --headerHeight: 51px;
-    &.webapp {
-      --headerHeight: 0px;
-    }
+}
+.noAddressBar {
+  --headerHeight: 51px;
+  &.webapp {
+    --headerHeight: 0px;
   }
+}
 
-  html, body {
-    height: 100%;
-  }
-  body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, div {
-    margin: 0;
-    padding: 0;
-  }
+html,
+body {
+  height: 100%;
+}
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+div {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Courier New", courier, monospace;
+  font-size: 14px;
+  font-weight: bolder;
+  overflow-wrap: break-word;
+}
+@media (max-width: 650px) {
   body {
-    font-family: "Courier New", courier, monospace;
     font-size: 14px;
-    font-weight: bolder;
-    overflow-wrap: break-word;
   }
-  @media (max-width: 650px) {
-    body {
-      font-size: 14px;
-    }
-  }
-  .tabFrame {
-    input, img {
-      &:focus {
-        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
-      }
+}
+.tabFrame {
+  input,
+  img {
+    &:focus {
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+        0 0 8px rgba(102, 175, 233, 0.6);
     }
   }
-  #app {
-    display: flex;
-    flex-flow: column;
-    height: 100%;
+}
+#app {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
 
-    .invisible {
-      visibility: hidden !important;
-    }
-
-    .pixelated img {
-        image-rendering: pixelated;
-    }
-
-    .hidden {
-      &.forceLoad {
-        height: 0;
-        opacity: 0;
-        visibility: hidden;
-        overflow: hidden;
-        flex-grow: 0;
-      }
-      &:not(.forceLoad){
-        display: none !important;
-      }
-    }
+  .invisible {
+    visibility: hidden !important;
   }
 
-  a.jumpboxLink::after{
-    // By default, show > in the jump bar
-    @extend %fa-icon;
-    @extend .fas;
-    content: fa-content($fa-var-chevron-right);
+  .pixelated img {
+    image-rendering: pixelated;
   }
-  .electron {
-    a, .urlDisplay {
-      // Link-like links...
-      &[href^="http://"], &[href^="https://"], &[href^="mailto"], &[href$=".pdf"], &[href$=".html"] {
-        // ...that aren't on localhost
-        &:not([href*="127.0.0.1"]):not([href*="localhost"]):not([href*="assets://"])::after{
-          @extend %fa-icon;
-          @extend .fas;
-          content: fa-content($fa-var-external-link-alt);
-          margin: 0 1px 0 2px;
-          line-height: inherit;
-        }
+
+  .hidden {
+    &.forceLoad {
+      height: 0;
+      opacity: 0;
+      visibility: hidden;
+      overflow: hidden;
+      flex-grow: 0;
+    }
+    &:not(.forceLoad) {
+      display: none !important;
+    }
+  }
+}
+
+a.jumpboxLink::after {
+  // By default, show > in the jump bar
+  @extend %fa-icon;
+  @extend .fas;
+  content: fa-content($fa-var-chevron-right);
+}
+.electron {
+  a,
+  .urlDisplay {
+    // Link-like links...
+    &[href^="http://"], &[href^="https://"], &[href^="mailto"], &[href$=".pdf"], &[href$=".html"] {
+      // ...that aren't on localhost
+      &:not([href*="127.0.0.1"]):not([href*="localhost"]):not([href*="assets://"])::after {
+        @extend %fa-icon;
+        @extend .fas;
+        content: fa-content($fa-var-external-link-alt);
+        margin: 0 1px 0 2px;
+        line-height: inherit;
       }
-      // Asset-like links
-      &[href$=".jpg"], &[href$=".png"], &[href$=".gif"], &[href$=".swf"], &[href$=".txt"], &[href$=".mp3"], &[href$=".wav"], &[href$=".mp4"], &[href$=".webm"]{
-        &::after{
-          @extend %fa-icon;
-          @extend .fas;
-          content: fa-content($fa-var-file-image);
-          margin: 0 1px 0 2px;
-          line-height: inherit;
-        }
+    }
+    // Asset-like links
+    &[href$=".jpg"],
+    &[href$=".png"],
+    &[href$=".gif"],
+    &[href$=".swf"],
+    &[href$=".txt"],
+    &[href$=".mp3"],
+    &[href$=".wav"],
+    &[href$=".mp4"],
+    &[href$=".webm"] {
+      &::after {
+        @extend %fa-icon;
+        @extend .fas;
+        content: fa-content($fa-var-file-image);
+        margin: 0 1px 0 2px;
+        line-height: inherit;
       }
-      // Folders
-      &[href^="file://"][href$="/"]{
-        &::after{
-          @extend %fa-icon;
-          @extend .fas;
-          content: fa-content($fa-var-folder-open);
-          margin: 0 1px 0 2px;
-          line-height: inherit;
-        }
+    }
+    // Folders
+    &[href^="file://"][href$="/"] {
+      &::after {
+        @extend %fa-icon;
+        @extend .fas;
+        content: fa-content($fa-var-folder-open);
+        margin: 0 1px 0 2px;
+        line-height: inherit;
       }
     }
   }
-  
-  iframe{
-    border: 0;
-  }
-  .systemButton {
-    font-weight: normal;
-    text-align: center;
-    vertical-align: middle;
+}
 
-    background: none;
-    outline: none;
-    border: none;
-    transition: background-color 0.1s;
-  }
-  *:focus {
-    outline: none;
-  }
+iframe {
+  border: 0;
+}
+.systemButton {
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+
+  background: none;
+  outline: none;
+  border: none;
+  transition: background-color 0.1s;
+}
+*:focus {
+  outline: none;
+}
 </style>

@@ -38,3 +38,17 @@ webAppModTrees.json
 
 /tools/mspfa/*/
 /tools/mspfa/*.log
+
+/assets
+
+build
+
+.env
+
+/.roo
+
+/aiplans
+
+sessions
+
+db.sqlite

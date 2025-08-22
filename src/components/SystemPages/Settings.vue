@@ -3,8 +3,8 @@
     <div class="card">
       <div class="settings newReader">
         <h2>New Reader Mode</h2>
-        
-        <NewReaderControls 
+
+        <NewReaderControls
           :handleEnable="onNewReaderEnable"
           :handleDisable="onNewReaderDisable"
           :handleChange="onNewReaderChange"
@@ -13,74 +13,36 @@
         <!-- <fa-icon v-if="!$isNewReader" :icon="$isNewReader ? 'lock' : 'unlock'" class="lockStatus"/> -->
         <SpoilerBox kind="Granular Retcon Settings" v-if="!$isNewReader">
           <div class="settings retcons" style="padding: 0;">
-            <p class="settingDesc">Normally, retcons unlock as you read through the comic naturally. You can use these settings to manually enable or disable them individually.</p>
+            <p class="settingDesc">
+              Normally, retcons unlock as you read through the comic naturally.
+              You can use these settings to manually enable or disable them
+              individually.
+            </p>
             <dl>
               <template v-for="retcon in retconList">
-                <dt :key="retcon.model + '-dt'"><label>
-                  <input type="checkbox" 
-                    :name="retcon.model" 
-                    v-model="$localData.settings[retcon.model]" 
-                    :disabled="$localData.settings.fastForward"
-                    @click="toggleSetting(retcon.model)"
-                  >{{retcon.label}}</label></dt>
+                <dt :key="retcon.model + '-dt'">
+                  <label>
+                    <input
+                      type="checkbox"
+                      :name="retcon.model"
+                      v-model="$localData.settings[retcon.model]"
+                      :disabled="$localData.settings.fastForward"
+                      @click="toggleSetting(retcon.model)"
+                    />{{ retcon.label }}</label
+                  >
+                </dt>
                 <dd :key="retcon.model + '-dd'" class="settingDesc">
-                  Originally enabled on page <StoryPageLink :mspaId='retcon.origPage'></StoryPageLink>.
+                  Originally enabled on page
+                  <StoryPageLink :mspaId="retcon.origPage"></StoryPageLink>.
                 </dd>
               </template>
             </dl>
-            <p class="settingDesc" v-if="$localData.settings.fastForward">Since you are in Archival mode, these settings will have no effect.</p>
+            <p class="settingDesc" v-if="$localData.settings.fastForward">
+              Since you are in Archival mode, these settings will have no
+              effect.
+            </p>
           </div>
         </SpoilerBox>
-
-        <h3>Settings</h3>
-        <dl>
-          <dt>
-            <label>
-              <input type="checkbox" name="notifications"
-                v-model="$localData.settings['notifications']"
-                @click="toggleSetting('notifications')"
-              />Unlock notifications
-            </label>
-          </dt>
-          <dd class="settingDesc">
-            Enables a notification that lets you know when you unlock new content elsewhere in the collection.
-          </dd>
-          <div class="subOption" v-if="$localData.settings['notifications']">
-            <dt>
-              <label>
-                <input type="checkbox" name="subNotifications"
-                  v-model="$localData.settings['subNotifications']"
-                  @click="toggleSetting('subNotifications')"
-                />Show minor notifications
-              </label>
-            </dt>
-          <dd class="settingDesc">Also show notifications for minor updates like news announcements.</dd>
-          </div>
-        </dl>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="settings application">
-        <h2>Browser Settings</h2>
-        <dl>
-          <template v-for="boolSetting in settingListBoolean">
-            <template v-if="!boolSetting.platform_whitelist || boolSetting.platform_whitelist.includes($root.platform)">
-              <dt :key="boolSetting.model + '-dt'">
-                <label>
-                  <input type="checkbox"
-                    :name="boolSetting.model"
-                    v-model="$localData.settings[boolSetting.model]"
-                    @click="toggleSetting(boolSetting.model)"
-                  />{{boolSetting.label}}
-                </label>
-              </dt>
-              <label :key="boolSetting.model + '-label'" :for="boolSetting.model">
-                <dd class="settingDesc" v-html="boolSetting.desc" />
-              </label>
-            </template>
-          </template>
-        </dl>
       </div>
     </div>
 
@@ -93,36 +55,71 @@
             <!-- <fa-icon :icon="$isNewReader ? 'lock' : 'unlock'" class="lockStatus"/> -->
             <!-- Dropdowns for archive readers -->
             <dd v-if="!$isNewReader">
-              <select class="themeSelector"
+              <select
+                class="themeSelector"
                 v-model="$localData.settings.themeOverride"
-                @change="onChangeThemeOverride">
-                <option v-for="theme in themes" :value="theme.value" :key="theme.value">
+                @change="onChangeThemeOverride"
+              >
+                <option
+                  v-for="theme in themes"
+                  :value="theme.value"
+                  :key="theme.value"
+                >
                   {{ theme.text }}
                 </option>
               </select>
-              <template v-if="!$isNewReader && ($localData.settings['forceThemeOverride'] || $localData.settings.themeOverride != 'default')">
-                <dt><label><input type="checkbox"
-                  name="forceThemeOverride"
-                  v-model="$localData.settings['forceThemeOverride']"
-                  @click="toggleSetting('forceThemeOverride')">
-                Override page-specific theme changes</label></dt>
+              <template
+                v-if="
+                  !$isNewReader &&
+                    ($localData.settings['forceThemeOverride'] ||
+                      $localData.settings.themeOverride != 'default')
+                "
+              >
+                <dt>
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="forceThemeOverride"
+                      v-model="$localData.settings['forceThemeOverride']"
+                      @click="toggleSetting('forceThemeOverride')"
+                    />
+                    Override page-specific theme changes</label
+                  >
+                </dt>
               </template>
             </dd>
             <dt>UI Theme Override</dt>
-            <dd >
-              <select class="themeSelector"
+            <dd>
+              <select
+                class="themeSelector"
                 v-model="$localData.settings.themeOverrideUI"
-                @change="$localData.root.saveLocalStorage()">
-                <option v-for="theme in themes" :value="theme.value" :key="theme.value+'!ui'">
+                @change="$localData.root.saveLocalStorage()"
+              >
+                <option
+                  v-for="theme in themes"
+                  :value="theme.value"
+                  :key="theme.value + '!ui'"
+                >
                   {{ theme.text }}
                 </option>
               </select>
-              <template v-if="$localData.settings.forceThemeOverrideUI || $localData.settings.themeOverrideUI != 'default'">
-                <dt><label><input type="checkbox"
-                  name="forceThemeOverrideUI"
-                  v-model="$localData.settings.forceThemeOverrideUI"
-                  @click="$localData.root.saveLocalStorage()">
-                Override page-specific theme changes</label></dt>
+              <template
+                v-if="
+                  $localData.settings.forceThemeOverrideUI ||
+                    $localData.settings.themeOverrideUI != 'default'
+                "
+              >
+                <dt>
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="forceThemeOverrideUI"
+                      v-model="$localData.settings.forceThemeOverrideUI"
+                      @click="$localData.root.saveLocalStorage()"
+                    />
+                    Override page-specific theme changes</label
+                  >
+                </dt>
               </template>
             </dd>
           </div>
@@ -130,23 +127,28 @@
           <!-- Checkbox options -->
           <dt>
             <label>
-              <input type="checkbox"
+              <input
+                type="checkbox"
                 name="forceThemeOverrideUIMSPA"
                 :checked.prop="forceThemeOverrideUINewReaderChecked === true"
-                :indeterminate.prop="forceThemeOverrideUINewReaderChecked === undefined"
+                :indeterminate.prop="
+                  forceThemeOverrideUINewReaderChecked === undefined
+                "
                 @click="forceThemeOverrideUINewReader()"
               />Never style UI
             </label>
           </dt>
           <label for="forceThemeOverrideUIMSPA">
             <dd class="settingDesc">
-              Always keep the standard grey window decorations (title bar, tabs, etc.)
+              Always keep the standard grey window decorations (title bar, tabs,
+              etc.)
             </dd>
           </label>
 
           <dt>
             <label>
-              <input type="checkbox"
+              <input
+                type="checkbox"
                 name="toggleDarkMode"
                 :checked.prop="darkModeChecked === true"
                 :indeterminate.prop="darkModeChecked === undefined"
@@ -161,10 +163,17 @@
           </label>
 
           <!-- forceThemeOverride for new readers who don't have the dropdowns -->
-          <div v-if="$isNewReader && ($localData.settings['forceThemeOverride'] || $localData.settings.themeOverride != 'default')">
+          <div
+            v-if="
+              $isNewReader &&
+                ($localData.settings['forceThemeOverride'] ||
+                  $localData.settings.themeOverride != 'default')
+            "
+          >
             <dt>
               <label>
-                <input type="checkbox"
+                <input
+                  type="checkbox"
                   name="forceThemeOverride"
                   v-model="$localData.settings['forceThemeOverride']"
                   @click="toggleSetting('forceThemeOverride')"
@@ -173,7 +182,8 @@
             </dt>
             <label for="forceThemeOverride">
               <dd class="settingDesc">
-                Always use the selected theme, even if a page has custom formatting.
+                Always use the selected theme, even if a page has custom
+                formatting.
               </dd>
             </label>
           </div>
@@ -187,60 +197,142 @@
         <dl>
           <dt>Text Override</dt>
           <dd>
-            <span class="settingDesc">Adjusts how the text looks on Homestuck pages, as well as the other MS Paint Adventures. A few pages will assume you're using the default look (14px Courier New Bold), so they might end up looking a little strange.
-              <br>If you want to zoom the entire application, try ctrl -/+ (or ⌘ -/+)!</span><br>
+            <span class="settingDesc"
+              >Adjusts how the text looks on Homestuck pages, as well as the
+              other MS Paint Adventures. A few pages will assume you're using
+              the default look (14px Courier New Bold), so they might end up
+              looking a little strange. <br />If you want to zoom the entire
+              application, try ctrl -/+ (or ⌘ -/+)!</span
+            ><br />
           </dd>
           <div class="textOverrideSettings">
             <div class="knobs">
-              <label>Font family:<br>
-                <select class="fontSelector" v-model="$localData.settings.textOverride.fontFamily" @change="$localData.root.saveLocalStorage()">
-                  <option v-for="font in fonts" :value="font.value" :key="font.value">
+              <label
+                >Font family:<br />
+                <select
+                  class="fontSelector"
+                  v-model="$localData.settings.textOverride.fontFamily"
+                  @change="$localData.root.saveLocalStorage()"
+                >
+                  <option
+                    v-for="font in fonts"
+                    :value="font.value"
+                    :key="font.value"
+                  >
                     {{ font.text }}
                   </option>
                 </select>
               </label>
               <div class="textOptions">
-                <label v-if="$localData.settings.textOverride.fontFamily"><input type="checkbox" name="bold" v-model="$localData.settings.textOverride['bold']" @click="toggleSetting('bold', 'textOverride')"> Bold Font</label>
-                <label><input type="checkbox" name="paragraphSpacing" v-model="$localData.settings.textOverride['paragraphSpacing']" @click="toggleSetting('paragraphSpacing', 'textOverride')"> Add spacing between chat lines</label>
-                <label><input type="checkbox" name="highContrast" v-model="$localData.settings.textOverride['highContrast']" @click="toggleSetting('highContrast', 'textOverride')"> High contrast text colors</label>
+                <label v-if="$localData.settings.textOverride.fontFamily"
+                  ><input
+                    type="checkbox"
+                    name="bold"
+                    v-model="$localData.settings.textOverride['bold']"
+                    @click="toggleSetting('bold', 'textOverride')"
+                  />
+                  Bold Font</label
+                >
+                <label
+                  ><input
+                    type="checkbox"
+                    name="paragraphSpacing"
+                    v-model="
+                      $localData.settings.textOverride['paragraphSpacing']
+                    "
+                    @click="toggleSetting('paragraphSpacing', 'textOverride')"
+                  />
+                  Add spacing between chat lines</label
+                >
+                <label
+                  ><input
+                    type="checkbox"
+                    name="highContrast"
+                    v-model="$localData.settings.textOverride['highContrast']"
+                    @click="toggleSetting('highContrast', 'textOverride')"
+                  />
+                  High contrast text colors</label
+                >
               </div>
-              
-              <label class="fontslider" v-if="$localData.settings.textOverride.fontFamily != 'courierAliased'">
-              <!-- <label> -->
-                Font size: <span v-if="$refs.textPreview" v-text="$refs.textPreview.fontStyle.fontSize" />
-                <input type="range" v-model="$localData.settings.textOverride.fontSize" min="0" max="6" step="1" list="fontSize">
 
+              <label
+                class="fontslider"
+                v-if="
+                  $localData.settings.textOverride.fontFamily !=
+                    'courierAliased'
+                "
+              >
+                <!-- <label> -->
+                Font size:
+                <span
+                  v-if="$refs.textPreview"
+                  v-text="$refs.textPreview.fontStyle.fontSize"
+                />
+                <input
+                  type="range"
+                  v-model="$localData.settings.textOverride.fontSize"
+                  min="0"
+                  max="6"
+                  step="1"
+                  list="fontSize"
+                />
               </label>
-              
-              <label class="fontslider">
-                Line height: <span v-if="$refs.textPreview" v-text="$refs.textPreview.fontStyle.lineHeight" />
-                <input type="range" v-model="$localData.settings.textOverride.lineHeight" min="0" max="7" step="1" list="lineHeight">
 
+              <label class="fontslider">
+                Line height:
+                <span
+                  v-if="$refs.textPreview"
+                  v-text="$refs.textPreview.fontStyle.lineHeight"
+                />
+                <input
+                  type="range"
+                  v-model="$localData.settings.textOverride.lineHeight"
+                  min="0"
+                  max="7"
+                  step="1"
+                  list="lineHeight"
+                />
               </label>
             </div>
             <div class="textpreviews">
               <!-- PageText usually require a tab change to recalculate theme. -->
-              <PageText ref="textPreview" class="examplePrattle"
-              content="A young man stands in his bedroom. It just so happens that today, the 13th of April, 2009, is this young man's birthday. Though it was thirteen years ago he was given life, it is only <a href='/homestuck/1'>today</a> he will be given a name!<br><br>What will the name of this young man be?"/>
-              <PageText class="examplePrattle" 
-              content="|PESTERLOG|<br />-- turntechGodhead <span style=&quot;color: #e00707&quot;>[TG]</span> began pestering ectoBiologist <span style=&quot;color: #0715cd&quot;>[EB]</span> at 16:13 --<br /><br /><span style=&quot;color: #e00707&quot;>TG: hey so what sort of insane loot did you rake in today</span><br /><span style=&quot;color: #0715cd&quot;>EB: i got a little monsters poster, it's so awesome. i'm going to watch it again today, the applejuice scene was so funny.</span>"/>
+              <PageText
+                ref="textPreview"
+                class="examplePrattle"
+                content="A young man stands in his bedroom. It just so happens that today, the 13th of April, 2009, is this young man's birthday. Though it was thirteen years ago he was given life, it is only <a href='/homestuck/1'>today</a> he will be given a name!<br><br>What will the name of this young man be?"
+              />
+              <PageText
+                class="examplePrattle"
+                content='|PESTERLOG|<br />-- turntechGodhead <span style="color: #e00707">[TG]</span> began pestering ectoBiologist <span style="color: #0715cd">[EB]</span> at 16:13 --<br /><br /><span style="color: #e00707">TG: hey so what sort of insane loot did you rake in today</span><br /><span style="color: #0715cd">EB: i got a little monsters poster, it&apos;s so awesome. i&apos;m going to watch it again today, the applejuice scene was so funny.</span>'
+              />
               <!-- v-if="!this.$pageIsSpoiler('001926')" -->
-              <PageText class="examplePrattle" 
-              v-if="$localData.settings['devMode'] && !this.$pageIsSpoiler('007378')"
-              content="|AUTHORLOG|<br /><span style=&quot;color: #323232&quot;>HEY.</span><br /><span style=&quot;color: #323232&quot;>VOICE IN MY HEAD.</span><br /><span style=&quot;color: #000000&quot;>Yes?</span><br /><span style=&quot;color: #323232&quot;>SHUT UP.</span>"/>
+              <PageText
+                class="examplePrattle"
+                v-if="!this.$pageIsSpoiler('007378')"
+                content='|AUTHORLOG|<br /><span style="color: #323232">HEY.</span><br /><span style="color: #323232">VOICE IN MY HEAD.</span><br /><span style="color: #000000">Yes?</span><br /><span style="color: #323232">SHUT UP.</span>'
+              />
             </div>
           </div>
-          
+
           <template v-for="boolSetting in enhancementListBoolean">
-            <template v-if="!boolSetting.platform_whitelist || boolSetting.platform_whitelist.includes($root.platform)">
-              <dt :key="boolSetting.model + '-dt'"><label>
-                <input type="checkbox"
-                  :name="boolSetting.model"
-                  v-model="$localData.settings[boolSetting.model]"
-                  @click="toggleSetting(boolSetting.model)"
-              >{{boolSetting.label}}</label></dt> 
+            <template
+              v-if="
+                !boolSetting.platform_whitelist ||
+                  boolSetting.platform_whitelist.includes($root.platform)
+              "
+            >
+              <dt :key="boolSetting.model + '-dt'">
+                <label>
+                  <input
+                    type="checkbox"
+                    :name="boolSetting.model"
+                    v-model="$localData.settings[boolSetting.model]"
+                    @click="toggleSetting(boolSetting.model)"
+                  />{{ boolSetting.label }}</label
+                >
+              </dt>
               <!-- the spacing here is made of glass -->
-              <label :key="boolSetting.model + '-dd'" :for="boolSetting.model" >
+              <label :key="boolSetting.model + '-dd'" :for="boolSetting.model">
                 <dd class="settingDesc" v-html="boolSetting.desc" />
               </label>
             </template>
@@ -250,81 +342,80 @@
     </div>
 
     <div class="card">
-      <div class="settings experimental">
-        <h2>Experimental Features</h2>
-        <p class="settingDesc">
-          These are features you may find useful, but aren't guaranteed to work perfectly in all cases, and may come with performance tradeoffs.
-        </p>
-        <dl>
-          <template v-for="boolSetting in settingListExperimental">
-            <template v-if="!boolSetting.platform_whitelist || boolSetting.platform_whitelist.includes($root.platform)">
-              <dt :key="boolSetting.model + '-dt'"><label>
-                <input type="checkbox"
-                  :name="boolSetting.model"
-                  v-model="$localData.settings[boolSetting.model]"
-                  @click="toggleSetting(boolSetting.model)"
-                >{{boolSetting.label}}</label></dt>
-                <!-- the spacing here is made of glass -->
-              <label :key="boolSetting.model + '-label'" :for="boolSetting.model">
-                <dd class="settingDesc" v-html="boolSetting.desc" />
-              </label>
-            </template>
-          </template>
-        </dl>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="settings controversial" > <!-- TODO v-if="$isNewReader"> -->
+      <div class="settings controversial">
+        <!-- TODO v-if="$isNewReader"> -->
         <h2>Controversial Content</h2>
-        <p class="settingDesc">The Unofficial Homestuck Collection allows you to restore some material that was included in the original publication, but was since officially replaced by MSPA for various reasons. These options allow you to view those pages before they were edited.</p>
+        <p class="settingDesc">
+          The Unofficial Homestuck Collection: Web Edition allows you to restore
+          some material that was included in the original publication, but was
+          since officially replaced by MSPA for various reasons. These options
+          allow you to view those pages before they were edited.
+        </p>
 
         <div v-if="$isNewReader">
-          
           <!-- All this with the indeterminate properties is so the button renders unambigiously if the setting is changed with a mod, or by accident. -->
-          <dt><label><input type="checkbox" name="enableControversial"
-              @click="toggleAllControversial()"
-              :checked.prop="controversialAll && !!controversialAny"
-              :indeterminate.prop="controversialAny && !controversialAll"
-            >Enable controversial content</label></dt>
+          <dt>
+            <label
+              ><input
+                type="checkbox"
+                name="enableControversial"
+                @click="toggleAllControversial()"
+                :checked.prop="controversialAll && !!controversialAny"
+                :indeterminate.prop="controversialAny && !controversialAll"
+              />Enable controversial content</label
+            >
+          </dt>
           <p class="settingDesc">
-          New Reader mode is currently enabled, so if checked, this option restores <em>all</em> this material without including spoilers or content warnings. More granular settings are available when New Reader mode is disabled, so you may wish to finish Homestuck before you come back and view this content selectively.</p>
-
+            New Reader mode is currently enabled, so if checked, this option
+            restores <em>all</em> this material without including spoilers or
+            content warnings. More granular settings are available when New
+            Reader mode is disabled, so you may wish to finish Homestuck before
+            you come back and view this content selectively.
+          </p>
         </div>
 
         <p class="settingDesc">
-        These changes only affected a few pages and some side content. The page numbers are listed here, without spoilers, and the side content is only shown if it is unlocked.</p>
-          
+          These changes only affected a few pages and some side content. The
+          page numbers are listed here, without spoilers, and the side content
+          is only shown if it is unlocked.
+        </p>
+
         <SpoilerBox kind="Affected Page Numbers" class="ccPageNos">
           <div class="left col">
             <h3>Homestuck</h3>
             <!-- bolin -->
             <ol>
-            <li><StoryPageLink long mspaId='002238'></StoryPageLink></li>
-            <li><StoryPageLink long mspaId='002544'></StoryPageLink></li>
-            <li><StoryPageLink long mspaId='002551'></StoryPageLink></li>
-            <li><StoryPageLink long mspaId='002722'></StoryPageLink></li>
-            <li><StoryPageLink long mspaId='002730'></StoryPageLink></li>
-            <li><StoryPageLink long mspaId='002733'></StoryPageLink></li>
-            <li><StoryPageLink long mspaId='002880'></StoryPageLink></li>
-            <li><StoryPageLink long mspaId='002926'></StoryPageLink></li>
-            <li><StoryPageLink long mspaId='002970'></StoryPageLink></li>
-            <li><StoryPageLink long mspaId='003620'></StoryPageLink></li>
-            <!-- notitty -->
-            <li><StoryPageLink long mspaId='003228'></StoryPageLink></li>
-            <li><StoryPageLink long mspaId='006844'></StoryPageLink></li>
-            <!-- peachy -->
-            <li><StoryPageLink long mspaId='007623'></StoryPageLink></li>
+              <li><StoryPageLink long mspaId="002238"></StoryPageLink></li>
+              <li><StoryPageLink long mspaId="002544"></StoryPageLink></li>
+              <li><StoryPageLink long mspaId="002551"></StoryPageLink></li>
+              <li><StoryPageLink long mspaId="002722"></StoryPageLink></li>
+              <li><StoryPageLink long mspaId="002730"></StoryPageLink></li>
+              <li><StoryPageLink long mspaId="002733"></StoryPageLink></li>
+              <li><StoryPageLink long mspaId="002880"></StoryPageLink></li>
+              <li><StoryPageLink long mspaId="002926"></StoryPageLink></li>
+              <li><StoryPageLink long mspaId="002970"></StoryPageLink></li>
+              <li><StoryPageLink long mspaId="003620"></StoryPageLink></li>
+              <!-- notitty -->
+              <li><StoryPageLink long mspaId="003228"></StoryPageLink></li>
+              <li><StoryPageLink long mspaId="006844"></StoryPageLink></li>
+              <!-- peachy -->
+              <li><StoryPageLink long mspaId="007623"></StoryPageLink></li>
             </ol>
           </div>
           <br />
           <div class="right col">
             <h3>Side content</h3>
             <ol>
-            <li v-if="!$pageIsSpoiler('008753')"><a href="/pxs/summerteen-romance/31">Paradox Space - Summerteen Romance page 31</a></li>
-            <li v-else>Not yet unlocked (Jan 2019)</li>
-            <li v-if="!$isNewReader"><a href="/skaianet">Skaianet Systems</a></li>
-            <li v-else>Not yet unlocked (Apr 2014)</li>
+              <li v-if="!$pageIsSpoiler('008753')">
+                <a href="/pxs/summerteen-romance/31"
+                  >Paradox Space - Summerteen Romance page 31</a
+                >
+              </li>
+              <li v-else>Not yet unlocked (Jan 2019)</li>
+              <li v-if="!$isNewReader">
+                <a href="/skaianet">Skaianet Systems</a>
+              </li>
+              <li v-else>Not yet unlocked (Apr 2014)</li>
             </ol>
           </div>
           <!-- TODO -->
@@ -332,152 +423,72 @@
 
         <div v-if="!$isNewReader">
           <dd class="settingDesc">
-          Under this box, you can see the specific changes that were made and enable and disable them to taste.</dd>
+            Under this box, you can see the specific changes that were made and
+            enable and disable them to taste.
+          </dd>
 
-          <SpoilerBox kind="Controversial Content" :start-open="controversialAny">
-
+          <SpoilerBox
+            kind="Controversial Content"
+            :start-open="controversialAny"
+          >
             <template v-for="cc in controversialList">
-              <dt :key="cc.model + '-dt'"><label>
-                <input type="checkbox" 
-                  :name="cc.model" 
-                  v-model="$localData.settings[cc.model]" 
-                  @click="toggleSetting(cc.model)"
-                  
-                >{{cc.label}}</label>
-                <span class="cw minor" v-for="cw in cc.cws.minor" :key="cw" v-text="cw"></span>
-                <span class="cw severe" v-for="cw in cc.cws.severe" :key="cw" v-text="cw"></span>
+              <dt :key="cc.model + '-dt'">
+                <label>
+                  <input
+                    type="checkbox"
+                    :name="cc.model"
+                    v-model="$localData.settings[cc.model]"
+                    @click="toggleSetting(cc.model)"
+                  />{{ cc.label }}</label
+                >
+                <span
+                  class="cw minor"
+                  v-for="cw in cc.cws.minor"
+                  :key="cw"
+                  v-text="cw"
+                ></span>
+                <span
+                  class="cw severe"
+                  v-for="cw in cc.cws.severe"
+                  :key="cw"
+                  v-text="cw"
+                ></span>
               </dt>
-              <dd :key="cc.model + '-dd'" class="settingDesc" v-html="cc.desc" />
+              <dd
+                :key="cc.model + '-dd'"
+                class="settingDesc"
+                v-html="cc.desc"
+              />
             </template>
-
           </SpoilerBox>
         </div>
       </div>
     </div>
 
     <div class="card">
-      <div class="settings mod">
-        <h2>Mod Settings</h2>
-
-        <section class="modPrattle" v-if="!$isWebApp">
-          <p class="settingDesc">
-            Content, patches, and localization. Add mods to your local <a :href="'file://' + modsDir">mods directory</a>.
-            You can get mods from anywhere, but a good place to start is the <a href='https://github.com/GiovanH/unofficial-homestuck-collection/wiki/Third-Party-Mods'>Third Party Mods</a> github page.
-
-            For a detailed explanation of how mods work and how you can build your mods, take a look at the <a href='https://github.com/GiovanH/unofficial-homestuck-collection/blob/main/MODDING.md'>modding readme</a>.
-          </p>
-          <p>Mods are software just like the collection, and a malicious mod could be malware. Use normal caution and only run trusted code.</p>
-          <div class='hint'>
-            <p>If you've added mods to your mods directory with the application open, you can <button @click="reloadModList">refresh mod list</button> </p>
-          </div>
-        </section>
-        <section class="modPrattle" v-else>
-          <p class="settingDesc">Because you are using the webapp version of the collection, you only have access to these preloaded mods.</p>
-        </section>
-
-        <section class="group sortable row">
-          <div class='col' title="Drag and drop!"><h2>Inactive</h2>
-            <draggable tag="ul" group="sortable-mods" draggable=".enabled">
-              <li
-                v-for="option in modsDisabled"
-                :key="option.key"
-                :data-value="option.key"
-                :class="{
-                  enabled: option.compatible !== false,
-                  disabled: option.compatible === false
-                }"
-              >
-                <b v-text='option.label' />
-                <span class='summary' v-if='option.summary' v-text='option.summary' />
-                <label class="modButton"
-                  v-if="option.hasmeta"
-                  @click="openSubModel(option, 'INFO_ONLY')"
-                  v-text="'ℹ'"
-                />
-              </li>
-            </draggable>
-          </div>
-
-          <div class='col' title="Drag and drop!"><h2>Active</h2>
-            <draggable tag="ol" group="sortable-mods" @sort="onUpdateSortable" data-setting="modListEnabled">
-              <li
-                v-for="option in modsEnabled"
-                :key="option.key"
-                :data-value="option.key"
-              >
-                <b v-text='option.label' />
-                <span class='summary' v-if='option.summary' v-text='option.summary' />
-                <!-- n.b. hasmeta should always be true if settings exists -->
-                <label class="modButton"
-                  v-if="option.hasmeta || option.settingsmodel"
-                  @click="openSubModel(option)"
-                  v-text="option.settingsmodel ? '⚙' : 'ℹ'"
-                />
-              </li>
-            </draggable>
-          </div>
-        </section>
-          
-        <p class="hint">Drag mods from the pool on the left to the list on the right to enable them. Higher mods take priority on conflicts.</p>
-
-        <!-- TODO: We need a visual indicator of the debounce here. I'm thinking a spinner that then becomes a checkmark? -->
-
-        <div class="reload">
-          <p v-if="needReload" class="needreload">Some of your changes require a quick reload before they can take effect. When you're ready, click here:</p>
-          <!-- v-if="$localData.settings.devMode || needReload"  -->
-          <button @click="forceReload" class="reload">Reload Application</button>
-          <button v-if="$localData.settings.devMode" 
-            @click="reloadModList(); archiveReload();"
-            class="reload">
-            Soft reload archive (refresh mods and re-run edits)
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
       <div class="settings system">
-        <h2>System Settings</h2>
-        <dl>
-          <template v-for="boolSetting in settingListSystem">
-            <template v-if="!boolSetting.platform_whitelist || boolSetting.platform_whitelist.includes($root.platform)">
-              <dt :key="boolSetting.model + '-dt'"><label>
-                <input type="checkbox"
-                  :name="boolSetting.model"
-                  v-model="$localData.settings[boolSetting.model]"
-                  @click="toggleSetting(boolSetting.model)"
-                >{{boolSetting.label}}</label></dt>
-                <!-- the spacing here is made of glass -->
-              <label :key="boolSetting.model + '-dd'" :for="boolSetting.model" >
-                <dd class="settingDesc" v-html="boolSetting.desc" />
-              </label>
-            </template>
-          </template>
-        </dl>
-      </div>
-      <div class="settings system">
+        <h2>System</h2>
         <div class="sysinfo">
-          <span class="hint">Application version: </span> 
-          <strong>v{{$data.$appVersion}}</strong>
-          <br>
-          <span class="hint">Asset pack version: </span> 
-          <strong>v{{$archive.version}}</strong>
-          <span v-if="$archive.version != $data.$expectedAssetVersion">
-            <br>
-            <span class="hint">Expected asset pack version: </span> 
-            <strong>v{{$data.$expectedAssetVersion}}</strong>
+          <span class="hint">Application version: </span>
+          <strong>v{{ $data.$appVersion }}</strong>
+          <br />
+          <span class="hint">Asset pack version: </span>
+          <strong>web</strong>
           </span>
-          <br>
+          <br />
           <div v-if="!$isWebApp">
-            <span class="hint">Asset pack directory: </span> 
-            <strong>{{$localData.assetDir || 'None selected'}}</strong>
-            <br>
-            <a :href="log.transports.file.getFile()">Log File (for troubleshooting)</a>
-            <br><br>
+            <span class="hint">Asset pack directory: </span>
+            <strong>{{ $localData.assetDir || "None selected" }}</strong>
+            <br />
+            <a :href="log.transports.file.getFile()"
+              >Log File (for troubleshooting)</a
+            >
+            <br /><br />
             <AssetPackSelector :showRestart="true" />
             <a href="/validator">Asset Pack Validator</a>
-            <br><br>
+            <br /><br />
           </div>
+          <br />
           <button @click="factoryReset()">Factory reset</button>
         </div>
       </div>
@@ -487,163 +498,99 @@
 </template>
 
 <script>
-import GenericCardPage from '@/components/Template/GenericCardPage.vue'
-import PageText from '@/components/StoryPage/PageText.vue'
-import SpoilerBox from '@/components/UIElements/SpoilerBox.vue'
-import StoryPageLink from '@/components/UIElements/StoryPageLink.vue'
-import NewReaderControls from '@/components/UIElements/NewReaderControls.vue'
-import AssetPackSelector from '@/components/UIElements/AssetPackSelector.vue'
+import GenericCardPage from "@/components/Template/GenericCardPage.vue";
+import PageText from "@/components/StoryPage/PageText.vue";
+import SpoilerBox from "@/components/UIElements/SpoilerBox.vue";
+import StoryPageLink from "@/components/UIElements/StoryPageLink.vue";
+import NewReaderControls from "@/components/UIElements/NewReaderControls.vue";
+import AssetPackSelector from "@/components/UIElements/AssetPackSelector.vue";
 
-import Mods from "@/mods.js"
+const SubSettingsModal = () =>
+  import("@/components/UIElements/SubSettingsModal.vue");
 
-const SubSettingsModal = () => import('@/components/UIElements/SubSettingsModal.vue')
-
-const draggable = () => import("vuedraggable")
-
-const log = (window.isWebApp ? { scope() { return console } } : require('electron-log'))
-const ipcRenderer = require('IpcRenderer')
+const log = window.isWebApp
+  ? {
+      scope() {
+        return console;
+      }
+    }
+  : require("Logger");
+const ipcRenderer = require("IpcRenderer");
 
 export default {
-  name: 'settings',
-  props: [
-    'tab', 'routeParams'
-  ],
+  name: "settings",
+  props: ["tab", "routeParams"],
   /* eslint-disable object-property-newline */
   components: {
-    GenericCardPage, SubSettingsModal,
-    PageText, SpoilerBox, StoryPageLink,
-    draggable, NewReaderControls, AssetPackSelector
+    GenericCardPage,
+    SubSettingsModal,
+    PageText,
+    SpoilerBox,
+    StoryPageLink,
+    NewReaderControls,
+    AssetPackSelector
   },
   title: () => "Settings",
   data: function() {
     return {
       log,
-      settingListBoolean: [
-        {
-          model: "showAddressBar",
-          label: "Address bar",
-          desc: "Embeds the jump bar at the top of the window, just like a regular address bar. When this is disabled, you can access it by clicking the jump bar button in the tab bar, or with Ctrl+L (⌘+L on MacOS)."
-        }, {
-        //   model: "mspaMode",
-        //   label: "Use MSPA page numbers",
-        //   desc: "Instead of having individual sets of page numbers for each story, the original MS Paint Adventures website had one continuous page count that covered the beginning of Jailbreak all the way to the end of Homestuck."
-        // }, {
-          model: "switchToNewTabs",
-          label: "Auto-switch to new tabs",
-          desc: "Opening any link in a new tab will automatically switch you to that tab."
-        }, {
-          model: "forceScrollBar",
-          label: "Always display scroll bar",
-          desc: "Opening logs on Homestuck pages can cause the scrollbar to suddenly appear, resulting in the whole page shifting to the left. This setting keeps the scrollbar visible at all times to prevent this."
-        }, {
-          model: "pixelScaling",
-          label: "Pixelated image scaling",
-          desc: "By default, images are scaled in a way that may make them appear blurry at higher resolutions. This setting enables nearest neighbour scaling on Homestuck and MSPA pages, allowing those images to keep their sharp edges. This effect may not look too hot on certain high DPI monitors."
-        }, {
-          model: "urlTooltip",
-          label: "URL Tooltip",
-          desc: "Adds a tooltip in the bottom-left corner of the window that shows you the destination of links when you hover over them, like browsers do. Test it: <a href='/help/newreader'>New reader</a>",
-          platform_whitelist: ['electron']
-        }
-      ],
+      settingListBoolean: [],
       enhancementListBoolean: [
         {
           model: "arrowNav",
           label: "Arrow key navigation",
-          desc: "Allows you to navigate forward and backward between pages using the left and right arrow keys, and open textboxes with space."
-        }, {
+          desc:
+            "Allows you to navigate forward and backward between pages using the left and right arrow keys, and open textboxes with space."
+        },
+        {
           model: "openLogs",
           label: "Automatically open logs",
-          desc: "Collapsed text logs begin open on each page, instead of requiring you to click them."
-        }, {
-          model: "hqAudio",
-          label: "High quality Flash audio",
-          desc: "This setting replaces the original compressed audio in Homestuck's Flash animations with the high quality Bandcamp releases. This has a small chance of introducing performance issues, so try disabling it if you end up experiencing problems."
-        }, {
+          desc:
+            "Collapsed text logs begin open on each page, instead of requiring you to click them."
+        },
+        {
           model: "credits",
           label: "Inline audio credits",
-          desc: "Inserts audio credits below pages that use music. It shows you the name of the song, the artists involved, and has a link to the track's page in the music database."
-        }, {
+          desc:
+            "Inserts audio credits below pages that use music. It shows you the name of the song, the artists involved, and has a link to the track's page in the music database."
+        },
+        {
           model: "bandcampEmbed",
           label: "Online bandcamp player",
-          desc: "Although the vast majority of this collection works offline, the music database allows you to use Bandcamp's online player to legally play tracks from the source. You can disable this if you don't want the collection connecting to the internet.",
-          platform_whitelist: ['electron']
-        }, {
-          model: "jsFlashes",
-          label: "Enhanced Flash effects",
-          desc: "Some Flash animations have had certain effects enhanced using JavaScript. This has a small chance of introducing performance issues. If you experience problems with certain flash pages, you can try disabling this option as a troubleshooting step, but it's highly recommended you leave it enabled otherwise."
+          desc:
+            "Although the vast majority of this collection works offline, the music database allows you to use Bandcamp's online player to legally play tracks from the source. You can disable this if you don't want the collection connecting to the internet.",
+          platform_whitelist: ["electron"]
         }
       ],
-      settingListSystem: [
-        {
-          model: "devMode",
-          label: "Developer Mode",
-          desc: "It's not all that exciting. It just adds an \"Inspect Element\" shortcut to the bottom of the context menu, and shows a little more log data for mod/style developers, or troubleshooting issues. This may slightly degrade performance."
-        }, {
-          model: 'hideFullscreenHeader',
-          label: "Hide header in fullscreen",
-          desc: "Hide the application header (title bar, address bar, and tabs) in fullscreen mode (F11)."
-        }, {
-          model: "smoothScrolling",
-          label: "Smooth scrolling",
-          desc: "Prevents the browser from smoothing out the movement when scrolling down a page. <strong>Requires application restart to take effect. Might not do anything on some platforms!</strong>",
-          platform_whitelist: ['electron']
-        }, {
-          model: "enableHardwareAcceleration",
-          label: "Hardware acceleration",
-          desc: "By default, the app runs with hardware acceleration disabled, as that usually results in better performance. If you're noticing performance issues (especially on non-windows devices), enabling this may help. <strong>Will only take effect after restarting the application.</strong>",
-          platform_whitelist: ['electron']
-        }, {
-          model: "useSystemWindowDecorations",
-          label: "Use system window decorations",
-          desc: "Use OS-native window decorations instead of the electron title bar. <strong>Will restart the application.</strong>",
-          platform_whitelist: ['electron']
-        }, {
-          model: "allowSysUpdateNotifs",
-          label: "Update notifications",
-          desc: "Unless this setting is disabled, the collection will check to see if there's a new version of the app available when it starts up and alert you if there is.",
-          platform_whitelist: ['electron']
-        }, {
-          model: "useTabbedBrowsing",
-          label: "Tabbed Browsing",
-          desc: "By default, the web app only shows one page at a time, like a standard website. This setting re-enables the in-app tab bar, and the app will store your tabs in settings.",
-          platform_whitelist: ['webapp']
-        }
-      ],
-      settingListExperimental: [
-        {
-          model: "reducedMotion",
-          label: "Reduce Motion",
-          desc: "Attempts to reduce the amount of automatic motion in the comic by replacing animated gifs with a manual scrubber, and requiring an explicit click before playing Flash animations.",
-          platform_whitelist: ['electron']
-        }, {
-          model: "ruffleFallback",
-          label: "Ruffle flash emulation fallback",
-          desc: "If the built-in flash player is non-functional, use the <a href='https://ruffle.rs/'>Ruffle</a> Flash emulator in place of Flash."
-        }
-      ],
+      settingListSystem: [],
+      settingListExperimental: [],
       retconList: [
         {
           model: "retcon1",
           label: "John's arms",
           origPage: "007999"
-        }, {
+        },
+        {
           model: "retcon2",
           label: "John's first Zap-quest",
           origPage: "008053"
-        }, {
+        },
+        {
           model: "retcon3",
           label: "John interrupting Dave and Jade",
           origPage: "008317"
-        }, {
+        },
+        {
           model: "retcon4",
           label: "The oil patches",
           origPage: "008991"
-        }, {
+        },
+        {
           model: "retcon5",
           label: "John's second Zap-quest",
           origPage: "009026"
-        }, {
+        },
+        {
           model: "retcon6",
           label: "Terezi's password pages",
           origPage: "009057"
@@ -653,368 +600,322 @@ export default {
         {
           model: "bolin",
           cws: {
-            minor: ["ip"], severe: []
+            minor: ["ip"],
+            severe: []
           },
           label: "Homestuck - Bill Bolin music",
-          desc: "A decent number of Flash animations in the first year of Homestuck had music provided by <a href=\"/music/artist/bill-bolin\" target=\"_blank\">Bill Bolin</a>. When he left the team on less-than-favourable circumstances, he requested his music be removed from the comic, and the flashes he worked on were rescored."
-        }, {
+          desc:
+            'A decent number of Flash animations in the first year of Homestuck had music provided by <a href="/music/artist/bill-bolin" target="_blank">Bill Bolin</a>. When he left the team on less-than-favourable circumstances, he requested his music be removed from the comic, and the flashes he worked on were rescored.'
+        },
+        {
           model: "soluslunes",
           cws: {
-            minor: ["ip"], severe: []
+            minor: ["ip"],
+            severe: []
           },
           label: "Homestuck - SolusLunes music",
-          desc: "A <a href='/mspa/003620'>single flash animation</a> (actually, a replacement for a removed Bill Bolin flash) featuring music by SolusLunes (Jared Micks) after one of the songs he submitted to Homestuck Volume 5, <em>Endless Heart</em>, turned out to be a cover of <a href=\"https://www.youtube.com/watch?v=K3-NZHCnyf4\"><em>Heart of the Creator</em></a>. (Note that this option does override a Bolin flash, even if you have the Bolin restoration enabled.)"
-        }, {
+          desc:
+            "A <a href='/mspa/003620'>single flash animation</a> (actually, a replacement for a removed Bill Bolin flash) featuring music by SolusLunes (Jared Micks) after one of the songs he submitted to Homestuck Volume 5, <em>Endless Heart</em>, turned out to be a cover of <a href=\"https://www.youtube.com/watch?v=K3-NZHCnyf4\"><em>Heart of the Creator</em></a>. (Note that this option does override a Bolin flash, even if you have the Bolin restoration enabled.)"
+        },
+        {
           model: "unpeachy",
           cws: {
-            minor: [], severe: ["race"]
+            minor: [],
+            severe: ["race"]
           },
           label: "Homestuck - CAUCASIAN!",
           desc: `During the trickster segment of Act 6 Act 5, <a href="/mspa/007623" target="_blank">there was originally a joke regarding the skin colour of the Trickster kids</a>. This was received poorly by the fanbase, <a href="/tumblr/more-so-i-just-dialed-down-the-joke-on-page" target="_blank">and toned down shortly after.</a>`
-        }, {
+        },
+        {
           model: "notitty",
           cws: {
-            minor: ["nudity"], severe: []
+            minor: ["nudity"],
+            severe: []
           },
           label: "Homestuck - Nudity",
           desc: `In a few Homestuck panels you can glimpse an exposed human breast. Setting this option <b>censors</b> these moments. There wasn't actually any controversy about this one.`
-        }, {
+        },
+        {
           model: "pxsTavros",
           cws: {
-            minor: [], severe: ["body horror"]
+            minor: [],
+            severe: ["body horror"]
           },
           label: "Paradox Space - Tavros Banana",
           desc: `During the original run of Paradox Space's Summerteen Romance story, <a href="/pxs/summerteen-romance/31" target="_blank">one page included a scene with graphic body horror</a>. The original version was completely unobscured, but it was later censored with additional dialogue.`
-        }, {
+        },
+        {
           model: "cursedHistory",
           cws: {
-            minor: [], severe: ["holocaust"]
+            minor: [],
+            severe: ["holocaust"]
           },
           label: "Skaianet Systems - CURSED_HISTORY",
           desc: `At the beginning of 2019, <a href="/skaianet" target="_blank">the Skaianet Systems website launched</a>, with some of Hussie's old worldbuilding notes peppered through the source code. Many people found the notes to be in extremely poor taste, and they were swiftly removed.`
         }
       ],
       themes: [
-        {text: "Auto", value: "default"},
-        {text: "Dark", value: "dark"},
-        {text: "MSPA", value: "mspa"},
-        {text: "Retro", value: "retro"},
-        {text: "Scratch", value: "scratch"},
-        {text: "SBaHJ", value: "sbahj"},
-        {text: "Cascade", value: "cascade"},
-        {text: "Trickster Mode", value: "trickster"},
-        {text: "Homosuck", value: "A6A6"},
-        {text: "Collide", value: "collide"},
-        {text: "Team Special Olympics", value: "tso"},
-        {text: "Paradox Space", value: "pxs"},
-        {text: "MSPFA", value: "mspfa"},
-        {text: "MS Office 2003", value: "msword"}
+        { text: "Auto", value: "default" },
+        { text: "Dark", value: "dark" },
+        { text: "MSPA", value: "mspa" },
+        { text: "Retro", value: "retro" },
+        { text: "Scratch", value: "scratch" },
+        { text: "SBaHJ", value: "sbahj" },
+        { text: "Cascade", value: "cascade" },
+        { text: "Trickster Mode", value: "trickster" },
+        { text: "Homosuck", value: "A6A6" },
+        { text: "Collide", value: "collide" },
+        { text: "Team Special Olympics", value: "tso" },
+        { text: "Paradox Space", value: "pxs" },
+        { text: "MSPFA", value: "mspfa" },
+        { text: "MS Office 2003", value: "msword" }
       ],
       fonts: [
-        {text: "Default", value: ""},
-        {text: "Courier Prime", value: "courierPrime"},
-        {text: "Verdana / Arial", value: "verdana"},
-        {text: "Times New Roman", value: "times"},
-        {text: "Comic Sans", value: "comicSans"},
-        {text: "EB Garamond", value: "garamond"},
-        {text: "Courier Aliased", value: "courierAliased"},
-        {text: "OpenDyslexic", value: "openDyslexic"}
+        { text: "Default", value: "" },
+        { text: "Courier Prime", value: "courierPrime" },
+        { text: "Verdana / Arial", value: "verdana" },
+        { text: "Times New Roman", value: "times" },
+        { text: "Comic Sans", value: "comicSans" },
+        { text: "EB Garamond", value: "garamond" },
+        { text: "Courier Aliased", value: "courierAliased" },
+        { text: "OpenDyslexic", value: "openDyslexic" }
       ],
       // Settings that affect the main process and require a restart
-      electronMainSettings: [
-        'useSystemWindowDecorations',
-        'enableHardwareAcceleration',
-        'smoothScrolling',
-        'ruffleFallback'
-      ],
-      // Settings that affect which imods are enabled
-      imod_flag_settings: [
-        'unpeachy', 'pxsTavros', 'bolin', 'soluslunes', 'notitty',
-        'hqAudio'
-      ],
+      electronMainSettings: [],
       // Settings to opaquely set with controversial menu in new reader mode
       allControversial: [
-        'bolin',
-        'soluslunes',
-        'unpeachy',
-        'pxsTavros',
-        'cursedHistory',
-        'notitty'
+        "bolin",
+        "soluslunes",
+        "unpeachy",
+        "pxsTavros",
+        "cursedHistory",
+        "notitty"
       ],
-      enableAllControversialConfirmMsg: "This option restores the removed \"controversial material\" without detailed content warnings, to avoid spoilers. \n\n Are you sure you want to enable this option now?",
-      debounce: false,
-      needReload: false,
-      modsDir: Mods.modsDir
-    }
+      enableAllControversialConfirmMsg:
+        'This option restores the removed "controversial material" without detailed content warnings, to avoid spoilers. \n\n Are you sure you want to enable this option now?',
+      debounce: false
+    };
   },
   computed: {
-    controversialAll(){
-      const values = this.allControversial.map(key => this.$localData.settings[key])
-      return values.every(Boolean)
+    controversialAll() {
+      const values = this.allControversial.map(
+        key => this.$localData.settings[key]
+      );
+      return values.every(Boolean);
     },
-    controversialAny(){
-      const values = this.allControversial.map(key => this.$localData.settings[key])
-      return values.some(Boolean)
+    controversialAny() {
+      const values = this.allControversial.map(
+        key => this.$localData.settings[key]
+      );
+      return values.some(Boolean);
     },
-    modsEnabled() {
-      return this.$localData.settings.modListEnabled.map((key) => 
-        this.modChoices[key]).filter(val => !!val)
-    },
-    modsDisabled() {
-      return Object.values(this.modChoices).filter((choice) =>
-        !this.modsEnabled.includes(choice))
-    },
-    forceThemeOverrideUINewReaderChecked(){
-      if (this.$localData.settings.themeOverrideUI == "mspa" && this.$localData.settings.forceThemeOverrideUI == true) {
-        return true
-      } else if (this.$localData.settings.themeOverrideUI == "default" && this.$localData.settings.forceThemeOverrideUI == false) {
-        return false
+    forceThemeOverrideUINewReaderChecked() {
+      if (
+        this.$localData.settings.themeOverrideUI == "mspa" &&
+        this.$localData.settings.forceThemeOverrideUI == true
+      ) {
+        return true;
+      } else if (
+        this.$localData.settings.themeOverrideUI == "default" &&
+        this.$localData.settings.forceThemeOverrideUI == false
+      ) {
+        return false;
       } else {
-        return undefined
+        return undefined;
       }
     },
-    darkModeChecked(){
-      if (this.$localData.settings.themeOverride == "dark") return true
-      else if (this.$localData.settings.themeOverride == "default") return false
-      return undefined
-    },
-    modChoices() {
-      return this.$root.modChoices
+    darkModeChecked() {
+      if (this.$localData.settings.themeOverride == "dark") return true;
+      else if (this.$localData.settings.themeOverride == "default")
+        return false;
+      return undefined;
     }
   },
   methods: {
-    onNewReaderChange(pageId){
+    onNewReaderChange(pageId) {
       const args = {
         title: "Are you sure?",
-        message: 'Be careful! If you change your current page manually, you might encounter spoilers. Are you sure you want to change this setting?'
-      }
-      ipcRenderer.invoke('prompt-okay-cancel', args).then(answer => {
-        if (answer === true)
-          this.$updateNewReader(pageId, true)
-        else
-          this.newReaderPage = this.$newReaderCurrent
-      })
+        message:
+          "Be careful! If you change your current page manually, you might encounter spoilers. Are you sure you want to change this setting?"
+      };
+      ipcRenderer.invoke("prompt-okay-cancel", args).then(answer => {
+        if (answer === true) this.$updateNewReader(pageId, true);
+        else this.newReaderPage = this.$newReaderCurrent;
+      });
     },
     onNewReaderEnable(pageId) {
-        // eslint-disable-next-line no-return-assign
-      this.allControversial.forEach(key => this.$localData.settings[key] = false)
+      // eslint-disable-next-line no-return-assign
+      this.allControversial.forEach(
+        key => (this.$localData.settings[key] = false)
+      );
 
       if (this.$archive.tweaks.clearThemesForNewReader) {
-        this.$localData.settings.themeOverride = "default"
-        this.$localData.settings.themeOverrideUI = "default"
-        this.$localData.settings.forceThemeOverride = false
-        this.$localData.settings.forceThemeOverrideUI = false
+        this.$localData.settings.themeOverride = "default";
+        this.$localData.settings.themeOverrideUI = "default";
+        this.$localData.settings.forceThemeOverride = false;
+        this.$localData.settings.forceThemeOverrideUI = false;
       }
 
-      this.$updateNewReader(pageId, true)
+      this.$updateNewReader(pageId, true);
     },
     onNewReaderDisable() {
       const args = {
         title: "Are you sure?",
-        message: 'Watch out! Once you disable new reader mode, major Homestuck spoilers will immediately become visible on many pages of the collection. Are you sure you want to go ahead?'
-      }
-      ipcRenderer.invoke('prompt-okay-cancel', args).then(answer => {
+        message:
+          "Watch out! Once you disable new reader mode, major Homestuck spoilers will immediately become visible on many pages of the collection. Are you sure you want to go ahead?"
+      };
+      ipcRenderer.invoke("prompt-okay-cancel", args).then(answer => {
         if (answer === true) {
-          this.newReaderPage = this.$mspaOrVizNumber(this.$newReaderCurrent)
-          this.$localData.root.NEW_READER_CLEAR()
+          this.newReaderPage = this.$mspaOrVizNumber(this.$newReaderCurrent);
+          this.$localData.root.NEW_READER_CLEAR();
         }
-      })
+      });
     },
-    onChangeThemeOverride(){
+    onChangeThemeOverride() {
       // Disable override of the "forced" theme is default
       if (this.$localData.settings.themeOverride == "default")
-        this.$localData.settings.forceThemeOverride = false
-      this.$localData.root.saveLocalStorage()
+        this.$localData.settings.forceThemeOverride = false;
+      this.$localData.root.saveLocalStorage();
     },
-    toggleDarkMode(){
+    toggleDarkMode() {
       if (this.darkModeChecked) {
         // Uncheck "dark mode"
-        this.$localData.settings.themeOverride = "default"
+        this.$localData.settings.themeOverride = "default";
       } else {
         // Check "dark mode style"
-        this.$localData.settings.themeOverride = "dark"
+        this.$localData.settings.themeOverride = "dark";
       }
-      this.$localData.root.saveLocalStorage()
+      this.$localData.root.saveLocalStorage();
     },
-    forceThemeOverrideUINewReader(){
+    forceThemeOverrideUINewReader() {
       if (this.forceThemeOverrideUINewReaderChecked) {
         // Uncheck "never style"
-        this.$localData.settings.themeOverrideUI = "default"
-        this.$localData.settings.forceThemeOverrideUI = false
+        this.$localData.settings.themeOverrideUI = "default";
+        this.$localData.settings.forceThemeOverrideUI = false;
       } else {
         // Check "never style"
-        this.$localData.settings.themeOverrideUI = "mspa"
-        this.$localData.settings.forceThemeOverrideUI = true
+        this.$localData.settings.themeOverrideUI = "mspa";
+        this.$localData.settings.forceThemeOverrideUI = true;
       }
-      this.$localData.root.saveLocalStorage()
+      this.$localData.root.saveLocalStorage();
     },
     toggleAllControversial() {
       if (this.controversialAny) {
         // Normally checking an indeterminate checkbox enables it,
         // but we want to clear it instead.
-        
+
         // eslint-disable-next-line no-return-assign
-        this.allControversial.forEach(key => this.$localData.settings[key] = false)
-        this.$el.querySelectorAll("input[name=enableControversial]").forEach(i => {i.checked = false})
+        this.allControversial.forEach(
+          key => (this.$localData.settings[key] = false)
+        );
+        this.$el
+          .querySelectorAll("input[name=enableControversial]")
+          .forEach(i => {
+            i.checked = false;
+          });
       } else {
         const args = {
           title: "Are you sure?",
           message: this.enableAllControversialConfirmMsg
-        }
-        ipcRenderer.invoke('prompt-okay-cancel', args).then(answer => {
+        };
+        ipcRenderer.invoke("prompt-okay-cancel", args).then(answer => {
           if (answer === true) {
             // eslint-disable-next-line no-return-assign
-            this.allControversial.forEach(key => this.$localData.settings[key] = true)
+            this.allControversial.forEach(
+              key => (this.$localData.settings[key] = true)
+            );
           } else {
-            this.$el.querySelectorAll("input[name=enableControversial]").forEach(i => {i.checked = false})
+            this.$el
+              .querySelectorAll("input[name=enableControversial]")
+              .forEach(i => {
+                i.checked = false;
+              });
           }
-        })
+        });
       }
     },
-    toggleSetting(setting, parentObject){
+    toggleSetting(setting, parentObject) {
       // Call this when a setting changes, so we can update it on the parent object.
       // Doesn't actually toggle settings.
-      if (!(setting in this.$localData.settings) || (parentObject in this.$localData.settings && !(setting in this.$localData.settings[parentObject]))) this.$set(this.$localData.settings, setting, true)
-      else if (parentObject && setting in this.$localData.settings[parentObject]) this.$localData.settings[parentObject][setting] = !this.$localData.settings[parentObject][setting]
-      else this.$localData.settings[setting] = !this.$localData.settings[setting]
+      if (
+        !(setting in this.$localData.settings) ||
+        (parentObject in this.$localData.settings &&
+          !(setting in this.$localData.settings[parentObject]))
+      )
+        this.$set(this.$localData.settings, setting, true);
+      else if (
+        parentObject &&
+        setting in this.$localData.settings[parentObject]
+      )
+        this.$localData.settings[parentObject][setting] = !this.$localData
+          .settings[parentObject][setting];
+      else
+        this.$localData.settings[setting] = !this.$localData.settings[setting];
 
-      if (setting == 'notifications' && this.$localData.settings[setting]) {
+      if (setting == "notifications" && this.$localData.settings[setting]) {
         this.$pushNotif({
-          title: 'NOTIFICATIONS ENABLED',
-          desc: 'You can click me to visit whatever you just unlocked!',
-          url: '/',
-          thumb: '/archive/collection/archive_news.png'
-        })
+          title: "NOTIFICATIONS ENABLED",
+          desc: "You can click me to visit whatever you just unlocked!",
+          url: "/",
+          thumb: "/archive/collection/archive_news.png"
+        });
       }
 
       // Unforce if theme just changed to auto
-      if (setting == 'themeOverride' && this.$localData.settings.themeOverride == "default")
-        this.$localData.settings.forceThemeOverride = false
+      if (
+        setting == "themeOverride" &&
+        this.$localData.settings.themeOverride == "default"
+      )
+        this.$localData.settings.forceThemeOverride = false;
 
       // Call this before queueing archive reload
-      this.$localData.root.saveLocalStorage()
-
-      // Some settings are just flags for mods to enable.
-      if (this.imod_flag_settings.includes(setting)) {
-        this.queueArchiveReload()
-      }
+      this.$localData.root.saveLocalStorage();
 
       if (this.electronMainSettings.includes(setting)) {
         setTimeout(() => {
-          ipcRenderer.invoke('restart')
-        }, 1000)
+          ipcRenderer.invoke("restart");
+        }, 1000);
       }
     },
-    factoryReset(){      
+    factoryReset() {
       const args = {
         title: "FACTORY RESET",
-        message: 'Are you absolutely sure? This will reset everything: Your reading progress, tab history, save files, and settings will all be completely gone!',
+        message:
+          "Are you absolutely sure? This will reset everything: Your reading progress, tab history, save files, and settings will all be completely gone!",
         okay: "Yes, delete everything"
-      }
-      ipcRenderer.invoke('prompt-okay-cancel', args).then(answer => {
+      };
+      ipcRenderer.invoke("prompt-okay-cancel", args).then(answer => {
         if (answer === true) {
-          this.$localData.root.clearLocalStorage()
-          Mods.store_mods.clear()
-          // ipcRenderer.invoke('restart')
+          this.$localData.root.clearLocalStorage();
+          this.$localData.root.saveLocalStorage();
+          ipcRenderer.invoke("restart");
         }
-      })
-    },
-    onUpdateSortable: function(event){
-      const el_active = event.target
-
-      if (!el_active) {
-        this.$logger.error("Got onUpdateSortable with no event target?")
-        throw Error("Cannot update sortable with no specified target")
-      }
-
-      const setting_key = el_active.attributes['data-setting'].value
-      const reordered_item = event.item.attributes['data-value'].value
-
-      // Get lists of values
-      const old_list = this.$localData.settings[setting_key]
-      const list_active = [...el_active.children].map((child) =>
-        child.attributes['data-value'].value
-      )
-      this.$localData.settings[setting_key] = list_active
-
-      // Calculte needReload
-      let diff = [reordered_item]
-      diff = diff.concat(list_active.filter(x => !old_list.includes(x)))
-      diff = diff.concat(old_list.filter(x => !list_active.includes(x)))
-
-      try {
-        if (diff.some(key => this.modChoices[key].needsHardReload)) {
-          this.$logger.info("List change requires hard reload", diff)
-          this.needReload = true
-        }
-        if (diff.some(key => this.modChoices[key].needsArchiveReload)) {
-          this.$logger.info("List change requires archive reload", diff)
-          this.queueArchiveReload()
-        }
-      } catch (e) {
-        // Sometimes keys aren't in modChoices yet
-        this.$logger.error(e)
-        this.needReload = true
-        this.queueArchiveReload()
-      }
-    },
-    queueArchiveReload(){
-      if (this.debounce) clearTimeout(this.debounce)
-      this.debounce = setTimeout(this.archiveReload, 8000)
-    },
-    archiveReload(){
-      this.debounce = false 
-
-      this.$root.app.archiveReload()
-    },
-    openSubModel: function(mod, info_only) {
-      this.$refs.modal.openMod(mod, (info_only || false))
-    },
-    forceReload: function() {
-      this.$localData.VM.saveLocalStorage()
-      this.$localData.VM._saveLocalStorage()
-      this.$root.loadState = "LOADING"
-      ipcRenderer.invoke('reload')
-    },
-    reloadModList: function() {
-      this.$root.$asyncComputed.modChoices.update()
+      });
     },
     scrollToSec(sectionClass) {
-      this.$el.querySelector(`.settings.${sectionClass}`).scrollIntoView(true)
-    },
-    trackSettings() {
-      // Log settings, for debugging
-      this.$logger.info(this.$localData.settings)
+      this.$el.querySelector(`.settings.${sectionClass}`).scrollIntoView(true);
     }
+    // trackSettings() {
+    //   // Log settings, for debugging
+    //   this.$logger.info(this.$localData.settings);
+    // }
   },
-  mounted(){
+  mounted() {
     if (this.routeParams.sec) {
-      this.$nextTick(() => this.scrollToSec(this.routeParams.sec))
+      this.$nextTick(() => this.scrollToSec(this.routeParams.sec));
     }
   },
-  destroyed() {
-    this.trackSettings()
-  },
+  // destroyed() {
+  //   this.trackSettings();
+  // },
   watch: {
-    'tab.history': function (to, from) {
+    "tab.history": function(to, from) {
       if (this.routeParams.sec) {
-        this.scrollToSec(this.routeParams.sec)
-      }
-    },
-    '$localData.tabData.activeTabKey'(to, from) {
-      if (to == this.tab.key || from == this.tab.key) {
-        if (this.needReload) {
-          this.forceReload()
-          // forceReload includes archiveReload
-        } else if (this.debounce) {
-          clearTimeout(this.debounce)
-          this.debounce = false
-          this.archiveReload()
-        }
+        this.scrollToSec(this.routeParams.sec);
       }
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -1049,12 +950,12 @@ export default {
 }
 
 div.settings {
-  // Wrapper for settings options. 
+  // Wrapper for settings options.
   // Used instead of cardContent
   width: 100%;
   padding: 25px 0;
 
-  font-family: Verdana,Arial,Helvetica,sans-serif;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
   font-weight: normal;
   font-size: 14px;
 
@@ -1063,7 +964,9 @@ div.settings {
     border-bottom: solid 2px var(--page-pageBorder, var(--page-pageFrame));
   }
   // Widget styles
-  h2 { text-align: center; }
+  h2 {
+    text-align: center;
+  }
   p {
     font-weight: normal;
     margin: 10px 0 5px 10px;
@@ -1071,9 +974,9 @@ div.settings {
       font-weight: bolder;
     }
   }
-  dt { 
+  dt {
     font-weight: bolder;
-    margin: 20px 0 5px 10px; 
+    margin: 20px 0 5px 10px;
   }
   button {
     font-size: 110%;
@@ -1084,13 +987,15 @@ div.settings {
     font-weight: normal;
   }
 
-  div.subOption { margin-left: 40px; }
+  div.subOption {
+    margin-left: 40px;
+  }
 
   > dd.settingDesc {
     // Descriptions of whole sections
     margin-top: 1em;
   }
-  
+
   // Variants for specific setting types
 
   &.mod {
@@ -1107,7 +1012,8 @@ div.settings {
   }
 
   &.themes {
-    .themeSelector, .fontSelector {
+    .themeSelector,
+    .fontSelector {
       font-size: 16px;
     }
     .themeSelector + dt {
@@ -1137,7 +1043,7 @@ div.settings {
     span.cw {
       padding: 0 7px;
       font-size: 12px;
-      font-family: -apple-system,BlinkMacSystemFont,Segoe UI;
+      font-family: -apple-system, BlinkMacSystemFont, Segoe UI;
       font-weight: 500;
       line-height: 18px;
       border: 1px solid transparent;
@@ -1147,7 +1053,7 @@ div.settings {
         background-color: #fbca04;
         color: #000000;
       }
-      &.severe{
+      &.severe {
         background-color: #d93f0b;
         color: #ffffff;
       }
@@ -1161,11 +1067,11 @@ div.settings {
     }
   }
 
-  // Sections (allowed to be subsections) 
+  // Sections (allowed to be subsections)
   .textOverrideSettings {
     margin-top: 16px;
     text-align: center;
-        
+
     .textOptions label {
       display: block;
     }
@@ -1193,7 +1099,8 @@ div.settings {
         width: 100%;
       }
     }
-    div.examplePrattle, p.examplePrattle {
+    div.examplePrattle,
+    p.examplePrattle {
       margin-bottom: 16px;
     }
     .examplePrattle {
@@ -1209,19 +1116,20 @@ div.settings {
 .sortable {
   font-weight: normal;
   margin: 1em 0;
-  
+
   // Ignore card margins for sortable on tiny screens
   @media (max-width: 650px) {
     margin: 1em -50px;
   }
 
-  ul, ol {     
+  ul,
+  ol {
     border: solid var(--page-pageBorder, var(--page-pageFrame));
     border-width: 5px 5px 0 0;
 
     padding-bottom: 6em;
     box-sizing: border-box;
-    
+
     height: 100%;
     max-height: 60vh;
     overflow: auto;
@@ -1236,9 +1144,9 @@ div.settings {
     // border: 1px solid rgba(0,0,0,.125);
     border: 1px solid var(--page-pageBorder);
     margin-bottom: -1px;
-    padding: .2em;
+    padding: 0.2em;
     .summary:before {
-      content: ' - '
+      content: " - ";
     }
   }
 
@@ -1257,14 +1165,14 @@ div.settings {
   }
 
   ul li {
-      list-style: none;
+    list-style: none;
   }
 
   ol li {
     list-style: decimal;
   }
 
-  .col {  
+  .col {
     width: 100%;
     margin: 0 20px;
   }
@@ -1275,7 +1183,7 @@ div.settings {
     background: var(--saves-tab);
     text-align: center;
     &:hover {
-      background: var(--saves-tabHover)
+      background: var(--saves-tabHover);
     }
   }
 }

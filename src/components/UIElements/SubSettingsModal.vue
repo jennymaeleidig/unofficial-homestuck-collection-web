@@ -101,10 +101,11 @@ var store;
 if (!window.isWebApp) {
   const Store = require('electron-store')
   store = new Store()
+} else {
+  store = require('@/../webapp/localstore.js')
 }
 
 const ipcRenderer = require('IpcRenderer')
-
 
 export default {
   name: 'modal',

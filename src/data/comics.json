@@ -1,0 +1,2411 @@
+{
+  "tso": {
+    "comments": [
+      "You can extend this section to include more of Hussie's old stuff, if you're so inclined.",
+      "Download https://github.com/MrCheeze/andrewhussie/tree/gh-pages/comics, and move its contents to [Asset Directory]/archive/tso",
+      "Then delete the entire 'list' array below, and rename 'extended_list' to 'list' so it can take its place.",
+      "The extra comics will be accessible from the tso page within the archive"
+    ],
+    "list": [
+      "whistles",
+      "aids",
+      "nich",
+      {
+        "groupName": "Blurbs",
+        "groupDesc": "A variety of casually rendered comics, spanning multiple series.",
+        "list": ["spfp", "itfh", "rg", "humanimals", "zoosmells"]
+      }
+    ],
+    "extended_list": [
+      "whistles",
+      "aids",
+      "nich",
+      {
+        "groupName": "Blurbs",
+        "groupDesc": "A variety of casually rendered comics, spanning multiple series.",
+        "list": [
+          "spfp",
+          "itfh",
+          "was",
+          "rg",
+          "humanimals",
+          "up",
+          "zoosmells",
+          "roboboners",
+          "tcfs",
+          "misc"
+        ]
+      },
+      "scribblettes",
+      "wallpapers",
+      "cdasl",
+      "comabear",
+      {
+        "groupName": "Book Defacement",
+        "groupDesc": "A time-honoured tradition of scribbling in books to create gifts for others.",
+        "list": ["wizardology", "fappu", "tfwf"]
+      },
+      {
+        "groupName": "Older Stuff",
+        "groupDesc": "Assorted comics that don't really fit anywhere else",
+        "list": ["ch", "htead", "goe", "gc", "fa", "hfc"]
+      }
+    ],
+    "comics": {
+      "whistles": {
+        "name": "Whistles: The Starlight Calliope",
+        "desc": "Whistles, a clown in the Starlight Calliope circus, was beloved by all. One day an accident nearly cost him his life, and he became exposed to the corrupt underworld of the circus, rife with murder and cannibalism. Forced to flee, he experiences the hardships of the world such as homesickness and prostitution.",
+        "pages": [
+          "/archive/comics/tso/whistles/whistles_0cover.jpg",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p00.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p01.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p02.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p03.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p04.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p05.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p06.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p07-08.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p09.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p10.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p11.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p12.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p13.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p14.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p15.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p16.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p17.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p18.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p19.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p20.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p21.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p22.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p23-24.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p25.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p26.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p27.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p28.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p29.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p30.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p31.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p32.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p33.gif",
+          "/archive/comics/tso/whistles/whistles_ch1_print_p35-36.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p00.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p01.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p02.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p03.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p04.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p05-06.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p07.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p08.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p09.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p10.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p11-12.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p13.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p14.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p15.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p16.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p17-18.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p19.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p20.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p21.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p22.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p23.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p24.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p25.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p26.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p27.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p28.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p29.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p30.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p31.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p32.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p33-34.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p35.gif",
+          "/archive/comics/tso/whistles/whistles_ch2_print_p37-38.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p00.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p01.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p02.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p03.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p04.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p05.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p06.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p07.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p08.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p09.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p10.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p11.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p12.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p13.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p14.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p15.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p16.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p17.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p18.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p19.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p20.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p21.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p22.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p23.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p24.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p26.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p27.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p28.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p29.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p30.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p31.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p32.gif",
+          "/archive/comics/tso/whistles/whistles_ch3_print_p33.gif",
+          "/archive/comics/tso/whistles/whistles2_001.jpg",
+          "/archive/comics/tso/whistles/whistles2_002-3.jpg",
+          "/archive/comics/tso/whistles/whistles2_004.jpg",
+          "/archive/comics/tso/whistles/whistles2_005.jpg",
+          "/archive/comics/tso/whistles/whistles2_006.jpg",
+          "/archive/comics/tso/whistles/whistles2_007.jpg",
+          "/archive/comics/tso/whistles/whistles2_008.jpg",
+          "/archive/comics/tso/whistles/whistles2_009.jpg",
+          "/archive/comics/tso/whistles/whistles2_010.jpg",
+          "/archive/comics/tso/whistles/whistles2_011.jpg",
+          "/archive/comics/tso/whistles/whistles2_012.jpg",
+          "/archive/comics/tso/whistles/whistles2_013.jpg",
+          "/archive/comics/tso/whistles/whistles2_014.jpg",
+          "/archive/comics/tso/whistles/whistles2_015.jpg",
+          "/archive/comics/tso/whistles/whistles2_016.jpg",
+          "/archive/comics/tso/whistles/whistles2_017.jpg",
+          "/archive/comics/tso/whistles/whistles2_018.jpg",
+          "/archive/comics/tso/whistles/whistles2_019.jpg",
+          "/archive/comics/tso/whistles/whistles2_020.jpg",
+          "/archive/comics/tso/whistles/whistles2_021.jpg",
+          "/archive/comics/tso/whistles/whistles2_022.jpg",
+          "/archive/comics/tso/whistles/whistles2_023.jpg",
+          "/archive/comics/tso/whistles/whistles2_024.jpg",
+          "/archive/comics/tso/whistles/whistles2_025.jpg",
+          "/archive/comics/tso/whistles/whistles2_026.jpg",
+          "/archive/comics/tso/whistles/whistles2_029.jpg",
+          "/archive/comics/tso/whistles/whistles2_030.jpg",
+          "/archive/comics/tso/whistles/whistles2_031.jpg",
+          "/archive/comics/tso/whistles/whistles2_032.jpg",
+          "/archive/comics/tso/whistles/whistles2_033.jpg",
+          "/archive/comics/tso/whistles/whistles2_034.jpg",
+          "/archive/comics/tso/whistles/whistles2_035.jpg",
+          "/archive/comics/tso/whistles/whistles2_036.jpg",
+          "/archive/comics/tso/whistles/whistles2_037.jpg",
+          "/archive/comics/tso/whistles/whistles2_038.jpg",
+          "/archive/comics/tso/whistles/whistles2_039.jpg",
+          "/archive/comics/tso/whistles/whistles2_040.jpg",
+          "/archive/comics/tso/whistles/whistles2_041.jpg",
+          "/archive/comics/tso/whistles/whistles2_042.jpg",
+          "/archive/comics/tso/whistles/whistles2_043.jpg",
+          "/archive/comics/tso/whistles/whistles2_044.jpg",
+          "/archive/comics/tso/whistles/whistles2_045.jpg",
+          "/archive/comics/tso/whistles/whistles2_046.jpg",
+          "/archive/comics/tso/whistles/whistles2_047.jpg",
+          "/archive/comics/tso/whistles/whistles2_048.jpg",
+          "/archive/comics/tso/whistles/whistles2_049.jpg",
+          "/archive/comics/tso/whistles/whistles2_050.jpg",
+          "/archive/comics/tso/whistles/whistles2_051.jpg",
+          "/archive/comics/tso/whistles/whistles2_052.jpg",
+          "/archive/comics/tso/whistles/whistles2_053.jpg",
+          "/archive/comics/tso/whistles/whistles2_054.jpg",
+          "/archive/comics/tso/whistles/whistles2_055.jpg",
+          "/archive/comics/tso/whistles/wondercon08.jpg"
+        ]
+      },
+      "aids": {
+        "name": "And It Don't Stop",
+        "desc": "\"Buncha years ago Andrew Hussie and I collaborated on a comic that was (even though we didn’t know it at the time) 8-Mile vs Real Steel. By collaborated, I guess I should say, I bailed way early and Andrew finished the thing like a champ.\" -Tauhid Bondia",
+        "pages": [
+          "/archive/comics/tso/aids/00000.jpg",
+          "/archive/comics/tso/aids/00001.jpg",
+          "/archive/comics/tso/aids/00002.jpg",
+          "/archive/comics/tso/aids/00003.jpg",
+          "/archive/comics/tso/aids/00004.jpg",
+          "/archive/comics/tso/aids/00005.jpg",
+          "/archive/comics/tso/aids/00006.jpg",
+          "/archive/comics/tso/aids/00007.jpg",
+          "/archive/comics/tso/aids/00008.jpg",
+          "/archive/comics/tso/aids/00009.jpg",
+          "/archive/comics/tso/aids/00010.jpg",
+          "/archive/comics/tso/aids/00011.jpg",
+          "/archive/comics/tso/aids/00012.jpg",
+          "/archive/comics/tso/aids/00013.jpg",
+          "/archive/comics/tso/aids/00014.jpg",
+          "/archive/comics/tso/aids/00015.jpg",
+          "/archive/comics/tso/aids/00016.jpg",
+          "/archive/comics/tso/aids/00017.jpg",
+          "/archive/comics/tso/aids/00018.jpg",
+          "/archive/comics/tso/aids/00019.jpg",
+          "/archive/comics/tso/aids/00020.jpg",
+          "/archive/comics/tso/aids/00021.jpg",
+          "/archive/comics/tso/aids/00022.jpg",
+          "/archive/comics/tso/aids/00023.jpg",
+          "/archive/comics/tso/aids/00024.jpg",
+          "/archive/comics/tso/aids/00025.jpg",
+          "/archive/comics/tso/aids/00026.jpg",
+          "/archive/comics/tso/aids/00027.jpg",
+          "/archive/comics/tso/aids/00028.jpg",
+          "/archive/comics/tso/aids/00029.jpg",
+          "/archive/comics/tso/aids/00030.jpg",
+          "/archive/comics/tso/aids/00031.jpg",
+          "/archive/comics/tso/aids/00032.jpg",
+          "/archive/comics/tso/aids/00033.jpg",
+          "/archive/comics/tso/aids/00034.jpg",
+          "/archive/comics/tso/aids/00035.jpg",
+          "/archive/comics/tso/aids/00036.jpg",
+          "/archive/comics/tso/aids/00037.jpg",
+          "/archive/comics/tso/aids/00038.jpg",
+          "/archive/comics/tso/aids/00039.jpg"
+        ]
+      },
+      "nich": {
+        "name": "Neon Ice Cream Headache",
+        "desc": "Jose’s totally mad-flagrant friends hook him up with a totally sweet b-day present. Was planned to be part of a larger collection of related stories that was never completed.",
+        "pages": [
+          "/archive/comics/tso/nich/00001.jpg",
+          "/archive/comics/tso/nich/00002.jpg",
+          "/archive/comics/tso/nich/00003.jpg",
+          "/archive/comics/tso/nich/00004.jpg",
+          "/archive/comics/tso/nich/00005.jpg",
+          "/archive/comics/tso/nich/00006.jpg",
+          "/archive/comics/tso/nich/00007.jpg",
+          "/archive/comics/tso/nich/00008.jpg",
+          "/archive/comics/tso/nich/00009.jpg",
+          "/archive/comics/tso/nich/00010.jpg",
+          "/archive/comics/tso/nich/000tbc.jpg"
+        ]
+      },
+      "spfp": {
+        "name": "Steep Price For Pie",
+        "pages": [
+          "/archive/comics/tso/blurbs/00001-spfp.gif",
+          "/archive/comics/tso/blurbs/00002-spfp.gif",
+          "/archive/comics/tso/blurbs/00098-spfp.gif",
+          "/archive/comics/tso/blurbs/00099-spfp.gif",
+          "/archive/comics/tso/blurbs/00100-spfp.gif",
+          "/archive/comics/tso/blurbs/00101-spfp.gif",
+          "/archive/comics/tso/blurbs/00104-spfp.gif",
+          "/archive/comics/tso/blurbs/00112-spfp.gif",
+          "/archive/comics/tso/blurbs/00117-spfp.jpg",
+          "/archive/comics/tso/blurbs/00118-spfp.gif",
+          "/archive/comics/tso/blurbs/00119-spfp.gif",
+          "/archive/comics/tso/blurbs/00120-spfp.gif",
+          "/archive/comics/tso/blurbs/00121-spfp.gif",
+          "/archive/comics/tso/blurbs/00134-spfp.gif",
+          "/archive/comics/tso/blurbs/00144-spfp.gif",
+          "/archive/comics/tso/blurbs/00158-spfp.gif"
+        ]
+      },
+      "itfh": {
+        "name": "Inappropriate Time For Ham",
+        "pages": [
+          "/archive/comics/tso/blurbs/00003-itfh.jpg",
+          "/archive/comics/tso/blurbs/00005-itfh.gif",
+          "/archive/comics/tso/blurbs/00006-itfh.jpg",
+          "/archive/comics/tso/blurbs/00008-itfh.gif",
+          "/archive/comics/tso/blurbs/00009-itfh.gif",
+          "/archive/comics/tso/blurbs/00010-itfh.jpg",
+          "/archive/comics/tso/blurbs/00011-itfh.gif",
+          "/archive/comics/tso/blurbs/00013-itfh.jpg",
+          "/archive/comics/tso/blurbs/00014-itfh.jpg",
+          "/archive/comics/tso/blurbs/00016-itfh.gif",
+          "/archive/comics/tso/blurbs/00021-itfh.jpg",
+          "/archive/comics/tso/blurbs/00024-itfh.jpg",
+          "/archive/comics/tso/blurbs/00027-itfh.jpg",
+          "/archive/comics/tso/blurbs/00030-itfh.gif",
+          "/archive/comics/tso/blurbs/00041-itfh.gif",
+          "/archive/comics/tso/blurbs/00068-itfh.gif",
+          "/archive/comics/tso/blurbs/00070-itfh.gif",
+          "/archive/comics/tso/blurbs/00073-itfh.gif",
+          "/archive/comics/tso/blurbs/00075-itfh.gif",
+          "/archive/comics/tso/blurbs/00076-itfh.gif",
+          "/archive/comics/tso/blurbs/00078-itfh.gif",
+          "/archive/comics/tso/blurbs/00090-itfh.gif",
+          "/archive/comics/tso/blurbs/00091-itfh.gif",
+          "/archive/comics/tso/blurbs/00092-itfh.gif",
+          "/archive/comics/tso/blurbs/00113-itfh.gif",
+          "/archive/comics/tso/blurbs/00114-itfh.gif",
+          "/archive/comics/tso/blurbs/00135-itfh.gif",
+          "/archive/comics/tso/blurbs/00148-itfh.gif",
+          "/archive/comics/tso/blurbs/00150-spfp.jpg",
+          "/archive/comics/tso/blurbs/00156-itfh.gif",
+          "/archive/comics/tso/blurbs/00159-itfh.gif",
+          "/archive/comics/tso/blurbs/00160-itfh.gif"
+        ]
+      },
+      "was": {
+        "name": "What A Scoop!",
+        "pages": [
+          "/archive/comics/tso/blurbs/00015-was.jpg",
+          "/archive/comics/tso/blurbs/00019-was.jpg",
+          "/archive/comics/tso/blurbs/00023-was.jpg",
+          "/archive/comics/tso/blurbs/00028-was.jpg",
+          "/archive/comics/tso/blurbs/00031-was.jpg",
+          "/archive/comics/tso/blurbs/00036-was.jpg",
+          "/archive/comics/tso/blurbs/00040-was.jpg",
+          "/archive/comics/tso/blurbs/00056-was.jpg",
+          "/archive/comics/tso/blurbs/00058-was.jpg",
+          "/archive/comics/tso/blurbs/00060-was.jpg",
+          "/archive/comics/tso/blurbs/00063-was.jpg",
+          "/archive/comics/tso/blurbs/00069-was.jpg",
+          "/archive/comics/tso/blurbs/00072-was.jpg",
+          "/archive/comics/tso/blurbs/00097-was.gif",
+          "/archive/comics/tso/blurbs/00102-was.jpg",
+          "/archive/comics/tso/blurbs/00103-was.jpg",
+          "/archive/comics/tso/blurbs/00106-was.jpg",
+          "/archive/comics/tso/blurbs/00139-was.jpg"
+        ]
+      },
+      "rg": {
+        "name": "Riddler's Gammon",
+        "pages": [
+          "/archive/comics/tso/blurbs/00018-rg.gif",
+          "/archive/comics/tso/blurbs/00022-rg.gif",
+          "/archive/comics/tso/blurbs/00026-rg.gif",
+          "/archive/comics/tso/blurbs/00032-rg.gif",
+          "/archive/comics/tso/blurbs/00037-rg.jpg",
+          "/archive/comics/tso/blurbs/00042-rg.jpg",
+          "/archive/comics/tso/blurbs/00129-rg.gif",
+          "/archive/comics/tso/blurbs/00130b-rg.jpg",
+          "/archive/comics/tso/blurbs/00143-rg.gif",
+          "/archive/comics/tso/blurbs/00145-rg.gif",
+          "/archive/comics/tso/blurbs/00152-rg.gif",
+          "/archive/comics/tso/blurbs/00157-rg.gif"
+        ]
+      },
+      "humanimals": {
+        "name": "Humanimals",
+        "pages": [
+          "/archive/comics/tso/blurbs/00047-h.gif",
+          "/archive/comics/tso/blurbs/00048-h.gif",
+          "/archive/comics/tso/blurbs/00049-h.gif",
+          "/archive/comics/tso/blurbs/00050-h.gif",
+          "/archive/comics/tso/blurbs/00051-h.gif",
+          "/archive/comics/tso/blurbs/00059-h.gif",
+          "/archive/comics/tso/blurbs/00064-h.gif",
+          "/archive/comics/tso/blurbs/00067-h.gif",
+          "/archive/comics/tso/blurbs/00085-h.gif",
+          "/archive/comics/tso/blurbs/00087-h.gif",
+          "/archive/comics/tso/blurbs/00095-h.gif",
+          "/archive/comics/tso/blurbs/00122-h.gif",
+          "/archive/comics/tso/blurbs/00123-h.gif",
+          "/archive/comics/tso/blurbs/00136-h.gif",
+          "/archive/comics/tso/blurbs/00137-h.gif",
+          "/archive/comics/tso/blurbs/00138-h.gif",
+          "/archive/comics/tso/blurbs/00140-h.jpg",
+          "/archive/comics/tso/blurbs/00141-h.gif",
+          "/archive/comics/tso/blurbs/00146-h.gif",
+          "/archive/comics/tso/blurbs/00151-h.gif"
+        ]
+      },
+      "up": {
+        "name": "Unwarranted Parade",
+        "pages": [
+          "/archive/comics/tso/blurbs/00057-up.gif",
+          "/archive/comics/tso/blurbs/00061-up.gif",
+          "/archive/comics/tso/blurbs/00065-up.gif",
+          "/archive/comics/tso/blurbs/00080-up.gif",
+          "/archive/comics/tso/blurbs/00081-up.gif",
+          "/archive/comics/tso/blurbs/00082-up.gif",
+          "/archive/comics/tso/blurbs/00083-up.gif",
+          "/archive/comics/tso/blurbs/00093-up.gif",
+          "/archive/comics/tso/blurbs/00127-up.gif"
+        ]
+      },
+      "zoosmells": {
+        "name": "Zoosmells",
+        "pages": [
+          "/archive/comics/tso/blurbs/00096-zs.gif",
+          "/archive/comics/tso/blurbs/00105-zs.gif",
+          "/archive/comics/tso/blurbs/00111-zs.gif",
+          "/archive/comics/tso/blurbs/00124-zs.gif",
+          "/archive/comics/tso/blurbs/00131-zs.gif",
+          "/archive/comics/tso/blurbs/00133-zs.gif",
+          "/archive/comics/tso/blurbs/00142-zs.gif",
+          "/archive/comics/tso/blurbs/00147-zs.gif",
+          "/archive/comics/tso/blurbs/00149-zs.gif",
+          "/archive/comics/tso/blurbs/00153-zs.gif",
+          "/archive/comics/tso/blurbs/00154-zs.gif",
+          "/archive/comics/tso/blurbs/00155-zs.gif"
+        ]
+      },
+      "roboboners": {
+        "name": "Roboboners",
+        "pages": [
+          "/archive/comics/tso/blurbs/00107-rb.gif",
+          "/archive/comics/tso/blurbs/00108-rb.gif",
+          "/archive/comics/tso/blurbs/00109-rb.gif",
+          "/archive/comics/tso/blurbs/00110-rb.gif",
+          "/archive/comics/tso/blurbs/00115-rb.gif",
+          "/archive/comics/tso/blurbs/00116-rb.gif",
+          "/archive/comics/tso/blurbs/00126-rb.gif"
+        ]
+      },
+      "tcfs": {
+        "name": "Three Cheers For Steak",
+        "pages": [
+          "/archive/comics/tso/blurbs/00125-tcfs.jpg",
+          "/archive/comics/tso/blurbs/00128-tcfs.jpg",
+          "/archive/comics/tso/blurbs/00130-tcfs.jpg",
+          "/archive/comics/tso/blurbs/00132-tcfs.jpg"
+        ]
+      },
+      "misc": {
+        "name": "Misc.",
+        "pages": [
+          "/archive/comics/tso/blurbs/00066-gi.jpg",
+          "/archive/comics/tso/blurbs/00084-somisc.gif",
+          "/archive/comics/tso/blurbs/00088-somisc.gif",
+          "/archive/comics/tso/blurbs/00089-somisc.gif"
+        ]
+      },
+      "scribblettes": {
+        "name": "Scribblettes",
+        "desc": "Even more casually rendered comics of a random nature.",
+        "pages": [
+          "/archive/comics/tso/scrib/00001.gif",
+          "/archive/comics/tso/scrib/00002.gif",
+          "/archive/comics/tso/scrib/00003.gif",
+          "/archive/comics/tso/scrib/00004.gif",
+          "/archive/comics/tso/scrib/00005.gif",
+          "/archive/comics/tso/scrib/00006.gif",
+          "/archive/comics/tso/scrib/00007.gif",
+          "/archive/comics/tso/scrib/00008.gif",
+          "/archive/comics/tso/scrib/00009.gif",
+          "/archive/comics/tso/scrib/00010.gif",
+          "/archive/comics/tso/scrib/00011.gif",
+          "/archive/comics/tso/scrib/00012.gif",
+          "/archive/comics/tso/scrib/00013.gif",
+          "/archive/comics/tso/scrib/00014.gif",
+          "/archive/comics/tso/scrib/00015.gif",
+          "/archive/comics/tso/scrib/00016.gif",
+          "/archive/comics/tso/scrib/00017.gif",
+          "/archive/comics/tso/scrib/00018.gif",
+          "/archive/comics/tso/scrib/00019.gif",
+          "/archive/comics/tso/scrib/00020.gif",
+          "/archive/comics/tso/scrib/00021.gif",
+          "/archive/comics/tso/scrib/00022.gif",
+          "/archive/comics/tso/scrib/00023.gif",
+          "/archive/comics/tso/scrib/00024.gif",
+          "/archive/comics/tso/scrib/00025.gif",
+          "/archive/comics/tso/scrib/00026.gif",
+          "/archive/comics/tso/scrib/00027.gif",
+          "/archive/comics/tso/scrib/00028.gif",
+          "/archive/comics/tso/scrib/00029.gif",
+          "/archive/comics/tso/scrib/00030.gif",
+          "/archive/comics/tso/scrib/00031.gif",
+          "/archive/comics/tso/scrib/00032.gif",
+          "/archive/comics/tso/scrib/00033.gif",
+          "/archive/comics/tso/scrib/00034.gif",
+          "/archive/comics/tso/scrib/00035.gif",
+          "/archive/comics/tso/scrib/00036.gif",
+          "/archive/comics/tso/scrib/00037.gif",
+          "/archive/comics/tso/scrib/00038.gif",
+          "/archive/comics/tso/scrib/00039.gif",
+          "/archive/comics/tso/scrib/00040.gif",
+          "/archive/comics/tso/scrib/00041.gif",
+          "/archive/comics/tso/scrib/00042.gif",
+          "/archive/comics/tso/scrib/00043.gif",
+          "/archive/comics/tso/scrib/00044.gif",
+          "/archive/comics/tso/scrib/00045.gif",
+          "/archive/comics/tso/scrib/00046.gif",
+          "/archive/comics/tso/scrib/00047.gif",
+          "/archive/comics/tso/scrib/00048.gif",
+          "/archive/comics/tso/scrib/00049.gif",
+          "/archive/comics/tso/scrib/00050.gif",
+          "/archive/comics/tso/scrib/00051.gif",
+          "/archive/comics/tso/scrib/00052.gif",
+          "/archive/comics/tso/scrib/00053.gif",
+          "/archive/comics/tso/scrib/00054.gif",
+          "/archive/comics/tso/scrib/00055.gif",
+          "/archive/comics/tso/scrib/00056.gif",
+          "/archive/comics/tso/scrib/00057.gif",
+          "/archive/comics/tso/scrib/00058.gif",
+          "/archive/comics/tso/scrib/00059.gif",
+          "/archive/comics/tso/scrib/00060.gif",
+          "/archive/comics/tso/scrib/00061.gif",
+          "/archive/comics/tso/scrib/00062.gif",
+          "/archive/comics/tso/scrib/00063.gif",
+          "/archive/comics/tso/scrib/00064.gif",
+          "/archive/comics/tso/scrib/00065.gif",
+          "/archive/comics/tso/scrib/00066.gif",
+          "/archive/comics/tso/scrib/00067.gif",
+          "/archive/comics/tso/scrib/00068.gif",
+          "/archive/comics/tso/scrib/00069.gif",
+          "/archive/comics/tso/scrib/00070.gif",
+          "/archive/comics/tso/scrib/00071.gif",
+          "/archive/comics/tso/scrib/00072.gif",
+          "/archive/comics/tso/scrib/00073.gif",
+          "/archive/comics/tso/scrib/00074.gif",
+          "/archive/comics/tso/scrib/00075.gif",
+          "/archive/comics/tso/scrib/00076.gif",
+          "/archive/comics/tso/scrib/00077.gif",
+          "/archive/comics/tso/scrib/00078.gif",
+          "/archive/comics/tso/scrib/00079.gif",
+          "/archive/comics/tso/scrib/00080.gif",
+          "/archive/comics/tso/scrib/00081.gif",
+          "/archive/comics/tso/scrib/00082.gif",
+          "/archive/comics/tso/scrib/00083.gif",
+          "/archive/comics/tso/scrib/00084.gif",
+          "/archive/comics/tso/scrib/00085.gif",
+          "/archive/comics/tso/scrib/00086.gif",
+          "/archive/comics/tso/scrib/00087.gif",
+          "/archive/comics/tso/scrib/00088.gif",
+          "/archive/comics/tso/scrib/00089.gif",
+          "/archive/comics/tso/scrib/00090.gif",
+          "/archive/comics/tso/scrib/00091.gif",
+          "/archive/comics/tso/scrib/00092.gif",
+          "/archive/comics/tso/scrib/00093.gif",
+          "/archive/comics/tso/scrib/00094.gif",
+          "/archive/comics/tso/scrib/00095.gif",
+          "/archive/comics/tso/scrib/00096.gif",
+          "/archive/comics/tso/scrib/00097.gif",
+          "/archive/comics/tso/scrib/00098.gif",
+          "/archive/comics/tso/scrib/00099.gif",
+          "/archive/comics/tso/scrib/00100.gif",
+          "/archive/comics/tso/scrib/00101.gif",
+          "/archive/comics/tso/scrib/00102.gif",
+          "/archive/comics/tso/scrib/00103.gif",
+          "/archive/comics/tso/scrib/00104.gif",
+          "/archive/comics/tso/scrib/00105.gif",
+          "/archive/comics/tso/scrib/00106.gif",
+          "/archive/comics/tso/scrib/00107.gif",
+          "/archive/comics/tso/scrib/00108.gif",
+          "/archive/comics/tso/scrib/00109.gif",
+          "/archive/comics/tso/scrib/00110.gif",
+          "/archive/comics/tso/scrib/00111.gif",
+          "/archive/comics/tso/scrib/00112.gif",
+          "/archive/comics/tso/scrib/00113.gif",
+          "/archive/comics/tso/scrib/00114.gif",
+          "/archive/comics/tso/scrib/00115.gif",
+          "/archive/comics/tso/scrib/00116.gif",
+          "/archive/comics/tso/scrib/00117.gif",
+          "/archive/comics/tso/scrib/00118.gif",
+          "/archive/comics/tso/scrib/00119.gif",
+          "/archive/comics/tso/scrib/00120.gif",
+          "/archive/comics/tso/scrib/00121.gif",
+          "/archive/comics/tso/scrib/00122.gif",
+          "/archive/comics/tso/scrib/00123.gif",
+          "/archive/comics/tso/scrib/00124.gif",
+          "/archive/comics/tso/scrib/00125.gif",
+          "/archive/comics/tso/scrib/00126.gif",
+          "/archive/comics/tso/scrib/00127.gif",
+          "/archive/comics/tso/scrib/00128.gif",
+          "/archive/comics/tso/scrib/00129.gif",
+          "/archive/comics/tso/scrib/00130.gif",
+          "/archive/comics/tso/scrib/00131.gif",
+          "/archive/comics/tso/scrib/00132.gif",
+          "/archive/comics/tso/scrib/00133.gif",
+          "/archive/comics/tso/scrib/00134.gif",
+          "/archive/comics/tso/scrib/00135.gif",
+          "/archive/comics/tso/scrib/00136.gif",
+          "/archive/comics/tso/scrib/00137.gif",
+          "/archive/comics/tso/scrib/00138.gif",
+          "/archive/comics/tso/scrib/00139.gif",
+          "/archive/comics/tso/scrib/00140.gif",
+          "/archive/comics/tso/scrib/00141.gif",
+          "/archive/comics/tso/scrib/00142.gif",
+          "/archive/comics/tso/scrib/00143.gif",
+          "/archive/comics/tso/scrib/00144.gif",
+          "/archive/comics/tso/scrib/00145.gif",
+          "/archive/comics/tso/scrib/00146.gif",
+          "/archive/comics/tso/scrib/00147.gif",
+          "/archive/comics/tso/scrib/00148.gif",
+          "/archive/comics/tso/scrib/00149.gif",
+          "/archive/comics/tso/scrib/00150.gif",
+          "/archive/comics/tso/scrib/00151.gif",
+          "/archive/comics/tso/scrib/00152.gif",
+          "/archive/comics/tso/scrib/00153.gif",
+          "/archive/comics/tso/scrib/00154.gif",
+          "/archive/comics/tso/scrib/00155.gif",
+          "/archive/comics/tso/scrib/00156.gif",
+          "/archive/comics/tso/scrib/00157.gif",
+          "/archive/comics/tso/scrib/00158.gif",
+          "/archive/comics/tso/scrib/00159.gif",
+          "/archive/comics/tso/scrib/00160.gif",
+          "/archive/comics/tso/scrib/00161.gif",
+          "/archive/comics/tso/scrib/00162.gif",
+          "/archive/comics/tso/scrib/00163.gif",
+          "/archive/comics/tso/scrib/00164.gif",
+          "/archive/comics/tso/scrib/00165.gif",
+          "/archive/comics/tso/scrib/00166.gif",
+          "/archive/comics/tso/scrib/00167.gif",
+          "/archive/comics/tso/scrib/00168.gif",
+          "/archive/comics/tso/scrib/00169.gif",
+          "/archive/comics/tso/scrib/00170.gif",
+          "/archive/comics/tso/scrib/00171.gif",
+          "/archive/comics/tso/scrib/00172.gif",
+          "/archive/comics/tso/scrib/00173.gif",
+          "/archive/comics/tso/scrib/00174.gif",
+          "/archive/comics/tso/scrib/00175.gif",
+          "/archive/comics/tso/scrib/00176.gif",
+          "/archive/comics/tso/scrib/00177.gif",
+          "/archive/comics/tso/scrib/00178.gif",
+          "/archive/comics/tso/scrib/00179.gif",
+          "/archive/comics/tso/scrib/00180.gif",
+          "/archive/comics/tso/scrib/00181.gif",
+          "/archive/comics/tso/scrib/00182.gif",
+          "/archive/comics/tso/scrib/00183.gif",
+          "/archive/comics/tso/scrib/00184.gif",
+          "/archive/comics/tso/scrib/00185.gif",
+          "/archive/comics/tso/scrib/00186.gif",
+          "/archive/comics/tso/scrib/00187.gif",
+          "/archive/comics/tso/scrib/00188.gif",
+          "/archive/comics/tso/scrib/00189.gif",
+          "/archive/comics/tso/scrib/00190.gif",
+          "/archive/comics/tso/scrib/00191.gif",
+          "/archive/comics/tso/scrib/00192.gif",
+          "/archive/comics/tso/scrib/00193.gif",
+          "/archive/comics/tso/scrib/00194.gif",
+          "/archive/comics/tso/scrib/00195.gif",
+          "/archive/comics/tso/scrib/00196.gif",
+          "/archive/comics/tso/scrib/00197.gif",
+          "/archive/comics/tso/scrib/00198.gif",
+          "/archive/comics/tso/scrib/00199.gif",
+          "/archive/comics/tso/scrib/00200.gif",
+          "/archive/comics/tso/scrib/00201.gif",
+          "/archive/comics/tso/scrib/00202.gif",
+          "/archive/comics/tso/scrib/00203.gif",
+          "/archive/comics/tso/scrib/00204.gif",
+          "/archive/comics/tso/scrib/00205.gif",
+          "/archive/comics/tso/scrib/00206.gif",
+          "/archive/comics/tso/scrib/00207.gif",
+          "/archive/comics/tso/scrib/00208.gif",
+          "/archive/comics/tso/scrib/00209.gif",
+          "/archive/comics/tso/scrib/00210.gif",
+          "/archive/comics/tso/scrib/00211.gif",
+          "/archive/comics/tso/scrib/00212.gif",
+          "/archive/comics/tso/scrib/00213.gif",
+          "/archive/comics/tso/scrib/00214.gif",
+          "/archive/comics/tso/scrib/00215.gif",
+          "/archive/comics/tso/scrib/00216.gif",
+          "/archive/comics/tso/scrib/00217.gif",
+          "/archive/comics/tso/scrib/00218.gif",
+          "/archive/comics/tso/scrib/00219.gif",
+          "/archive/comics/tso/scrib/00220.gif",
+          "/archive/comics/tso/scrib/00221.gif",
+          "/archive/comics/tso/scrib/00222.gif",
+          "/archive/comics/tso/scrib/00223.gif",
+          "/archive/comics/tso/scrib/00224.gif",
+          "/archive/comics/tso/scrib/00225.gif",
+          "/archive/comics/tso/scrib/00226.gif",
+          "/archive/comics/tso/scrib/00227.gif",
+          "/archive/comics/tso/scrib/00228.gif",
+          "/archive/comics/tso/scrib/00229.gif",
+          "/archive/comics/tso/scrib/00230.gif",
+          "/archive/comics/tso/scrib/00231.gif",
+          "/archive/comics/tso/scrib/00232.gif",
+          "/archive/comics/tso/scrib/00233.gif",
+          "/archive/comics/tso/scrib/00234.gif",
+          "/archive/comics/tso/scrib/00235.gif",
+          "/archive/comics/tso/scrib/00236.gif",
+          "/archive/comics/tso/scrib/00237.gif",
+          "/archive/comics/tso/scrib/00238.gif",
+          "/archive/comics/tso/scrib/00239.gif",
+          "/archive/comics/tso/scrib/00240.gif",
+          "/archive/comics/tso/scrib/00241.gif",
+          "/archive/comics/tso/scrib/00242.gif",
+          "/archive/comics/tso/scrib/00243.gif",
+          "/archive/comics/tso/scrib/00244.gif",
+          "/archive/comics/tso/scrib/00245.gif",
+          "/archive/comics/tso/scrib/00246.gif",
+          "/archive/comics/tso/scrib/00247.gif",
+          "/archive/comics/tso/scrib/00248.gif",
+          "/archive/comics/tso/scrib/00249.gif",
+          "/archive/comics/tso/scrib/00250.gif",
+          "/archive/comics/tso/scrib/00251.gif",
+          "/archive/comics/tso/scrib/00252.gif",
+          "/archive/comics/tso/scrib/00253.gif",
+          "/archive/comics/tso/scrib/00254.gif",
+          "/archive/comics/tso/scrib/00255.gif",
+          "/archive/comics/tso/scrib/00256.gif",
+          "/archive/comics/tso/scrib/00257.gif",
+          "/archive/comics/tso/scrib/00258.gif",
+          "/archive/comics/tso/scrib/00259.gif",
+          "/archive/comics/tso/scrib/00260.gif",
+          "/archive/comics/tso/scrib/00261.gif",
+          "/archive/comics/tso/scrib/00262.gif",
+          "/archive/comics/tso/scrib/00263.gif",
+          "/archive/comics/tso/scrib/00264.gif",
+          "/archive/comics/tso/scrib/00265.gif",
+          "/archive/comics/tso/scrib/00266.gif",
+          "/archive/comics/tso/scrib/00267.gif",
+          "/archive/comics/tso/scrib/00268.gif",
+          "/archive/comics/tso/scrib/00269.gif",
+          "/archive/comics/tso/scrib/00270.gif",
+          "/archive/comics/tso/scrib/00271.gif",
+          "/archive/comics/tso/scrib/00272.gif",
+          "/archive/comics/tso/scrib/00273.gif",
+          "/archive/comics/tso/scrib/00274.gif",
+          "/archive/comics/tso/scrib/00275.gif",
+          "/archive/comics/tso/scrib/00276.gif",
+          "/archive/comics/tso/scrib/00277.gif",
+          "/archive/comics/tso/scrib/00278.gif",
+          "/archive/comics/tso/scrib/00279.gif",
+          "/archive/comics/tso/scrib/00280.gif",
+          "/archive/comics/tso/scrib/00281.gif",
+          "/archive/comics/tso/scrib/00282.gif",
+          "/archive/comics/tso/scrib/00283.gif",
+          "/archive/comics/tso/scrib/00284.gif",
+          "/archive/comics/tso/scrib/00285.gif",
+          "/archive/comics/tso/scrib/00286.gif",
+          "/archive/comics/tso/scrib/00287.gif",
+          "/archive/comics/tso/scrib/00288.gif"
+        ]
+      },
+      "ch": {
+        "name": "Caper Havers",
+        "pages": [
+          "/archive/comics/tso/ch/00001.jpg",
+          "/archive/comics/tso/ch/00002.jpg",
+          "/archive/comics/tso/ch/00003.jpg",
+          "/archive/comics/tso/ch/00004.jpg",
+          "/archive/comics/tso/ch/00005.jpg",
+          "/archive/comics/tso/ch/00006.jpg",
+          "/archive/comics/tso/ch/00007.jpg",
+          "/archive/comics/tso/ch/00008.jpg",
+          "/archive/comics/tso/ch/00009.jpg",
+          "/archive/comics/tso/ch/00101.jpg",
+          "/archive/comics/tso/ch/00102.jpg",
+          "/archive/comics/tso/ch/00103.jpg",
+          "/archive/comics/tso/ch/00104.jpg",
+          "/archive/comics/tso/ch/00105.jpg",
+          "/archive/comics/tso/ch/00106.jpg",
+          "/archive/comics/tso/ch/00107.jpg",
+          "/archive/comics/tso/ch/00108.jpg",
+          "/archive/comics/tso/ch/00109.jpg"
+        ]
+      },
+      "htead": {
+        "name": "How To Embarrass a Duck",
+        "pages": [
+          "/archive/comics/tso/htead/00001.jpg",
+          "/archive/comics/tso/htead/00002.jpg",
+          "/archive/comics/tso/htead/00003.jpg",
+          "/archive/comics/tso/htead/00004.jpg",
+          "/archive/comics/tso/htead/00005.gif",
+          "/archive/comics/tso/htead/00006.gif",
+          "/archive/comics/tso/htead/00007.gif",
+          "/archive/comics/tso/htead/00008.gif"
+        ]
+      },
+      "goe": {
+        "name": "Gentlemen of Excellence",
+        "pages": [
+          "/archive/comics/tso/goe/00001.gif",
+          "/archive/comics/tso/goe/00002.gif",
+          "/archive/comics/tso/goe/00003.gif",
+          "/archive/comics/tso/goe/00004.gif",
+          "/archive/comics/tso/goe/00005.gif",
+          "/archive/comics/tso/goe/00006.gif",
+          "/archive/comics/tso/goe/00007.gif",
+          "/archive/comics/tso/goe/00008.gif"
+        ]
+      },
+      "gc": {
+        "name": "Group Club",
+        "pages": [
+          "/archive/comics/tso/gc/00001.jpg",
+          "/archive/comics/tso/gc/00002.jpg",
+          "/archive/comics/tso/gc/00003.jpg",
+          "/archive/comics/tso/gc/00004.jpg",
+          "/archive/comics/tso/gc/00005.jpg"
+        ]
+      },
+      "fa": {
+        "name": "The Fashion Ambassador",
+        "pages": [
+          "/archive/comics/tso/fa/00001.jpg",
+          "/archive/comics/tso/fa/00002.gif",
+          "/archive/comics/tso/fa/00003.gif",
+          "/archive/comics/tso/fa/00004.gif",
+          "/archive/comics/tso/fa/00005.gif",
+          "/archive/comics/tso/fa/00006.gif"
+        ]
+      },
+      "hfc": {
+        "name": "Hooray For Church",
+        "pages": [
+          "/archive/comics/tso/hfc/00001.gif",
+          "/archive/comics/tso/hfc/00002.gif",
+          "/archive/comics/tso/hfc/00003.gif",
+          "/archive/comics/tso/hfc/00004.gif",
+          "/archive/comics/tso/hfc/00005.gif"
+        ]
+      },
+      "cdasl": {
+        "name": "Cool Dude and Stoner Lou",
+        "desc": "Parody of a certain truly awful webcomic that has long since been forgotten.",
+        "pages": [
+          "/archive/comics/tso/cdasl/cooldudestonerlou1.gif",
+          "/archive/comics/tso/cdasl/cooldudestonerlou2.gif",
+          "/archive/comics/tso/cdasl/cooldudestonerlou3.jpg",
+          "/archive/comics/tso/cdasl/cooldudestonerlou4.jpg",
+          "/archive/comics/tso/cdasl/cooldudestonerlou5.jpg",
+          "/archive/comics/tso/cdasl/cooldudestonerlou6.gif"
+        ]
+      },
+      "wallpapers": {
+        "name": "Wallpapers",
+        "desc": "Desktop wallpapers, selected from various comic panels.",
+        "pages": [
+          "/archive/comics/tso/wallpapers/desktop_aids_1280x1024.jpg",
+          "/archive/comics/tso/wallpapers/desktop_hfc_1280x1024.jpg",
+          "/archive/comics/tso/wallpapers/desktop_sc1_1280x1024.jpg",
+          "/archive/comics/tso/wallpapers/desktop_sc2_1280x1024.jpg",
+          "/archive/comics/tso/wallpapers/desktop_sc3_1280x1024.jpg",
+          "/archive/comics/tso/wallpapers/desktop_sc4_1280x1024.jpg",
+          "/archive/comics/tso/wallpapers/desktop_sparechange_1280x1024.jpg",
+          "/archive/comics/tso/wallpapers/blueghost_wallpaper.jpg"
+        ]
+      },
+      "wizardology": {
+        "name": "Wizardology",
+        "pages": [
+          "/archive/comics/tso/wizardology/p00.jpg",
+          "/archive/comics/tso/wizardology/p01.jpg",
+          "/archive/comics/tso/wizardology/p02.jpg",
+          "/archive/comics/tso/wizardology/p03.jpg",
+          "/archive/comics/tso/wizardology/p04.jpg",
+          "/archive/comics/tso/wizardology/p05.jpg",
+          "/archive/comics/tso/wizardology/p06.jpg",
+          "/archive/comics/tso/wizardology/p07.jpg",
+          "/archive/comics/tso/wizardology/p08.jpg",
+          "/archive/comics/tso/wizardology/p09.jpg",
+          "/archive/comics/tso/wizardology/p10.jpg",
+          "/archive/comics/tso/wizardology/p11.jpg",
+          "/archive/comics/tso/wizardology/p12.jpg",
+          "/archive/comics/tso/wizardology/p13.jpg",
+          "/archive/comics/tso/wizardology/p14.jpg",
+          "/archive/comics/tso/wizardology/p15.jpg"
+        ]
+      },
+      "fappu": {
+        "name": "Fappu Nottep",
+        "pages": [
+          "/archive/comics/tso/fappu/bearbook1.jpg",
+          "/archive/comics/tso/fappu/bearbook2.jpg",
+          "/archive/comics/tso/fappu/bearbook3.jpg",
+          "/archive/comics/tso/fappu/bearbook4.jpg",
+          "/archive/comics/tso/fappu/bearbook5.jpg"
+        ]
+      },
+      "tfwf": {
+        "name": "The First World Flight",
+        "pages": [
+          "/archive/comics/tso/tfwf/tfwf01.jpg",
+          "/archive/comics/tso/tfwf/tfwf02.jpg",
+          "/archive/comics/tso/tfwf/tfwf03.jpg",
+          "/archive/comics/tso/tfwf/tfwf04.jpg",
+          "/archive/comics/tso/tfwf/tfwf05.jpg",
+          "/archive/comics/tso/tfwf/tfwf06.jpg",
+          "/archive/comics/tso/tfwf/tfwf07.jpg",
+          "/archive/comics/tso/tfwf/tfwf08.jpg",
+          "/archive/comics/tso/tfwf/tfwf09.jpg",
+          "/archive/comics/tso/tfwf/tfwf10.jpg",
+          "/archive/comics/tso/tfwf/tfwf11.jpg",
+          "/archive/comics/tso/tfwf/tfwf12.jpg",
+          "/archive/comics/tso/tfwf/tfwf13.jpg",
+          "/archive/comics/tso/tfwf/tfwf14.jpg",
+          "/archive/comics/tso/tfwf/tfwf15.jpg",
+          "/archive/comics/tso/tfwf/tfwf16.jpg",
+          "/archive/comics/tso/tfwf/tfwf17.jpg",
+          "/archive/comics/tso/tfwf/tfwf18.jpg",
+          "/archive/comics/tso/tfwf/tfwf19.jpg",
+          "/archive/comics/tso/tfwf/tfwf20.jpg",
+          "/archive/comics/tso/tfwf/tfwf21.jpg",
+          "/archive/comics/tso/tfwf/tfwf22.jpg",
+          "/archive/comics/tso/tfwf/tfwf23.jpg",
+          "/archive/comics/tso/tfwf/tfwf24.jpg",
+          "/archive/comics/tso/tfwf/tfwf25.jpg",
+          "/archive/comics/tso/tfwf/tfwf26.jpg",
+          "/archive/comics/tso/tfwf/tfwf27.jpg",
+          "/archive/comics/tso/tfwf/tfwf28.jpg",
+          "/archive/comics/tso/tfwf/tfwf29.jpg",
+          "/archive/comics/tso/tfwf/tfwf30.jpg",
+          "/archive/comics/tso/tfwf/tfwf31.jpg",
+          "/archive/comics/tso/tfwf/tfwf32.jpg",
+          "/archive/comics/tso/tfwf/tfwf33.jpg",
+          "/archive/comics/tso/tfwf/tfwf34.jpg",
+          "/archive/comics/tso/tfwf/tfwf35.jpg",
+          "/archive/comics/tso/tfwf/tfwf36.jpg",
+          "/archive/comics/tso/tfwf/tfwf37.jpg",
+          "/archive/comics/tso/tfwf/tfwf38.jpg",
+          "/archive/comics/tso/tfwf/tfwf39.jpg",
+          "/archive/comics/tso/tfwf/tfwf40.jpg",
+          "/archive/comics/tso/tfwf/tfwf41.jpg",
+          "/archive/comics/tso/tfwf/tfwf42.jpg",
+          "/archive/comics/tso/tfwf/tfwf43.jpg",
+          "/archive/comics/tso/tfwf/tfwf44.jpg",
+          "/archive/comics/tso/tfwf/tfwf45.jpg",
+          "/archive/comics/tso/tfwf/tfwf46.jpg",
+          "/archive/comics/tso/tfwf/tfwf47.jpg"
+        ]
+      },
+      "comabear": {
+        "name": "Coma Bear",
+        "desc": "Collaboration between the entire Gangbunch, a group of comic artists from the TSO era.",
+        "pages": [
+          "/archive/comics/tso/comabear/comabear_page1.jpg",
+          "/archive/comics/tso/comabear/comabear_page2.jpg",
+          "/archive/comics/tso/comabear/comabear_page3.jpg"
+        ]
+      }
+    }
+  },
+  "pxs": {
+    "list": [
+      "you-have-a-feeling-its-going-to-be-a-long-day",
+      "headed-for-stardom",
+      "johns-birthday",
+      "prototyped",
+      "a-fun-day-for-bec",
+      "critical-miss",
+      "con-faire",
+      "deadline-day",
+      "a-fun-day-for-gcat",
+      "quality-time",
+      "fetch-quest",
+      "summer-sea-fun",
+      "hunting-lesson",
+      "togy-hawk-pro-skator",
+      "ace-sleuth-jane",
+      "party-crashers",
+      "nak-worth",
+      "suffering-throughfor-the-people",
+      "pones",
+      "a-fun-day-for-jaspers",
+      "killswitch-engage",
+      "hand-made-in-alternia",
+      "indemnity-double-reacharound",
+      "the-town-mouse-and-the-country-mouse",
+      "her-pale-passions",
+      "can-town-in-trouble",
+      "night-at-the-100dseum",
+      "soul-fraying-games",
+      "the-viceroy-and-the-lady-grimme",
+      "horse-play",
+      "lalondian-tourism",
+      "go-fetch",
+      "the-thirst-of-dornamon-gary",
+      "hospitality",
+      "mother-and-grub",
+      "garbage-day",
+      "stand-up-room-only",
+      "damara",
+      "antiquated-japesterism",
+      "the-inaugural-death-of-mister-seven",
+      "a-friend-in-need",
+      "the-mortician",
+      "holiday-activity-pages",
+      "secret-sufferer",
+      "lady-grimme-and-the-red-knight",
+      "three-out-of-five-hats",
+      "birds-and-bees",
+      "steward-of-void",
+      "star-of-the-ocean",
+      "spritecon",
+      "relation-shipping",
+      "summerteen-romance",
+      "vrisky-business"
+    ],
+    "comics": {
+      "you-have-a-feeling-its-going-to-be-a-long-day": {
+        "name": "You Have a Feeling It's Going to Be a Long Day",
+        "credit": "Zack Morrison",
+        "desc": "It is someone's birthday today.",
+        "titleText": {
+          "6": "Welcome to Paradox Space."
+        },
+        "pages": [
+          "/archive/comics/pxs/1-you-have-a-feeling-its-going-to-be-a-long-day/1.png",
+          "/archive/comics/pxs/1-you-have-a-feeling-its-going-to-be-a-long-day/2.png",
+          "/archive/comics/pxs/1-you-have-a-feeling-its-going-to-be-a-long-day/3.png",
+          "/archive/comics/pxs/1-you-have-a-feeling-its-going-to-be-a-long-day/4.png",
+          "/archive/comics/pxs/1-you-have-a-feeling-its-going-to-be-a-long-day/5.png",
+          "/archive/comics/pxs/1-you-have-a-feeling-its-going-to-be-a-long-day/6.png"
+        ],
+        "tags": {
+          "6": ["welcome to paradox space"]
+        }
+      },
+      "headed-for-stardom": {
+        "name": "Headed for Stardom",
+        "credit": "Jonathan Griffiths and J.N. Wiedle",
+        "desc": "A young troll holds a talent competition.",
+        "titleText": {
+          "1": "by which he does not mean bowling. because THAT, that would be gross",
+          "2": "March Hare-idan",
+          "3": "cosplayers: please don't put stickers on your eyes. not even for \"authenticity\""
+        },
+        "pages": [
+          "/archive/comics/pxs/2-headed-for-stardom/1.png",
+          "/archive/comics/pxs/2-headed-for-stardom/2.png",
+          "/archive/comics/pxs/2-headed-for-stardom/3.png"
+        ],
+        "tags": {
+          "3": ["every fuckin glitter biscuit"]
+        }
+      },
+      "johns-birthday": {
+        "name": "John's Birthday",
+        "credit": "KC Green",
+        "desc": "It is John's birthday. He went to the zoo.",
+        "titleText": {
+          "1": "john's personal record is just a post-it note on dave's desk that says \"monkeys\""
+        },
+        "pages": [
+          "/archive/comics/pxs/3-johns-birthday/1.png",
+          "/archive/comics/pxs/3-johns-birthday/2.png"
+        ],
+        "tags": {
+          "1": ["kc green"]
+        }
+      },
+      "prototyped": {
+        "name": "Prototyped",
+        "credit": "Zack Morrison and J.N. Wiedle",
+        "desc": "A young boy prototypes his kernelsprite.",
+        "titleText": {
+          "3": "if you removed homestuck from the internet and replaced it with just that last panel, no one would ever realize it",
+          "5": "you thought trolls were insectoid but they're actually related to pacmans"
+        },
+        "pages": [
+          "/archive/comics/pxs/4-prototyped/1.png",
+          "/archive/comics/pxs/4-prototyped/2.png",
+          "/archive/comics/pxs/4-prototyped/3.png",
+          "/archive/comics/pxs/4-prototyped/4.png",
+          "/archive/comics/pxs/4-prototyped/5.png",
+          "/archive/comics/pxs/4-prototyped/6.png",
+          "/archive/comics/pxs/4-prototyped/7.png"
+        ]
+      },
+      "a-fun-day-for-bec": {
+        "name": "A Fun Day for Bec",
+        "credit": "Rachel Rocklin, J.N. Wiedle, and Matt Cummings",
+        "desc": "Bec has a fun day.",
+        "titleText": {
+          "2": "GOOD DOG. BEST FRIEND."
+        },
+        "pages": [
+          "/archive/comics/pxs/5-a-fun-day-for-bec/1.png",
+          "/archive/comics/pxs/5-a-fun-day-for-bec/2.png"
+        ],
+        "tags": {
+          "1": ["sports", "a fun day"],
+          "2": ["a fun day"]
+        }
+      },
+      "critical-miss": {
+        "name": "Critical Miss",
+        "credit": "J.N. Wiedle, Benito Cereno, and Kristin Kemper",
+        "desc": "Two trolls enjoy a friendly game.",
+        "titleText": {
+          "5": "we can say \"f8ck\" but not that other word shhh",
+          "6": "critical whale <3< eridan OTP"
+        },
+        "pages": [
+          "/archive/comics/pxs/6-critical-miss/1.png",
+          "/archive/comics/pxs/6-critical-miss/2.png",
+          "/archive/comics/pxs/6-critical-miss/3.png",
+          "/archive/comics/pxs/6-critical-miss/4.png",
+          "/archive/comics/pxs/6-critical-miss/5.png",
+          "/archive/comics/pxs/6-critical-miss/6.png"
+        ],
+        "tags": {
+          "2": ["critical wh8le"],
+          "5": ["those eyebrows"]
+        }
+      },
+      "con-faire": {
+        "name": "Con Faire",
+        "credit": "J.N. Wiedle and Daisy McGuire",
+        "desc": "It's a talent show!",
+        "titleText": {
+          "1": "obviously this comic is 100% canon in every way",
+          "6": "only the purest and truest nic cage fans can shed tears like this",
+          "7": "yes. you. you were laughing",
+          "8": "\"The Evil Team\" is just a cute lil nickname. Don't overthink this.",
+          "9": "Also, Vriska, you tried to mind-control the judge, so, you know... not cool."
+        },
+        "pages": [
+          "/archive/comics/pxs/7-con-faire/1.png",
+          "/archive/comics/pxs/7-con-faire/2.png",
+          "/archive/comics/pxs/7-con-faire/3.png",
+          "/archive/comics/pxs/7-con-faire/4.png",
+          "/archive/comics/pxs/7-con-faire/5.png",
+          "/archive/comics/pxs/7-con-faire/6.png",
+          "/archive/comics/pxs/7-con-faire/7.png",
+          "/archive/comics/pxs/7-con-faire/8.png",
+          "/archive/comics/pxs/7-con-faire/9.png"
+        ]
+      },
+      "deadline-day": {
+        "name": "Deadline Day",
+        "credit": "Ian McConville and Matt Boyd",
+        "desc": "A newspaper tries to stay in business.",
+        "titleText": {
+          "1": "If whatever news source you use doesn't bill itself as a sleazy rag, you're being lied to",
+          "2": "I dunno, I think \"Hurp bloop bluh\" goes unrecognized too often these days. I actually kinda want to know what happened with the cake kerfuffle.",
+          "3": "I suppose you could call this... *sunglasses* ...breaking news?",
+          "4": "Hooray! A tragedy!"
+        },
+        "pages": [
+          "/archive/comics/pxs/8-deadline-day/1.png",
+          "/archive/comics/pxs/8-deadline-day/2.png",
+          "/archive/comics/pxs/8-deadline-day/3.png",
+          "/archive/comics/pxs/8-deadline-day/4.png"
+        ],
+        "tags": {
+          "1": ["derse"],
+          "2": ["derse"],
+          "3": ["derse"],
+          "4": ["derse"]
+        }
+      },
+      "a-fun-day-for-gcat": {
+        "name": "A Fun Day for GCat",
+        "credit": "Rachel Rocklin and Matt Cummings",
+        "desc": "GCat has a fun day.",
+        "titleText": {
+          "2": "oh hey i brought you something"
+        },
+        "pages": [
+          "/archive/comics/pxs/9-a-fun-day-for-gcat/1.png",
+          "/archive/comics/pxs/9-a-fun-day-for-gcat/2.png"
+        ],
+        "tags": {
+          "1": ["a fun day"],
+          "2": ["dead animal pile", "barkley", "a fun day"]
+        }
+      },
+      "quality-time": {
+        "name": "Quality Time",
+        "credit": "Andrew Hussie, J.N. Wiedle, and Hanni Brosh",
+        "desc": "A father takes his son shopping.",
+        "titleText": {
+          "3": "dibs on \"bogus dad crisis\" as the name of my new band",
+          "4": "you tried to click that, didn't you",
+          "5": "dave has a black belt in high fives",
+          "7": "you pick up those beats right now young man",
+          "8": "everyone needs a good nose trimmer"
+        },
+        "pages": [
+          "/archive/comics/pxs/10-quality-time/1.png",
+          "/archive/comics/pxs/10-quality-time/2.png",
+          "/archive/comics/pxs/10-quality-time/3.png",
+          "/archive/comics/pxs/10-quality-time/4.png",
+          "/archive/comics/pxs/10-quality-time/5.png",
+          "/archive/comics/pxs/10-quality-time/6.png",
+          "/archive/comics/pxs/10-quality-time/7.png",
+          "/archive/comics/pxs/10-quality-time/8.png"
+        ],
+        "tags": {
+          "5": ["high fives"]
+        }
+      },
+      "fetch-quest": {
+        "name": "Fetch Quest",
+        "credit": "Evan Dahm and Phil Gibson",
+        "desc": "A parcel mistress fetches the mail.",
+        "titleText": {},
+        "pages": [
+          "/archive/comics/pxs/11-fetch-quest/1.png",
+          "/archive/comics/pxs/11-fetch-quest/2.png",
+          "/archive/comics/pxs/11-fetch-quest/3.png",
+          "/archive/comics/pxs/11-fetch-quest/4.png",
+          "/archive/comics/pxs/11-fetch-quest/5.png",
+          "/archive/comics/pxs/11-fetch-quest/6.png",
+          "/archive/comics/pxs/11-fetch-quest/7.png"
+        ]
+      },
+      "summer-sea-fun": {
+        "name": "Summer Sea Fun",
+        "credit": "KC Green",
+        "desc": "FUN in the SUMER SEA SUN",
+        "titleText": {
+          "1": "<>< BEAUITFIOL"
+        },
+        "pages": ["/archive/comics/pxs/12-summer-sea-fun/1.png"]
+      },
+      "hunting-lesson": {
+        "name": "Hunting Lesson",
+        "credit": "Phil Gibson and Adrienne Garcia",
+        "desc": "A hunting lesson between two young trolls.",
+        "titleText": {
+          "1": "( =①ω①=)",
+          "2": "(╬⁽⁽ ⁰ ⁾⁾ Д ⁽⁽ ⁰ ⁾⁾)",
+          "3": "(=ＴェＴ=)"
+        },
+        "pages": [
+          "/archive/comics/pxs/13-hunting-lesson/1.png",
+          "/archive/comics/pxs/13-hunting-lesson/2.png",
+          "/archive/comics/pxs/13-hunting-lesson/3.png"
+        ]
+      },
+      "togy-hawk-pro-skator": {
+        "name": "Togy Hawk Pro Skator",
+        "credit": "KC Green",
+        "desc": "Grind kickflip halfpipe rad tubular skagetboarg",
+        "titleText": {
+          "1": "he turts around"
+        },
+        "pages": ["/archive/comics/pxs/14-togy-hawk-pro-skator/1.png"]
+      },
+      "ace-sleuth-jane": {
+        "name": "Ace Sleuth Jane",
+        "credit": "Daisy McGuire and J.N. Wiedle",
+        "desc": "An Ace Sleuth solves a Mystery",
+        "titleText": {
+          "1": "but who ate the sandwich"
+        },
+        "pages": ["/archive/comics/pxs/15-ace-sleuth-jane/1.png"]
+      },
+      "party-crashers": {
+        "name": "Party Crashers",
+        "credit": "Kory Bing, Rachel Rocklin, J.N. Wiedle, and Matt Cummings",
+        "desc": "A consort finds a book.",
+        "titleText": {
+          "1": "EXCITEMENT",
+          "2": "a passive aggressive present to Rose from her mother, I'm sure",
+          "3": "honey that's salt water you're going to desalinate that first right",
+          "4": "not pictured: the years crumplehat spent in culinary school learning the art of pastry",
+          "7": "tea, earl gray, hot"
+        },
+        "pages": [
+          "/archive/comics/pxs/16-party-crashers/1.png",
+          "/archive/comics/pxs/16-party-crashers/2.png",
+          "/archive/comics/pxs/16-party-crashers/3.png",
+          "/archive/comics/pxs/16-party-crashers/4.png",
+          "/archive/comics/pxs/16-party-crashers/5.png",
+          "/archive/comics/pxs/16-party-crashers/6.png",
+          "/archive/comics/pxs/16-party-crashers/7.png",
+          "/archive/comics/pxs/16-party-crashers/8.png"
+        ]
+      },
+      "nak-worth": {
+        "name": "Nak Worth",
+        "credit": "J.N. Wiedle and Phil Gibson",
+        "desc": "Just a regular day on LOHAC.",
+        "titleText": {},
+        "pages": ["/archive/comics/pxs/17-nak-worth/1.png"]
+      },
+      "suffering-throughfor-the-people": {
+        "name": "Suffering Through/For the People",
+        "credit": "Zack Morrison, Adrienne Garcia, and EK Weaver",
+        "desc": "A prophet tries to talk with his people.",
+        "titleText": {},
+        "pages": [
+          "/archive/comics/pxs/18-suffering-throughfor-the-people/1.png",
+          "/archive/comics/pxs/18-suffering-throughfor-the-people/2.png"
+        ]
+      },
+      "pones": {
+        "name": "Pones",
+        "credit": "KC Green",
+        "desc": "POney",
+        "titleText": {
+          "1": "tune in tomorrow for the eXCITING conCLUTION",
+          "2": "we made u read this fore two days u fat nasty trash"
+        },
+        "pages": [
+          "/archive/comics/pxs/19-pones/1.png",
+          "/archive/comics/pxs/19-pones/2.png"
+        ]
+      },
+      "a-fun-day-for-jaspers": {
+        "name": "A Fun Day for Jaspers",
+        "credit": "Rachel Rocklin, J.N. Wiedle, and Allison Shabet",
+        "desc": "Jaspers has a Fun Day.",
+        "titleText": {},
+        "pages": ["/archive/comics/pxs/20-a-fun-day-for-jaspers/1.gif"],
+        "tags": {
+          "1": ["a fun day"]
+        }
+      },
+      "killswitch-engage": {
+        "name": "Killswitch ENGAGE",
+        "credit": "J.N. Wiedle, Phil Gibson, and Mallory Dyer",
+        "desc": "A troll requires technical assistance.",
+        "titleText": {},
+        "pages": [
+          "/archive/comics/pxs/21-killswitch-engage/1.png",
+          "/archive/comics/pxs/21-killswitch-engage/2.png",
+          "/archive/comics/pxs/21-killswitch-engage/3.png",
+          "/archive/comics/pxs/21-killswitch-engage/4.png"
+        ]
+      },
+      "hand-made-in-alternia": {
+        "name": "Hand Made in Alternia",
+        "credit": "J.N. Wiedle and Phil Gibson",
+        "desc": "An excellent host turns to his young ward for help with preparing refreshments for guests.",
+        "titleText": {
+          "1": "rude"
+        },
+        "pages": ["/archive/comics/pxs/22-hand-made-in-alternia/1.png"]
+      },
+      "indemnity-double-reacharound": {
+        "name": "Indemnity Double Reacharound",
+        "credit": "J.N. Wiedle, Benito Cereno, John Keogh, and Daisy McGuire",
+        "desc": "Detective Berrybreath is on the case.",
+        "titleText": {
+          "2": "i didnt spend four years in junior detective school to be called 'mr honeytongue'",
+          "4": "you gotta do what you gotta do, berrybreath",
+          "5": "what a twist that nobody saw coming from the first page"
+        },
+        "pages": [
+          "/archive/comics/pxs/23-indemnity-double-reacharound/1.png",
+          "/archive/comics/pxs/23-indemnity-double-reacharound/2.png",
+          "/archive/comics/pxs/23-indemnity-double-reacharound/3.png",
+          "/archive/comics/pxs/23-indemnity-double-reacharound/4.png",
+          "/archive/comics/pxs/23-indemnity-double-reacharound/5.png"
+        ],
+        "tags": {
+          "1": ["scalemate noir"],
+          "2": ["scalemate noir"],
+          "3": ["scalemate noir"],
+          "4": ["scalemate noir"],
+          "5": ["scalemate noir"]
+        }
+      },
+      "the-town-mouse-and-the-country-mouse": {
+        "name": "The Town Mouse and the Country Mouse",
+        "credit": "J.N. Wiedle, Magnolia Porter, and Mary Borsellino",
+        "desc": "Two friends visit each other's dream homes.",
+        "titleText": {
+          "2": "PM slipped some mail in your back pocket during that hug. that was her angle."
+        },
+        "pages": [
+          "/archive/comics/pxs/24-the-town-mouse-and-the-country-mouse/1.png",
+          "/archive/comics/pxs/24-the-town-mouse-and-the-country-mouse/2.png",
+          "/archive/comics/pxs/24-the-town-mouse-and-the-country-mouse/3.png",
+          "/archive/comics/pxs/24-the-town-mouse-and-the-country-mouse/4.png"
+        ]
+      },
+      "her-pale-passions": {
+        "name": "Her Pale Passions",
+        "credit": "Phil Gibson",
+        "desc": "A goddess seeks advice from a book.",
+        "titleText": {},
+        "pages": ["/archive/comics/pxs/25-her-pale-passions/1.png"]
+      },
+      "can-town-in-trouble": {
+        "name": "Can Town in Trouble!",
+        "credit": "J.N. Wiedle, Kristin Kemper, Adrienne Garcia, and Bea Munoz",
+        "desc": "Can Town is in trouble!",
+        "titleText": {},
+        "pages": [
+          "/archive/comics/pxs/26-can-town-in-trouble/1.png",
+          "/archive/comics/pxs/26-can-town-in-trouble/2.png",
+          "/archive/comics/pxs/26-can-town-in-trouble/3.png",
+          "/archive/comics/pxs/26-can-town-in-trouble/4.png",
+          "/archive/comics/pxs/26-can-town-in-trouble/5.png"
+        ]
+      },
+      "night-at-the-100dseum": {
+        "name": "Night at the 100dseum",
+        "credit": "Jonathan Griffiths and Mallory Dyer",
+        "desc": "Two young trolls experience high art.",
+        "titleText": {
+          "1": "well this isn't ominous at all",
+          "2": "The humidity in there is like, 80%.",
+          "3": "eaugh i can taste the air from here",
+          "4": "karkat really needs to learn how to \"chillax\"",
+          "5": "wait that second room actually looks kind of interesting what was in there nO NOT THE HORSECLOCKS",
+          "6": "that's not anime sparkles it's just sweat",
+          "7": "you might think Terezi got off easy not being able to see the atrocities but you have NO idea what that place smells like",
+          "8": "T H E S W E A T I",
+          "9": "gross",
+          "10": "The moral of the story is that museums are awful, kids. Tell 'em ol' Paradox Space told you that."
+        },
+        "pages": [
+          "/archive/comics/pxs/27-night-at-the-100dseum/1.png",
+          "/archive/comics/pxs/27-night-at-the-100dseum/2.png",
+          "/archive/comics/pxs/27-night-at-the-100dseum/3.png",
+          "/archive/comics/pxs/27-night-at-the-100dseum/4.png",
+          "/archive/comics/pxs/27-night-at-the-100dseum/5.png",
+          "/archive/comics/pxs/27-night-at-the-100dseum/6.png",
+          "/archive/comics/pxs/27-night-at-the-100dseum/7.png",
+          "/archive/comics/pxs/27-night-at-the-100dseum/8.png",
+          "/archive/comics/pxs/27-night-at-the-100dseum/9.png",
+          "/archive/comics/pxs/27-night-at-the-100dseum/10.png"
+        ]
+      },
+      "soul-fraying-games": {
+        "name": "Soul-Fraying Games",
+        "credit": "J.N. Wiedle, Alex Rofael, and Rennie Kingsley",
+        "desc": "A group of kids prepare to have an adventure of the role-playing sort.",
+        "titleText": {
+          "1": "what's a mom",
+          "3": "seriously, name a bad dwarf. you can't",
+          "4": "karkat is strictly against PDA he is such a prude",
+          "5": "luckily every dane cook movie has a green cover and has been eaten by the Mayor YOU'RE WELCOME"
+        },
+        "pages": [
+          "/archive/comics/pxs/28-soul-fraying-games/1.png",
+          "/archive/comics/pxs/28-soul-fraying-games/2.png",
+          "/archive/comics/pxs/28-soul-fraying-games/3.png",
+          "/archive/comics/pxs/28-soul-fraying-games/4.png",
+          "/archive/comics/pxs/28-soul-fraying-games/5.png"
+        ]
+      },
+      "the-viceroy-and-the-lady-grimme": {
+        "name": "The Viceroy and the Lady Grimme",
+        "credit": "Phil Gibson, Fin Hickey, and Evin Weston",
+        "desc": "So a Lady and a Viceroy walk into a dungeon,",
+        "titleText": {},
+        "pages": [
+          "/archive/comics/pxs/29-the-viceroy-and-the-lady-grimme/1.png",
+          "/archive/comics/pxs/29-the-viceroy-and-the-lady-grimme/2.png",
+          "/archive/comics/pxs/29-the-viceroy-and-the-lady-grimme/3.png",
+          "/archive/comics/pxs/29-the-viceroy-and-the-lady-grimme/4.png",
+          "/archive/comics/pxs/29-the-viceroy-and-the-lady-grimme/5.png"
+        ]
+      },
+      "horse-play": {
+        "name": "Horse Play",
+        "credit": "Jonathan Griffiths, Zack Morrison, Phil Gibson, and Mallory Dyer",
+        "desc": "An excellent host wants to play a game.",
+        "titleText": {
+          "1": "what",
+          "2": "obtuse",
+          "3": "the knight is the horse riding the horse of course of course",
+          "4": "horse appreciation party",
+          "5": "what do you mean YOU don't sleep in a nightcap",
+          "6": "wink"
+        },
+        "pages": [
+          "/archive/comics/pxs/30-horse-play/1.png",
+          "/archive/comics/pxs/30-horse-play/2.png",
+          "/archive/comics/pxs/30-horse-play/3.png",
+          "/archive/comics/pxs/30-horse-play/4.png",
+          "/archive/comics/pxs/30-horse-play/5.png",
+          "/archive/comics/pxs/30-horse-play/6.png"
+        ]
+      },
+      "lalondian-tourism": {
+        "name": "Lalondian Tourism",
+        "credit": "Phil Gibson, Adrienne Garcia, and Alex Rofael",
+        "desc": "A troll explains a human room to another troll.",
+        "titleText": {
+          "1": "4RF 4RF 4RF",
+          "2": "tale as old as time, song as old as gunplay skills",
+          "3": "s t o p",
+          "4": "what"
+        },
+        "pages": [
+          "/archive/comics/pxs/31-lalondian-tourism/1.png",
+          "/archive/comics/pxs/31-lalondian-tourism/2.png",
+          "/archive/comics/pxs/31-lalondian-tourism/3.png",
+          "/archive/comics/pxs/31-lalondian-tourism/4.png"
+        ]
+      },
+      "go-fetch": {
+        "name": "Go Fetch",
+        "credit": "Kristin Kemper, Arden Ripley, and Shelby Cragg",
+        "desc": "Two friends talk while a family guardian gets in the way.",
+        "titleText": {},
+        "pages": [
+          "/archive/comics/pxs/32-go-fetch/1.png",
+          "/archive/comics/pxs/32-go-fetch/2.png",
+          "/archive/comics/pxs/32-go-fetch/3.png",
+          "/archive/comics/pxs/32-go-fetch/4.png",
+          "/archive/comics/pxs/32-go-fetch/5.png"
+        ]
+      },
+      "the-thirst-of-dornamon-gary": {
+        "name": "the thirst of dornamon gary",
+        "credit": "KC Green",
+        "desc": "dude. yes.",
+        "titleText": {
+          "1": "sweet shading, brah",
+          "2": "p a r t y",
+          "3": "party party party party party party party party party party party",
+          "4": "fcuking squirells",
+          "5": "too be......crontinue'd??????"
+        },
+        "pages": [
+          "/archive/comics/pxs/33-the-thirst-of-dornamon-gary/1.png",
+          "/archive/comics/pxs/33-the-thirst-of-dornamon-gary/2.png",
+          "/archive/comics/pxs/33-the-thirst-of-dornamon-gary/3.png",
+          "/archive/comics/pxs/33-the-thirst-of-dornamon-gary/4.png",
+          "/archive/comics/pxs/33-the-thirst-of-dornamon-gary/5.png"
+        ]
+      },
+      "hospitality": {
+        "name": "Hospitality",
+        "credit": "Phil Gibson, Alex Rofael, and Mary Cagle",
+        "desc": "HeY bRo :o)",
+        "titleText": {
+          "1": "well who could that be",
+          "2": "fun fact gamzee is actually his own bobblehead toy",
+          "3": "aRe YoU sAyInG i AiNt GoT a WiCkEd SiX pAcK?",
+          "4": "\"dignity\" and \"grace\" and \"Eridan's self-insert historical fanfiction\"",
+          "5": "rude, gamzee. rude."
+        },
+        "pages": [
+          "/archive/comics/pxs/34-hospitality/1.png",
+          "/archive/comics/pxs/34-hospitality/2.png",
+          "/archive/comics/pxs/34-hospitality/3.png",
+          "/archive/comics/pxs/34-hospitality/4.png",
+          "/archive/comics/pxs/34-hospitality/5.png"
+        ]
+      },
+      "mother-and-grub": {
+        "name": "Mother & Grub",
+        "credit": "Adrienne Garcia and Alex Rofael",
+        "desc": "A mother will do whatever is best for her children.",
+        "titleText": {
+          "1": "well that's that",
+          "2": ":33",
+          "3": "luckily he landed in a pillow oasis, a naturally occurring Alternian land formation",
+          "4": "those two sure hecked up",
+          "5": "you done did good, kid"
+        },
+        "pages": [
+          "/archive/comics/pxs/35-mother-and-grub/1.png",
+          "/archive/comics/pxs/35-mother-and-grub/2.png",
+          "/archive/comics/pxs/35-mother-and-grub/3.png",
+          "/archive/comics/pxs/35-mother-and-grub/4.png",
+          "/archive/comics/pxs/35-mother-and-grub/5.png"
+        ]
+      },
+      "garbage-day": {
+        "name": "Garbage Day",
+        "credit": "Alex Rofael and Incineraptor",
+        "desc": "Chores need to be done, but who will do them?",
+        "titleText": {
+          "1": "ironic velcro",
+          "2": "The canon end of Homestuck, everybody go home we did it."
+        },
+        "pages": [
+          "/archive/comics/pxs/36-garbage-day/1.png",
+          "/archive/comics/pxs/36-garbage-day/2.png"
+        ]
+      },
+      "stand-up-room-only": {
+        "name": "Stand-Up Room Only",
+        "credit": "J.N. Wiedle, Phil Gibson, and Adrienne Garcia",
+        "desc": "Tell us a joke, funny boy.",
+        "titleText": {
+          "1": "this actually happened"
+        },
+        "pages": ["/archive/comics/pxs/37-stand-up-room-only/1.png"]
+      },
+      "damara": {
+        "name": "Damara",
+        "credit": "Allison Shabet, Mary Borsellino, and Tom Siddell",
+        "desc": "Damara Megido died yesterday.",
+        "titleText": {
+          "1": "shut up, kankri"
+        },
+        "pages": [
+          "/archive/comics/pxs/38-damara/1.png",
+          "/archive/comics/pxs/38-damara/2.png",
+          "/archive/comics/pxs/38-damara/3.png",
+          "/archive/comics/pxs/38-damara/4.png",
+          "/archive/comics/pxs/38-damara/5.png",
+          "/archive/comics/pxs/38-damara/6.png",
+          "/archive/comics/pxs/38-damara/7.png"
+        ]
+      },
+      "antiquated-japesterism": {
+        "name": "Antiquated Japesterism",
+        "credit": "EK Weaver, Alex Rofael, and KT Jayne",
+        "desc": "A dashing lad explores the jungle.",
+        "titleText": {
+          "1": "tell them how you pulled a boner all day long"
+        },
+        "pages": ["/archive/comics/pxs/39-antiquated-japesterism/1.png"]
+      },
+      "the-inaugural-death-of-mister-seven": {
+        "name": "The Inaugural Death of Mister Seven",
+        "credit": "Andrew Hussie and J.N. Wiedle",
+        "desc": "Crowbar needs to round up a bunch of chuckleheads.",
+        "titleText": {},
+        "pages": [
+          "/archive/comics/pxs/40-the-inaugural-death-of-mister-seven/1.png",
+          "/archive/comics/pxs/40-the-inaugural-death-of-mister-seven/2.png",
+          "/archive/comics/pxs/40-the-inaugural-death-of-mister-seven/3.png",
+          "/archive/comics/pxs/40-the-inaugural-death-of-mister-seven/4.png",
+          "/archive/comics/pxs/40-the-inaugural-death-of-mister-seven/5.png",
+          "/archive/comics/pxs/40-the-inaugural-death-of-mister-seven/6.png",
+          "/archive/comics/pxs/40-the-inaugural-death-of-mister-seven/7.png",
+          "/archive/comics/pxs/40-the-inaugural-death-of-mister-seven/8.png",
+          "/archive/comics/pxs/40-the-inaugural-death-of-mister-seven/9.png",
+          "/archive/comics/pxs/40-the-inaugural-death-of-mister-seven/10.png",
+          "/archive/comics/pxs/40-the-inaugural-death-of-mister-seven/11.png",
+          "/archive/comics/pxs/40-the-inaugural-death-of-mister-seven/12.png",
+          "/archive/comics/pxs/40-the-inaugural-death-of-mister-seven/13.png",
+          "/archive/comics/pxs/40-the-inaugural-death-of-mister-seven/14.png",
+          "/archive/comics/pxs/40-the-inaugural-death-of-mister-seven/15.png",
+          "/archive/comics/pxs/40-the-inaugural-death-of-mister-seven/16.png",
+          "/archive/comics/pxs/40-the-inaugural-death-of-mister-seven/17.png",
+          "/archive/comics/pxs/40-the-inaugural-death-of-mister-seven/18.png",
+          "/archive/comics/pxs/40-the-inaugural-death-of-mister-seven/19.png",
+          "/archive/comics/pxs/40-the-inaugural-death-of-mister-seven/20.png",
+          "/archive/comics/pxs/40-the-inaugural-death-of-mister-seven/21.png",
+          "/archive/comics/pxs/40-the-inaugural-death-of-mister-seven/22.png",
+          "/archive/comics/pxs/40-the-inaugural-death-of-mister-seven/23.png",
+          "/archive/comics/pxs/40-the-inaugural-death-of-mister-seven/24.png"
+        ]
+      },
+      "a-friend-in-need": {
+        "name": "A Friend in Need",
+        "credit": "Phil Gibson, Mary Borsellino, and Rennie Kingsley",
+        "desc": "A fashionable troll helps a friend in need.",
+        "titleText": {},
+        "pages": [
+          "/archive/comics/pxs/41-a-friend-in-need/1.png",
+          "/archive/comics/pxs/41-a-friend-in-need/2.png"
+        ]
+      },
+      "the-mortician": {
+        "name": "The Mortician",
+        "credit": "Hanni Brosh and Phil Gibson",
+        "desc": "There is need for a mortician.",
+        "titleText": {},
+        "pages": [
+          "/archive/comics/pxs/42-the-mortician/1.png",
+          "/archive/comics/pxs/42-the-mortician/2.png",
+          "/archive/comics/pxs/42-the-mortician/3.png"
+        ]
+      },
+      "holiday-activity-pages": {
+        "name": "Holiday Activity Pages",
+        "credit": "Daisy McGuire",
+        "desc": "Happy Holidays! Here's some fun activities to do!",
+        "titleText": {},
+        "pages": [
+          "/archive/comics/pxs/43-holiday-activity-pages/1.png",
+          "/archive/comics/pxs/43-holiday-activity-pages/2.png",
+          "/archive/comics/pxs/43-holiday-activity-pages/3.png",
+          "/archive/comics/pxs/43-holiday-activity-pages/4.png"
+        ]
+      },
+      "secret-sufferer": {
+        "name": "Secret Sufferer",
+        "credit": "Matt Cummings and Phil Gibson",
+        "desc": "Holiday Traditions",
+        "titleText": {},
+        "pages": [
+          "/archive/comics/pxs/44-secret-sufferer/1.png",
+          "/archive/comics/pxs/44-secret-sufferer/2.png",
+          "/archive/comics/pxs/44-secret-sufferer/3.png",
+          "/archive/comics/pxs/44-secret-sufferer/4.png",
+          "/archive/comics/pxs/44-secret-sufferer/5.png",
+          "/archive/comics/pxs/44-secret-sufferer/6.png",
+          "/archive/comics/pxs/44-secret-sufferer/7.png",
+          "/archive/comics/pxs/44-secret-sufferer/8.png",
+          "/archive/comics/pxs/44-secret-sufferer/9.png",
+          "/archive/comics/pxs/44-secret-sufferer/10.png",
+          "/archive/comics/pxs/44-secret-sufferer/11.png",
+          "/archive/comics/pxs/44-secret-sufferer/12.png",
+          "/archive/comics/pxs/44-secret-sufferer/13.png",
+          "/archive/comics/pxs/44-secret-sufferer/14.png",
+          "/archive/comics/pxs/44-secret-sufferer/15.png",
+          "/archive/comics/pxs/44-secret-sufferer/16.png",
+          "/archive/comics/pxs/44-secret-sufferer/17.png",
+          "/archive/comics/pxs/44-secret-sufferer/18.png",
+          "/archive/comics/pxs/44-secret-sufferer/19.png",
+          "/archive/comics/pxs/44-secret-sufferer/20.png",
+          "/archive/comics/pxs/44-secret-sufferer/21.png",
+          "/archive/comics/pxs/44-secret-sufferer/22.png",
+          "/archive/comics/pxs/44-secret-sufferer/23.png",
+          "/archive/comics/pxs/44-secret-sufferer/24.png",
+          "/archive/comics/pxs/44-secret-sufferer/25.png"
+        ]
+      },
+      "lady-grimme-and-the-red-knight": {
+        "name": "Lady Grimme and the Red Knight",
+        "credit": "J.N. Wiedle and Mary Borsellino",
+        "desc": "The continuing adventures of Lady Grimme as she encounters the Red Knight.",
+        "titleText": {},
+        "pages": [
+          "/archive/comics/pxs/45-lady-grimme-and-the-red-knight/1.png",
+          "/archive/comics/pxs/45-lady-grimme-and-the-red-knight/2.png",
+          "/archive/comics/pxs/45-lady-grimme-and-the-red-knight/3.png",
+          "/archive/comics/pxs/45-lady-grimme-and-the-red-knight/4.png",
+          "/archive/comics/pxs/45-lady-grimme-and-the-red-knight/5.png"
+        ]
+      },
+      "three-out-of-five-hats": {
+        "name": "Three out of Five Hats",
+        "credit": "Incineraptor and John Girard",
+        "desc": "A bored youth reviews his peers.",
+        "titleText": {},
+        "pages": [
+          "/archive/comics/pxs/46-three-out-of-five-hats/1.png",
+          "/archive/comics/pxs/46-three-out-of-five-hats/2.png",
+          "/archive/comics/pxs/46-three-out-of-five-hats/3.png",
+          "/archive/comics/pxs/46-three-out-of-five-hats/4.png"
+        ]
+      },
+      "birds-and-bees": {
+        "name": "Birds and Bees",
+        "credit": "Matt Cummings and Alex Rofael",
+        "desc": "A young girl asks her guardian a big question.",
+        "titleText": {},
+        "pages": ["/archive/comics/pxs/47-birds-and-bees/1.png"]
+      },
+      "steward-of-void": {
+        "name": "Steward of Void",
+        "credit": "Shad Andrews and Phil Gibson",
+        "desc": "A coolkid finds himself on a very....strong island.",
+        "titleText": {},
+        "pages": [
+          "/archive/comics/pxs/48-steward-of-void/1.png",
+          "/archive/comics/pxs/48-steward-of-void/2.png",
+          "/archive/comics/pxs/48-steward-of-void/3.png"
+        ]
+      },
+      "star-of-the-ocean": {
+        "name": "Star of the Ocean",
+        "credit": "Phil Gibson and Adrienne Garcia",
+        "desc": "A young troll searches for a lost treasure.",
+        "titleText": {},
+        "pages": [
+          "/archive/comics/pxs/49-star-of-the-ocean/1.png",
+          "/archive/comics/pxs/49-star-of-the-ocean/2.png"
+        ]
+      },
+      "spritecon": {
+        "name": "Spritecon",
+        "credit": "Hanni Brosh and Phil Gibson",
+        "desc": "A group of game abstractions have a conference.",
+        "titleText": {},
+        "pages": [
+          "/archive/comics/pxs/50-spritecon/1.png",
+          "/archive/comics/pxs/50-spritecon/2.png",
+          "/archive/comics/pxs/50-spritecon/3.png",
+          "/archive/comics/pxs/50-spritecon/4.png"
+        ]
+      },
+      "relation-shipping": {
+        "name": "Relation Shipping",
+        "credit": "Phil Gibson and Rennie Kingsley",
+        "desc": "A young troll offers the purrfect service.",
+        "titleText": {},
+        "pages": ["/archive/comics/pxs/51-relation-shipping/1.png"]
+      },
+      "summerteen-romance": {
+        "name": "Summerteen Romance",
+        "credit": "Jonathan Griffiths, Zack Morrison, Tauhid Bondia, and Shelby Cragg",
+        "desc": "A great number of trolls go to summer camp.",
+        "titleText": {},
+        "pages": [
+          "/archive/comics/pxs/52-summerteen-romance/1.png",
+          "/archive/comics/pxs/52-summerteen-romance/2.png",
+          "/archive/comics/pxs/52-summerteen-romance/3.png",
+          "/archive/comics/pxs/52-summerteen-romance/4.png",
+          "/archive/comics/pxs/52-summerteen-romance/5.png",
+          "/archive/comics/pxs/52-summerteen-romance/6.png",
+          "/archive/comics/pxs/52-summerteen-romance/7.png",
+          "/archive/comics/pxs/52-summerteen-romance/8.png",
+          "/archive/comics/pxs/52-summerteen-romance/9.png",
+          "/archive/comics/pxs/52-summerteen-romance/10.png",
+          "/archive/comics/pxs/52-summerteen-romance/11.png",
+          "/archive/comics/pxs/52-summerteen-romance/12.png",
+          "/archive/comics/pxs/52-summerteen-romance/13.png",
+          "/archive/comics/pxs/52-summerteen-romance/14.png",
+          "/archive/comics/pxs/52-summerteen-romance/15.png",
+          "/archive/comics/pxs/52-summerteen-romance/16.png",
+          "/archive/comics/pxs/52-summerteen-romance/17.png",
+          "/archive/comics/pxs/52-summerteen-romance/18.png",
+          "/archive/comics/pxs/52-summerteen-romance/19.png",
+          "/archive/comics/pxs/52-summerteen-romance/20.png",
+          "/archive/comics/pxs/52-summerteen-romance/21.png",
+          "/archive/comics/pxs/52-summerteen-romance/22.png",
+          "/archive/comics/pxs/52-summerteen-romance/23.png",
+          "/archive/comics/pxs/52-summerteen-romance/24.png",
+          "/archive/comics/pxs/52-summerteen-romance/25.png",
+          "/archive/comics/pxs/52-summerteen-romance/26.png",
+          "/archive/comics/pxs/52-summerteen-romance/27.png",
+          "/archive/comics/pxs/52-summerteen-romance/28.png",
+          "/archive/comics/pxs/52-summerteen-romance/29.png",
+          "/archive/comics/pxs/52-summerteen-romance/30.png",
+          "/archive/comics/pxs/52-summerteen-romance/31.png",
+          "/archive/comics/pxs/52-summerteen-romance/32.png",
+          "/archive/comics/pxs/52-summerteen-romance/33.png",
+          "/archive/comics/pxs/52-summerteen-romance/34.png",
+          "/archive/comics/pxs/52-summerteen-romance/35.png",
+          "/archive/comics/pxs/52-summerteen-romance/36.png",
+          "/archive/comics/pxs/52-summerteen-romance/37.png",
+          "/archive/comics/pxs/52-summerteen-romance/38.png",
+          "/archive/comics/pxs/52-summerteen-romance/39.png",
+          "/archive/comics/pxs/52-summerteen-romance/40.png",
+          "/archive/comics/pxs/52-summerteen-romance/41.png",
+          "/archive/comics/pxs/52-summerteen-romance/42.png",
+          "/archive/comics/pxs/52-summerteen-romance/43.png",
+          "/archive/comics/pxs/52-summerteen-romance/44.png",
+          "/archive/comics/pxs/52-summerteen-romance/45.png",
+          "/archive/comics/pxs/52-summerteen-romance/46.png",
+          "/archive/comics/pxs/52-summerteen-romance/47.png",
+          "/archive/comics/pxs/52-summerteen-romance/48.png",
+          "/archive/comics/pxs/52-summerteen-romance/49.png",
+          "/archive/comics/pxs/52-summerteen-romance/50.png",
+          "/archive/comics/pxs/52-summerteen-romance/51.png"
+        ]
+      },
+      "vrisky-business": {
+        "name": "Vrisky Business",
+        "credit": "Kory Bing, Andrew Hussie, and Mallory Dyer",
+        "desc": "A special bonus story originally included in PXS Book 2!",
+        "titleText": {},
+        "pages": [
+          "/archive/comics/pxs/53-vrisky-business/1.png",
+          "/archive/comics/pxs/53-vrisky-business/2.png",
+          "/archive/comics/pxs/53-vrisky-business/3.png",
+          "/archive/comics/pxs/53-vrisky-business/4.png",
+          "/archive/comics/pxs/53-vrisky-business/5.png",
+          "/archive/comics/pxs/53-vrisky-business/6.png",
+          "/archive/comics/pxs/53-vrisky-business/7.png",
+          "/archive/comics/pxs/53-vrisky-business/8.png"
+        ]
+      }
+    },
+    "contributors": {
+      "Zack Morrison": {
+        "avatar": "Zach Morrison.png",
+        "bio": "Draws comics about ghosts. All of his jokes are haunted.",
+        "social": ["paranatural.net"]
+      },
+      "Tom Siddell": {
+        "avatar": "Tom Siddell.png",
+        "bio": "",
+        "social": ["gunnerkrigg.com"]
+      },
+      "Tauhid Bondia": {
+        "avatar": "Tauhid Bondia.png",
+        "bio": "A totally real and not made-up person, Tauhid was born in a hospital, in Virginia, which actually exists, to a traditional, human female. For years he has made cartoons that delight and titillate audiences by the dozens and is also an experienced graphic designer. If you are admiring some aspect of design on this site, then you have him to thank for it. If you are, however, critical of said design elements, chances are Tauhid already doesn't like you and would recommend keeping your dumb opinions to yourself.",
+        "social": [
+          "http://tauhidbondia.com/",
+          "http://www.theangrydead.com/",
+          "https://www.facebook.com/tauhidrb",
+          "http://twitter.com/7auhid",
+          "http://tauhidbondia.tumblr.com/"
+        ]
+      },
+      "Shelby Cragg": {
+        "avatar": "Shelby Cragg.png",
+        "bio": "Shelby Cragg is an illustrator and comic artist working in the sunny hellscape of Florida. If you're a big Homestuck fan, you probably know her as \"That girl who does the art for Calliope.\" This is true! Good job for knowing that. Shelby also likes drawing aliens, petting cats, and drinking large amounts of caffeine. She is currently finishing up her first original webcomic, APOTHECIA, along with doing lots of other cool stuff.",
+        "social": [
+          "www.shelbycragg.com",
+          "http://apotheciacomic.tumblr.com",
+          "http://twitter.com/shelbycragg"
+        ]
+      },
+      "Shad Andrews": {
+        "avatar": "Shad Andrews.png",
+        "bio": "Shad Andrews draws comics and animates... but be careful. He really only wants to talk to you about DND.",
+        "social": ["shadandrews.tumblr.com"]
+      },
+      "Rennie Kingsley": {
+        "avatar": "Rennie Kingsley.png",
+        "bio": "Rennie Kingsley draws comics and pretty pictures. Her greatest accomplishments include owning a cat and not being dead (yet.)",
+        "social": ["weavecomic.tumblr.com", "rendigo.tumblr.com"]
+      },
+      "Rachel Rocklin": {
+        "avatar": "Rachel Rocklin.png",
+        "bio": "Editor-in-chief of Paradox Space and secretly an owl."
+      },
+      "Phil Gibson": {
+        "avatar": "Phil Gibson.png",
+        "bio": "Phil Gibson draws comics and writes stories and lives in Texas. He does not know anyone named Dave, please stop asking.",
+        "social": ["poinko.tumblr.com"]
+      },
+      "Matt Hink": {
+        "avatar": "Matt Hink.png",
+        "bio": "",
+        "social": [null]
+      },
+      "Matt Cummings": {
+        "avatar": "Matt Cummings.png",
+        "bio": "Matt Cummings is an illustrator and cartoonist from Canada. He's worked with companies and not-companies to make pretty art. He's very happy to be here!",
+        "social": ["eiffelart.ca"]
+      },
+      "Matt Boyd": {
+        "avatar": "Matt Boyd.png",
+        "bio": "Matt Boyd is comics bros with Ian McConville. He writes things and Ian draws them.",
+        "social": ["threepanelsoul.com", "machall.com"]
+      },
+      "Mary Cagle": {
+        "avatar": "Mary Cagle.png",
+        "bio": "Mary Cagle, sometimes known as Cubewatermelon, currently works as a comic artist and English teacher in Japan. She makes the action-adventure comic Kiwi Blitz at kiwiblitz.com, as well as the autobiographical Let's Speak English at marycagle.com.",
+        "social": ["marycagle.com", "kiwiblitz.com"]
+      },
+      "Mary Borsellino": {
+        "avatar": "Mary Borsellino.png",
+        "bio": "If Mary Borsellino ever had the misfortune to be dragged into a game of Sburb, she'd be a Page of Rage, because the blurb on the back of one of her books calls her a \"celebrated punk writer\" and Sburb sure does love pun titles. Also, because Robin pants have played a surprisingly huge role in her life to date.",
+        "social": ["maryborsellino.com"]
+      },
+      "Mallory Dyer": {
+        "avatar": "Mallory Dyer.png",
+        "bio": "The fabeled Mallory Dyer is an elusive cryptid rumored to dwell somewhere in the great northern tundra. An illustrator, storyboard artist, concept artist, and plush enthusiast, this nocturnal whatisit is highly questionable. If she is spotted, take great precaution. Local legends say those who come in close contact are doomed to a life of unrelenting cartoon trivia and movie quotes.",
+        "social": ["pupukadoodle.tumblr.com"]
+      },
+      "Magnolia Porter": {
+        "avatar": "Magnolia Porter.png",
+        "bio": "Magnolia Porter draws comics about monsters. It's pretty cool.",
+        "social": ["www.monster-pulse.com"]
+      },
+      "Kristin Kemper": {
+        "avatar": "Kristin Kemper.png",
+        "bio": "Kristen Kemper, alias Kecky, is an animator, illustrator, hairbow collector, and proud mother of several carnivorous plants.",
+        "social": ["kristenkemper.tumblr.com"]
+      },
+      "Kory Bing": {
+        "avatar": "Kory Bing.png",
+        "bio": "Kory Bing makes comics about mythical creatures and people and mythical creatures who are also people. When she is not on the internet she is usually asleep.",
+        "social": ["skindeepcomic.com"]
+      },
+      "KT Jayne": {
+        "avatar": "KT Jayne.png",
+        "bio": "",
+        "social": [null]
+      },
+      "KC Green": {
+        "avatar": "KC Green.png",
+        "bio": "KC Green is doing too much at once around Western Massachusetts. Currently playing a video game and thinking about maybe playing another video game, he enjoys worrying if he might ever run out of money. He draws when it needs to be done.",
+        "social": ["gunshowcomic.com"]
+      },
+      "Jonathan Griffiths": {
+        "avatar": "Jonathan Griffiths.png",
+        "bio": "Like most cave-dwelling animals, Jonathan Griffiths isn't really sure of his surroundings for most of the day. He has developed a penchant for horrible puns as a deterrant against predators. When not engaging in terrible wordplay, he draws the webcomic Beyond the Canopy, and devours milkweed to maintain optimum toxicity levels.",
+        "social": ["beyondthecanopy.com"]
+      },
+      "John Keogh": {
+        "avatar": "John Keogh.png",
+        "bio": "John Keogh's only interests are old samurai movies, rap music, and the three stooges.",
+        "social": ["tomselleck69.tumblr.com"]
+      },
+      "John Girard": {
+        "avatar": "John Girard.png",
+        "bio": "John Girard is a software writer by trade and greenhorn word-writer by hobby. He likes to talk about music. Other than that, pretty regular dude. Enjoys a quality sandwich from time to time.",
+        "social": ["beat-bro.tumblr.com"]
+      },
+      "J.N. Wiedle": {
+        "avatar": "JN Wiedle.png",
+        "bio": "J.N. Weidle is a writer and cartoonist based in Brooklyn, NY. They are the creator of the comic Helvetica, a self-appointed prince charming, and the most handsome skeleton you will ever meet.",
+        "social": ["helvetica.jnweidle.com"]
+      },
+      "Incineraptor": {
+        "avatar": "Incineraptor.png",
+        "bio": "A soda drinkin', video game playin' artist that writes and draws Hellhound Guardian, a webcomic about people who die and fight monsters in that order.",
+        "social": ["hellbound.elementaldinosaur.com"]
+      },
+      "Ian McConville": {
+        "avatar": "Ian McConville.png",
+        "bio": "Polygon pusher by day. Pixel pusher by night. Mostly draws the comics that Matt writes and then complains about video games.",
+        "social": ["threepanelsoul.com", "machall.com"]
+      },
+      "Hanni Brosh": {
+        "avatar": "Hanni Brosh.png",
+        "bio": "Hanni Brosch is a cartoonist living in Brooklyn! She reads comics all day and draws comics all night, and in between she eats food and puts kisses on her dog's forehead.",
+        "social": ["saffronscarf.tumblr.com"]
+      },
+      "Fin Hickey": {
+        "avatar": "Fin Hickey.png",
+        "bio": "Fin Hickey is an animation student living close to, but not quite in, Toronto, ON. They know a lot about bogs, ghouls, and early-2000s made-for-tv movies. They like cereal made for old people and books made for youths.",
+        "social": ["roofgoat.tumblr.com"]
+      },
+      "Evin Weston": {
+        "avatar": "Evin Weston.png",
+        "bio": "Even Weston is a writer and occasional artist from Victoria, BC who spends an inordinate amount of time thinking about wizards and dinosaurs. He is currently looking for collaborators.",
+        "social": ["presidentskeleton.tumblr.com"]
+      },
+      "Evan Dahm": {
+        "avatar": "Evan Dahm.png",
+        "bio": "Evan Dahm draws bit fantasy adventure comics, including Rice Boy, Order of Tales, and Vattu. He's also a co-founder of the art book publishing company Benign Kingdom, and has published an illustrated edition of the Wonderful Wizard of Oz. He lives in Brooklyn with his lovely wife and lovely small dog ane he is from north Carolina ane he tries to be nice.",
+        "social": ["rice-boy.com"]
+      },
+      "EK Weaver": {
+        "avatar": "EK Weaver.png",
+        "bio": "EK Weaver drew a comic called TJ and Amal and now she draws other comics. Some are on the internet and some are on paper. All were drawn under the copious hair/vigilant watch of her two large, dopey dogs.",
+        "social": ["tjandamal.com"]
+      },
+      "Daisy McGuire": {
+        "avatar": "Daisy McGuire.png",
+        "bio": "You canoot hope to beat Daisy McGuire in a comic-off. He is simply the best there is.",
+        "social": ["gastrophobia.com"]
+      },
+      "Blueberry Keller": {
+        "avatar": "Blueberry.png",
+        "bio": "",
+        "social": [null]
+      },
+      "Benito Cereno": {
+        "avatar": "Benito Cereno.png",
+        "bio": "Benito Cereno is the writer of such comics as Tales from the Bully Pulpit, Hector Plasm, The Tick, Invisible Presents, and Guarding the Globe. He is also a freelance classicist and professional christmas enthusiast.",
+        "social": ["about.me/benitocereno"]
+      },
+      "Bea Muñoz": {
+        "avatar": "Bea Munoz.png",
+        "bio": "Bea Muñoz is from Reno, Nevada and writes and draws a webcomic called A Ghost Story, which is about people who are arguably worse human beings than she is. Her hobbies include sleeping during the day and stealing all the food in the house at night.",
+        "social": ["beesmygod.tumblr.com", "aghoststorycomic.com"]
+      },
+      "Arden Ripley": {
+        "avatar": "Arden Ripley.png",
+        "bio": "Arden Ripley is a writer who creates visual novels and dating sims, and loves video games more than anyone reasonably should.",
+        "social": ["skeleton.space"]
+      },
+      "Andrew Hussie": {
+        "avatar": "Andrew Hussie.gif",
+        "bio": "Just some guy. <img src=\"assets://archive/comics/pxs/kQoDQ9N.gif\" />"
+      },
+      "Allison Shabet": {
+        "avatar": "Allison Shabet.png",
+        "bio": "Allison Shabet makes comics and videogames. She likes painting things and animating things and fixing things or whatever else. She'll do anything, really.",
+        "social": ["deadwinter.cc"]
+      },
+      "Alex Rofael": {
+        "avatar": "Alex Rofael.png",
+        "bio": "Whether it's writing, mountain biking, or suffering from extreme weather-induced migranes, Alex Rofael does everything in life at a strict 75%. Alex doesn't understand why people go on reality television shows and claim they're not there to make friends. I mean, what the heck?",
+        "social": ["platosbikeseat.tumblr.com"]
+      },
+      "Adrienne Garcia": {
+        "avatar": "Adrienne Garcia.png",
+        "bio": "A Homestuck fan livin' the dream. She also thinks it's weird writing about herself in third-person. In addition to playing violent video games, she likes to draw devistatingly cute and sad things. She currently lives on Tumblr.",
+        "social": ["paperseverywhere.tumblr.com"]
+      }
+    },
+    "newsfeed": [
+      {
+        "author": "Andrew Hussie",
+        "body": "<div class=\"media-body\">\n<p>\n</p><p>A brand new webcomic, to be exact. One that has launched on the 5th anniversary of Homestuck's first page. If the thirteenth of April holds a magical place in your heart, then chances are, you are on pins and needles waiting for me to post the end of the story. It will still be quite some time before that happens. I've had too much else going on to be able to attack the remaining content with the ferocity that has been characteristic of my update schedule over the years. It is nothing short of The Greatest Tragedy that a beloved story is held hostage to the ability of a single artist to continue creating it. Which brings us to the website called Paradox Space, and the chapter it will represent in Homestuck's extended life cycle.</p>\n<p>As I work on finishing the story, I tend to think a lot about where Homestuck as a creative property goes from here. It's hard to ignore the fact that it has turned into something much bigger than just a long, crazy story on the internet. It has a lot of fans, and there's a whole culture surrounding it. Friendships have been made, lives have been changed, or so people tell me. Those who like HS are extremely fond of the characters, yet those characters are trapped - \"stuck\" if you will - inside a very particular narrative, which itself has been at the mercy of my ability to produce it. So when I think about the future of Homestuck, I envision projects which liberate the things people love about it from the story itself, and most importantly, from my intensive personal effort.</p>\n<p>So this website is the first major step in that direction. Here is the idea:</p>\n<p>Paradox Space will feature many short comic stories involving literally any characters and settings from Homestuck. Any point in canon could be visited and elaborated on, whether it's backstory, some scenes that were skipped over or alluded to, funny hypothetical scenarios which have nothing to do with canon events, or exploring things that could have happened in canon through the \"doomed timeline\" mechanic that is a defining trait of Homestuck's multiverse-continuum known as \"paradox space\". There is a WHOLE LOT of fun stuff we can do here; and we will!</p>\n<p>The idea is also to get a lot of different artists and writers involved. It's going to be a major team effort. Occasionally I will write some comic scripts, particularly at the onset to help get this off the ground. But I'd like that to be the exception rather than the rule. I think it will be exciting to see how a talented pool of creators can work within the HS universe, and what they will bring to these characters. Scroll down to the bottom of the page to see who's contributing so far. I guarantee that list of names will expand considerably in the months ahead.</p>\n<p>And a quick shout-out to those I regard as the core contributors of Paradox Space. Rachel and Kory, who are the managing editors of the content. Tauhid, who designed this sick website. And Matt, who coded this sick website. These people worked very hard to get this site up and running. They did a great job.</p>\n<p>Paradox Space updates with a new page every weekday, starting this week. Next update is Tuesday, with the first page of another short story. What's it gonna be?? Believe me when I say these arcs can involve anything and anyone.</p>\n<p>The first story was drawn by Zack Morrison, who is a super solid comic maker. You should take a look at <a href=\"https://web.archive.org/web/20140413205013/http://www.paranatural.net/\" target=\"_blank\">his webcomic</a> when you get the chance. It's really good! I'm not even \"just sayin\" that either. Why do ya think we asked him to make the first comic?? Dude's great. ;-]</p>\n</div>",
+        "date": "April 13, 2014",
+        "timestamp": 1397343600.0,
+        "title": "A young reader stands in a webcomic."
+      },
+      {
+        "author": "Andrew Hussie",
+        "body": "<div class=\"media-body\">\n<p>\n</p><p>And... yep. Went STRAIGHT to the well of juggalo humor, right off the bat. Were you honestly expecting anything else? Frankly, shame on you if you were.</p>\n<p>\"Headed for Stardom\" is by Jonathan Griffiths. Observe more of his fine work <a href=\"https://web.archive.org/web/20140423230534/http://www.beyondthecanopy.com/\" target=\"_blank\">over here</a>!</p>\n<p>Soon I will take a step back from this news section and let other voices emerge. I'm the stern guardian figure pushing several frightened children on a rickety little bike, and they're all nervous as hell. But I'm not. I'm smiling and beaming with pride as I let go of the bike at the top of a steep hill, which has a ramp at the bottom that launches over Sadcorpse Canyon. They're not sure if they can make it. But I know they can. I know they can. (Also, they're chained to the bike.)</p>\n<p>Now for a few \"frequently asked questions\", or as I like to call them, FREQAQUES.</p>\n<p><u>Do you have an RSS feed?</u></p>\n<p>Yes, <a href=\"https://web.archive.org/web/20140423230534/http://www.paradoxspace.com/rss.atom\" target=\"_blank\">here it is</a>. </p>\n<p><u>Are these comics canon?</u></p>\n<p>I think you will have to use your own judgment on that. Sometimes there's going to be some truly ridiculous nonsense that could not have possibly happened in canon. Other times, the events portrayed will at least be plausible, and will present no contradiction. Does that then mean those events are canon? Hard to say. A formal ruling here does not seem appropriate. </p>\n<p>If you want me to give you some guidelines that are AS CLEAR AS POSSIBLE, here you go. For any given story, it is either \"Definitely Not Canon\" or \"Possibly Canon\". But no story should ever be regarded as \"Definitely Canon\", unless Homestuck itself confirms those events retroactively in some manner. Does that make sense??</p>\n<p><u>I really want to know about X, but Paradox Space keeps running a lot of silly shit that isn't answering my questions about Homestuck.</u></p>\n<p>This isn't frequently asked yet (also, it isn't a question), but I'm anticipating the sentiment. Primarily, PS content will involve a lot of silly, funny stories that feature fun characters saying stupid things to each other and doing funny, silly things together. Much like Homestuck itself! SOMETIMES, these stories may brush with topics or events that weren't fully elaborated on in Homestuck, and may offer some intriguing insight into what might have happened during certain unembellished portions of canon. But such stories are not guaranteed to be the site's principle offering. Viewing it as an effort to pad out HS by filling all the holes and answering all the mysteries is not the right way to look at it. The right way to look at it is to see PS as a funny source of entertainment, where funny and entertaining comics are posted every weekday. And sometimes, those comics will be \"interesting\" as well.</p>\n</div>",
+        "date": "April 16, 2014",
+        "timestamp": 1397602800.0,
+        "title": "Second story posted."
+      },
+      {
+        "author": "Kory Bing",
+        "body": "<div class=\"media-body\">\n<p>\n</p><p>It's my turn to make a news post! I'm Kory Bing, and I'm the Managing Editor! That means I ask people if they want to make comics, hire them to make comics, make sure they make those comics on time, and then let you read those comics.</p>\n<p>We round out our first week of Paradox Space with a comic by <a href=\"https://web.archive.org/web/20140423230534/http://www.gunshowcomic.com/\">KC Green</a>! You may remember this Zoo from KC's comic <a href=\"https://web.archive.org/web/20140423230534/http://gunshowcomic.com/250\">Gunshow</a>, or maybe <a href=\"https://web.archive.org/web/20140423230534/http://horribleville.com/d/20060312.html\">another comic</a>. Don't go to that zoo, I guess is the moral here. KC also made our 404 images, which you can find by breaking the site (note: Matt has told me not to ask you to break the site on purpose I am sorry).</p>\n<p>Some people have expressed their disappointment that the first week of Paradox Space did not include their favorite characters, but remember, this was just the first week! We have loads of plans to feature all your favorite characters. Yes even that one. Probably. Most likely.</p>\n</div>",
+        "date": "April 17, 2014",
+        "timestamp": 1397689200.0,
+        "title": "Cat Update: My Cat is Asleep Right Now"
+      },
+      {
+        "author": "Rachel",
+        "body": "<div class=\"media-body\">\n<p>\n</p><p>Well hello. It is me, Rachel, your new owl friend. Very nice to meet you.</p>\n<p>This week we will be enjoying <a href=\"/pxs/prototyped/1\">\"Prototyped,\"</a> from the illustrious Zack Morrison, who--again--creates the fantastic comic <a href=\"https://web.archive.org/web/20140423230534/http://paranatural.net/\">Paranatural</a>. When I say we will be enjoying it, I mean we <em>will</em> be enjoying it. If you do not experience enjoyment please report to your local Paradox Space Re-Education Center, because there has been a malfunction. </p>\n<p>I guess now it is incumbent upon me to answer some questions also! </p>\n<p><strong>I have a great idea and/or script and/or drawing! Can I submit it?</strong></p>\n<p>I'm sorry, but at present we are not open to submissions, and we have no current plans to open submissions. You can check out our <a href=\"https://web.archive.org/web/20140423230534/http://paradoxspace.com/contact_us\">contact</a> page if you are ever curious if we are opening submissions.</p>\n<p><strong>Who is drawing the current comic?</strong></p>\n<p>You can find this information in several places--on the title page or panel of the story, on our <a href=\"/pxs/\">stories page</a>, or on the footer of any image in the story (a recommendation from a reader!). If you're going to repost any image from Paradox Space, <strong>please keep the footer intact.</strong> It's respectful to the artists and allows people who see the image but may not be familiar with PXS to find us! </p>\n<p><strong>Why is this more John bullshit? John is personally victimizing me.</strong></p>\n<p>Oddly, John is an important character in the comic. We, as much as you, relish the chance that Paradox Space gives us to tell stories from characters who don't get as much screen time. Have patience!</p>\n<p>Anyway, you are required to enjoy this comic, as it is great. Paranatural is a comic you should definitely read between Paradox Space updates (we have helpfully allowed you to keep your weekends free for this activity). Relatedly, \"Attack the Block\" is a good movie. </p>\n</div>",
+        "date": "April 21, 2014",
+        "timestamp": 1398034800.0,
+        "title": "My name isn't really that cool"
+      },
+      {
+        "author": "Rachel",
+        "body": "<div class=\"media-body\">\n<p>\n</p><p>Hello again my friends. Welcome to the weekend! Have you caught up on <a href=\"https://web.archive.org/web/20140428200852/http://paranatural.net/\">Paranatural</a> yet? </p>\n<p>It seems I have a few small issues to address! It is raining here and therefore the title to this post is appropriate and funny (you are not required to laugh). </p>\n<p>Some people have expressed severe negative reactions to Karkat's having a pink tongue in this comic. For reference, I've come up with a series of exploratory questions one can ask oneself to figure out whether an issue in a comic is one that's worth fretting over.</p>\n<p><strong>Is this something that is important to canon?</strong></p>\n<p>Karkat's blood color would be an important thing, and would be a big mistake if we got it wrong! Karkat's tongue color, on the other hand, has not been mentioned in canon. We can assume that unless tongue color turns out to be an extremely important part of beating Lord English, it is probably not important at all. </p>\n<p><strong>Is this important to the story being told?</strong></p>\n<p>Sometimes things that aren't important to canon can be important to the small stories that we tell. But since Karkat's tongue hasn't been important (yet?!) in this story, it's probably not important at all.</p>\n<p>I don't want to make light of small quibbles! (Okay, I do, but not too much.) I understand that canon adherence is really important to some people. But that's not what we're really about here. If you're looking for information, the <a href=\"https://web.archive.org/web/20140428200852/http://mspaintadventures.wikia.com/wiki/Homestuck\">Homestuck wiki</a> is remarkably well-kept by its very dedicated caretakers. (In fact, so well-kept that we often use it to check our stories and refresh our memories.) But Paradox Space is going to generally be much more about telling stories than it is about canonicity. </p>\n<p>I'm also aware that there's been some dismay that no stories yet have reached the full depth of emotion that Homestuck itself has. To this I'm sort of forced to say, Well, duh. So far we've been telling short, lighthearted stories. Homestuck has literally thousands of pages to move smoothly (or sometimes not that smoothly) between emotional gears; our longest story so far is this seven-page one that's running! We do have some more serious stories in the works, and we do want to reach more emotional range, but the only way we can even try for that is because we're working with established characters in an established universe. What it boils down to, I guess, is please have patience and trust us!</p>\n<p>Another thing I've heard pretty repetitively has been <strong>Oooh! I know where this story is going!</strong> And again I find myself forced to say--Well, duh. Predicting where a story is going when it's told at this pace isn't truly that hard. I hope that what you enjoy is the telling of it, rather than just the prediction of where it's going. As always, serial readers find themselves in a very different position than archival readers. </p>\n<p>Two more things to address: One, we're still getting lots of people writing in and asking how they can work with us. <strong>Right now, you can't. If we're interested in working together, we will come to you.</strong> I know that it's taught, especially in art schools, that there's no harm in being confident and putting yourself out there--but for us, right now, it's truly more annoying than it is helpful. If we're looking for artists, we'll let you know, I promise! </p>\n<p>Two, dear, sweet, precious, sweet, sweet, readers. If you're asking <strong>Why aren't we talking about this?!</strong> or <strong>Has anyone else seen this?!</strong> I can assure you on both counts that people have seen it and are talking about it. In every single instance I have seen of those questions, it is so. Perhaps, dear readers, you need to look around a little better. </p>\n<p>If you have any other small questions, in addition to our email, you can shoot them to me on <a href=\"https://web.archive.org/web/20140428200852/http://rachelpxs.tumblr.com/\">my tumblr made specifically for that purpose</a> if it delights you to do so. </p>\n<p>Oh--and for goodness' sake, stop asking about <a href=\"/pxs/headed-for-stardom/2\">that rabbit.</a></p>\n</div>",
+        "date": "April 26, 2014",
+        "timestamp": 1398466800.0,
+        "title": "Pitty-patty petty hour."
+      },
+      {
+        "author": "Matt Hink",
+        "body": "<div class=\"media-body\">\n<p>\n</p><p>Well-- I suppose this would be a good time to introduce myself!  My name is Matt Hink- as the fourth member of the Paradox Space team, I am the resident web developer and in fact, all-round technical guy for the site.  A significant portion of my job is taking the (often somewhat unhinged) ideas that the rest of the team has and turn them into a functioning website.  As some of you may have noticed, this is generally easier said than done. Websites can often be distinctly recalcitrant.</p>\n<p>The remainder of my job is attempting not to cry as Tauhid, Kory, and Rachel find ways to misuse the site.  I am not particularly good at this.  My beard is stained with tears.</p>\n<p>Anyways, circumstances like last night's outage are likely the only time you'll hear from me, as the rest of the team is much better than I am at saying words to people.  But you can rest assured that I am constantly behind the scenes keeping a wary and at times paranoid eye over the Paradox Space server(s).</p>\n<p>And now, a few fun facts.</p>\n<p>DID YOU KNOW?  During launch, our rate of requests peaked at around 3500 requests per minute, meaning that <strong>every second</strong>, about 58 users were accessing the site.  Happily, the wave of the Homestuck fandom didn't even come close to knocking us over.  Since then, we're down to about 200-300 requests per minute over the course of the day.</p>\n<p>DID YOU KNOW?  The 404 (File Not Found) and 500 (Internal Server Error) images were drawn by KC Green and Shad Andrews, respectively.</p>\n<p>DID YOU KNOW?  The final pre-launch touches to Paradox Space were made 4 minutes and 13 seconds before 4:13 on 04/13?</p>\n<p>Well, now you do.</p>\n<p>Couple notes of recognition: thanks to everyone who's emailed in bug reports to <a href=\"https://web.archive.org/web/20140430154248/mailto:issues@paradoxspace.com\">issues@paradoxspace.com</a>- I do read them and generally take them into account.  I'd also like to thank everyone who's sent in encouraging emails to the team- I have this massive amount of respect for Rachel, Kory, and Tauhid, who constantly bust their rumps to make great stuff for you guys.</p>\n<p>P.S.  To whoever it was on Tumblr that discovered the Swedish translation of my last name, thanks a WHOLE lot.  My co-workers found out about it and now they won't stop calling me \"bucket\".  :(</p>\n</div>",
+        "date": "April 28, 2014",
+        "timestamp": 1398639600.0,
+        "title": "oh hey the site's back up"
+      },
+      {
+        "author": "Kory Bing",
+        "body": "<div class=\"media-body\">\n<p>\n</p><p>I hope y'all liked A Fun Day for Bec! It was drawn by Matt Cummings, and you should check out his other work that you can find <a href=\"https://web.archive.org/web/20140505234305/http://www.eiffelart.ca/\">right here!</a> Our very own Rachel Rocklin wrote it!</p>\n<p>Today's comic is the start of a longer comic called Critical Miss! Eridan and Vriska make their Paradox Space debut! I hope you like it, it was drawn by <a href=\"https://web.archive.org/web/20140505234305/http://kristinkemper.tumblr.com/\">Kristin Kemper</a> and written by <a href=\"https://web.archive.org/web/20140505234305/http://about.me/benitocereno\">Benito Cereno!</a></p>\n<p>And that's the news you can use.</p>\n</div>",
+        "date": "May  1, 2014",
+        "timestamp": 1398898800.0,
+        "title": "Cat Update: He's Under the Bikes for Some Reason"
+      },
+      {
+        "author": "Andrew Hussie",
+        "body": "<div class=\"media-body\">\n<p>\n</p><p>Hello, it's me again. The fact that it's me is how you know something weird is going on.</p>\n<p>Here's a cool thing that will happen with this website sometimes. Every now and then, we will flip a switch, and that little button that says \"2x UPDATE COMBO WEEK\" will appear up there in the corner. This means for that week, Paradox Space will update with two pages per day. </p>\n<p>I know, right? That's a lot of comics! When the idea for this site was first conceived, this is something I pictured as a standard for it. Frequently more than one (or even more than two??) pages per day. I would like to work toward this being a more common thing for the site. For now though, it will be kind of a special thing. It will take some time to make that idea sustainable. Posting ten pages in a week burns through a lot of comics! But as this comic-making process gets more streamlined, it is my hope that this will occur more often - perhaps it will even become normal.</p>\n<p>Part of \"making it sustainable\" has to do with cost. In case it was not obvious, I'm paying all the writers and artists a decent page-rate to make everything you see here. In fact, this is probably one of the most expensive webcomics to run for that reason. Usually, a webcomic involves one guy like me, who just makes a bunch of stuff \"for free\", puts it up, and whatever the site makes covers server costs, and some extra for the webcomic guy to live on. This is a much more distributed production though, involving many people. And that's fine! At one page per day we can make that work without a sweat. It's when you start racking up multiple pages per day, the costs start getting kooky. So my intention is to work on figuring that out, to make it sustainable. By optimizing ads, printing books, etc. Your support, as always, is critical and appreciated.</p>\n<p>What is implied here is that I am thinking in the long term with this site, and expecting it to grow and evolve. Part of that is frequency of the content. The other part is nature of the content. I spoke of what kind of comics to expect here in my initial spiel, but I think I can simplify it further.</p>\n<p>It seems to me there will be two types of content this site runs. The funny and gaggy kind, like the one my pal <a href=\"https://web.archive.org/web/20140515222130/http://www.gunshowcomic.com/\">\nKC Green</a> did a couple weeks ago, and the one running currently by the very funny <a href=\"https://web.archive.org/web/20140515222130/http://www.gastrophobia.com/\">\nDaisy McGuire</a>. These are comics full of laffs, but quite obviously have no relation to canon events. Then there is the more \"substantive\" kind, which conceivably could have taken place in canon, and contribute a little more to your understanding of the characters and the story overall. The Flarp story last week by Benito and Kristin I think fits this description. Sure seems like that arc could have happened in canon, doesn't it? If that is what you would like to believe, you will get no argument from me. Eridan getting owned is ALWAYS plausible, the end.</p>\n<p>My sense is that as this comic goes along, the latter type of content will be more exciting to the audience. Chuckles are always great, but \"substantive\" elaboration on the characters and universe are understandably seen as more rewarding. So I will try to nudge production in that direction. Again, it'll take some time to make that a fully sustainable idea. I can't just snap my fingers and expect other writers to have the comprehensive understanding of all this nonsense that I have. It'll take a while to get there. But I am patient. I am also confident that the creative people behind this operation will keep putting out good comics, and that this site will continue evolving into something you will find more rewarding to visit with each passing month.</p>\n<p>Now let's all kick back, relax, and google some horse memes.</p>\n<p>Edit: Whoaaa. Those are all HORRIBLE. Let's forget I suggested that idea!</p>\n</div>",
+        "date": "May 11, 2014",
+        "timestamp": 1399762800.0,
+        "title": "2x UPDATE COMBO"
+      },
+      {
+        "author": "Matt Hink",
+        "body": "<div class=\"media-body\">\n<p>\n</p><p>You may have noticed by now that if you squint really hard, there are now THINGS at the bottom of each comic page.  These things have colors and words on them.  This may confuse and alarm you, but these things have a name.</p>\n<p>They are called TAGS.</p>\n<p>After talking it over in our weekly video calls (during which I usually just nod sagely while Kory, Rachel, and Tauhid discuss the finer details of comic scheduling and do Actual Work), we decided that what Paradox Space REALLY NEEDS is another way for us to insert EVEN MORE hilarious sideline commentary in a website that's already packed to the brim with cool stuff.</p>\n<p>You'll notice that there are several types of tags which appear at the bottom of each page.  The colorful tags describe two things: the creator(s) of the comic, and the characters appearing in the comic.  (The Critical Wh8le was granted charactership in a landslide victory for curmudgeonly sea mammals worldwide.)</p>\n<p>The not-colorful tags (I've heard they're called 'desaturated', but I don't approve of that sort of language) are simply other ways for us to make silly and pointless remarks about comics.</p>\n<p>Last, but not least, hiding down below the \"Recent Stories\" panel is a friendly button which says TAG CLOUD.  Clicking this will make allllllll of the tags (all of them) in the entire comic appear for your perusal.</p>\n<p>Thanks to everyone who's gotten in touch via issues@paradoxspace.com and questions@paradoxspace.com!</p>\n<p>P.S. Stop hammering the paradoxspace.com/413 url.  There's nothing there... yet.</p>\n</div>",
+        "date": "May 16, 2014",
+        "timestamp": 1400194800.0,
+        "title": "New Feature GET: Tags!"
+      },
+      {
+        "author": "Tauhid Bondia",
+        "body": "<div class=\"media-body\">\n<p>\n</p><p>I've been a huge fan of <a href=\"https://web.archive.org/web/20140521150512/http://threepanelsoul.com/\">Ian's art</a> since forever-ever. In fact, <a href=\"https://web.archive.org/web/20140521150512/http://www.machall.com/\">Mac Hall</a> was the first webcomic I'd ever discovered. I'm fan-plotzing right now, but as you can see, playing it totally cool. If this was some kind of convention, then this post would be the equivalent of my standing by his table all day, ignoring subtle hints that it's way past time I moved on. </p>\n</div>",
+        "date": "May 20, 2014",
+        "timestamp": 1400540400.0,
+        "title": "I'm a Gratuitous Fanbutt"
+      },
+      {
+        "author": "Matt Hink",
+        "body": "<div class=\"media-body\">\n<p>\n</p><p>So, we've been receiving reports from several users having issues accessing Paradox Space- specifically, that they simply cannot connect to the site whatsoever.  We've gotten in touch with our hosting provider, but they need a bit more information about the issue in order to get things working.  If you're having problems accessing the site, <em>please</em> email us at issues@paradoxspace.com so we can get a few details from you, and we'll get the situation resolved as quickly as possible.  Many thanks to the readers who have already brought this to our attention!</p>\n<p>(I am also not oblivious to the irony of posting about issues accessing the site on the site itself.  If you know anyone having problems with the site, please relay this message on to them!)</p>\n<p>In the meantime, you can check out <a href=\"https://web.archive.org/web/20140525181720/http://pxscomics.tumblr.com/\">our Tumblr</a> for the latest updates!</p>\n<p>Thanks for your patience!  I'll have more information as it becomes available.</p>\n</div>",
+        "date": "May 23, 2014",
+        "timestamp": 1400799600.0,
+        "title": "Issues accessing the site"
+      },
+      {
+        "author": "Rachel",
+        "body": "<div class=\"media-body\">\n<p>\n</p><p>Whoa. WHOA. We went a while without speaking there. We're really sorry. We're not mad at you, we promise. We just get busy sometimes. </p>\n<p>Well! Since we last spoke, you've all seen a lot, huh? You saw <a href=\"/pxs/a-fun-day-for-gcat\">A Fun Day For GCAT</a> that was written by me and beautifully drawn by <a href=\"https://web.archive.org/web/20140610063729/http://www.eiffelart.ca/\">Matt Cummings</a>. Then you saw the exciting, mostly-grey adventure of <a href=\"/pxs/quality-time\">Quality Time</a>, which was drawn by the incredible <a href=\"https://web.archive.org/web/20140610063729/http://hannibrosh.com/\">Hanni Brosh</a> and written by <a href=\"https://web.archive.org/web/20140610063729/http://mspaintadventures.com/\">an obscure writer you probably haven't heard of</a>. </p>\n<p>And now here we are, together, with <a href=\"/pxs/fetch-quest\">Fetch Quest</a>, written by <a href=\"https://web.archive.org/web/20140610063729/http://poinko.tumblr.com/\">Phil Gibson</a> and drawn by <a href=\"https://web.archive.org/web/20140610063729/http://www.rice-boy.com/\">Evan Dahm</a>. Evan's story <a href=\"https://web.archive.org/web/20140610063729/http://www.rice-boy.com/see/\">Rice Boy</a> was one of the earliest webcomics I got into, and it's really beautiful, as are his other works. I have to admit that I am not current with <a href=\"https://web.archive.org/web/20140610063729/http://www.rice-boy.com/vattu/\">Vattu</a>--ever since <a href=\"https://web.archive.org/web/20140610063729/http://www.rice-boy.com/order/\">Order of Tales</a> my preference has been to wait and buy the books when they come out. Curling up with a brand new Evan Dahm hardcover knowing it's all new to you is an experience to be cherished. But don't let that stop you reading those stories! I have it on good authority that my waiting around makes me A Weirdo.</p>\n<p>One not-totally-intentional side effect to Paradox Space is that we're exposing a lot of people to artists and writers they might not have known otherwise. We really try to work with people whose work we love and admire, which of course leads to us approaching artists whose work we've followed. We do want to bring totally new artists to you, too; but it's my hope that you'll follow at least one of those author or artist links and find a new love. Homestuck is great, but there's so much more out there too!</p>\n<h5>Haha just kidding it's all Homestuck don't look around <a href=\"https://web.archive.org/web/20140610063729/http://www.whatpumpkin.com/home.php\">read our comics buy our toys</a></h5>\n</div>",
+        "date": "June  6, 2014",
+        "timestamp": 1402009200.0,
+        "title": "Did you miss us?"
+      },
+      {
+        "author": "Rachel",
+        "body": "<div class=\"media-body\">\n<p>\n</p><p>We have a special meal for you this week! That's right, it's a Sweet Bro and Hella Jeff Meowrail Sandwich!</p>\n<p>They're a little more unusual than your garden variety tuna salad so let me explain. You take two thin slices of SBAHJ bread--not too much or it will become overwhelming--and between them you put a nice sturdy helping of meowrails. Two great tastes that taste great together, and need a whole week to be fully enjoyed!</p>\n<p>So what I'm saying is we have one page of SBAHJ to start you off, by the illustrious and hilarious <a href=\"https://web.archive.org/web/20140623113143/http://kcgreendotcom.com/\">KC Green</a>. KC is a super cool guy and one of the few who really have the chops to make something SBAHJ without being over the top. Plus, he just started a cool <a href=\"https://web.archive.org/web/20140623113143/http://backcomic.com/\">comic called \"Back\"</a> that he's making with <a href=\"https://web.archive.org/web/20140623113143/http://nedroid.com/\">Anthony Clark</a>! You should check it out. </p>\n<p>In the middle of the week--right now--we have <a href=\"https://web.archive.org/web/20140623113143/http://poinko.tumblr.com/\">Phil Gibson</a>'s second story, \"Hunting Lesson,\" this one illustrated by the extremely skilled <a href=\"https://web.archive.org/web/20140623113143/http://paperseverywhere.tumblr.com/\">Adrienne Garcia</a>, who you may know by the name \"paperseverywhere.\" She came to our attention with her gorgeous fan art and we were extremely pleased that she had the time and desire to work with us!</p>\n<p>And to round out the week we'll have one more slice of SBAHJ--but I'll leave that mysterious for now. </p>\n<p>I'm extremely pleased on a personal level that we finally have a story where Equius gets to shine. He is my pride and joy, inasmuch as a sweaty, fictional alien teen can be such a thing. For a while I was trying to think of something special I could do whenever we had an Equius comic, but I ultimately decided that I would have to be content with just feeling smug. (Which I do.)</p>\n<p>Finally, a small note. PXS is currently looking for <strong>professional freelance inkers</strong>. We have avoided opening submissions in any way because we're more than sure that it would be opening a floodgate we don't have the time or energy to deal with. However, in this case, we are counting on you, our perspicacious audience, to self-select wisely. If you are an experienced artist whose inking skills are as exemplary as your professionalism, please <a href=\"https://web.archive.org/web/20140623113143/mailto:rachel@whatpumpkin.com\">shoot me an email</a>. In this email, please include a link to your portfolio (not attached files), a little about yourself and your level of experience, and any other information that might be germane to working with you. If you know someone who fulfills these requirements we would vastly prefer that rather than writing in to us with their info, you ask them to email us themselves. </p>\n<p>Thanks everyone, hope you enjoy your sandwich! There's also some potato chips to go with it, and a nice apple, because fruits and veggies are important.</p>\n</div>",
+        "date": "June 18, 2014",
+        "timestamp": 1403046000.0,
+        "title": "A healthy lunch is important."
+      },
+      {
+        "author": "Kory Bing",
+        "body": "<div class=\"media-body\">\n<p>\n</p><p>I hope everybody enjoys Party Crashers! It is eight pages long and I drew it! Rachel and I wrote it! <a href=\"https://web.archive.org/web/20140625035316/http://www.eiffelart.ca/\">Matt Cummings</a> colored it. If you like it, maybe you would be interested in my comic, <a href=\"https://web.archive.org/web/20140625035316/http://www.skindeepcomic.com/\">Skin Deep</a>! It is about mythical creatures with personal problems.</p>\n<p>There is also a new post over at the <a href=\"https://web.archive.org/web/20140625035316/http://whatpumpkin.tumblr.com/post/89677554645/become-your-dream-self-and-take-flight-with-these\">What Pumpkin tumblr</a>! New merch is in the store!</p>\n</div>",
+        "date": "June 24, 2014",
+        "timestamp": 1403564400.0,
+        "title": "Cat Status: My cat stole my computer chair"
+      },
+      {
+        "author": "Rachel",
+        "body": "<div class=\"media-body\">\n<p>\n</p><p>Hello everyone! I hope you're enjoying this tea party. Crumpets are over there, and cucumber sandwiches are there. Sugar cubes are in this cute little pot right here. </p>\n<p>A belated Canada day to all our Canadian readers, and a pre-emptive happy Fourth of July to our US-ian readers! I am kind of not so hot on the 4th as a holiday, but it's as good a reason as any to wish people well. </p>\n<p>As many readers have noticed, we've been having some troubles with our tags. This is due to something Technical that I don't understand completely enough to give you a good explanation for; but rest assured, we're working on it, and will soon have the tags fixed up. We're also working on some improvements to the tag system that we hope to have up in the next week or two. </p>\n<p>I'd also like to ask that if you find any problems while you're browsing the site, you please send an email in to <a href=\"https://web.archive.org/web/20140703024346/mailto:issues@paradoxspace.com\">issues@paradoxspace.com</a>, as that is the ideal method to let us know there's something technical going on! Sending an email to another address or writing in through Tumblr or Twitter is still helpful, but is likely to mean a longer delay in seeing your message and addressing the problem.</p>\n<p>I'd also like to thank everyone who wrote in response to my last newspost where I asked for inkers to step forward! I received a lot of really nice emails with links to some really gorgeous portfolios. We've put a whole bunch of new names into our useful little artists spreadsheet, and will no doubt be calling on many of you in the future! </p>\n<p>Because we had such success asking for inkers, we're also taking a tentative next step: we are looking for writers. However, I want to stress that we are looking for <strong>experienced</strong> writers. If this is you, please, as before, <a href=\"https://web.archive.org/web/20140703024346/mailto:rachel@whatpumpkin.com\">email me</a>. Guidelines for these emails: use your <strong>real name</strong>, send a <strong>link to your portfolio</strong> (not attached files), be <strong>clear about your experience level</strong>, and if you're feeling especially helpful, <strong>give us an idea of your per-page rate</strong>.</p>\n<p>Thanks everyone, hope you're staying cool! If you're feeling a bit toasty, the iced tea's right here.</p>\n</div>",
+        "date": "July  2, 2014",
+        "timestamp": 1404255600.0,
+        "title": "Tea & Tags & T... uh, writing"
+      },
+      {
+        "author": "Rachel",
+        "body": "<div class=\"media-body\">\n<p>\n</p><p>I forgot to mention! <strong>If you liked \"Party Crashers,\" <a href=\"https://web.archive.org/web/20140802131502/http://www.whatpumpkin.com/Consort-Tea-Party.html\">check out Kory's print that is now available in the WP store!</a></strong></p>\n</div>",
+        "date": "July  7, 2014",
+        "timestamp": 1404687600.0,
+        "title": "I'm making a separate post for this because it's that important"
+      },
+      {
+        "author": "What Pumpkin",
+        "body": "<div class=\"media-body\">\n<p>\n</p><p><img alt=\"Back-to-School Sale at What Pumpkin\" src=\"assets://archive/comics/pxs/news/tumblr_n8oerpfOu71ruddclo1_500.jpg\"/></p>\n<p><a href=\"https://web.archive.org/web/20140802131502/http://whatpumpkin.tumblr.com/post/91692553275/soooooooo-schools-right-around-the-corner-and\">Midnight to midnight July 14th is our back to school sale!</a></p>\n</div>",
+        "date": "July 13, 2014",
+        "timestamp": 1405206000.0,
+        "title": "Back-to-School sale at WP!"
+      },
+      {
+        "author": "What Pumpkin",
+        "body": "<div class=\"media-body\">\n<p>\n</p><p><img alt=\"Consort Sale at WP!\" src=\"assets://archive/comics/pxs/news/tumblr_n951898LYq1ruddclo1_1280.jpg\"/></p>\n<p><a href=\"https://web.archive.org/web/20140802131502/http://whatpumpkin.tumblr.com/post/92578796590/hey-all-weve-got-another-sale-for-you-this\">Starting tomorrow, July 23rd, and running all day, consorts are on sale at What Pumpkin!</a></p>\n</div>",
+        "date": "July 22, 2014",
+        "timestamp": 1405983600.0,
+        "title": "Consort sale at WP!"
+      },
+      {
+        "author": "Rachel",
+        "body": "<div class=\"media-body\">\n<p>\n</p><p>Hello hello!</p>\n<p>Sorry for the radio silence of late; the PXS team is a pretty small one and we've all been extra busy lately! We appreciate your patience. :)</p>\n<p>Tag system improvements are still in the works, currently taking a back seat to longer-term and larger-scale technical stuff that should improve both the performance of both PXS and MSPA itself. Sorry about that; I know the tags are often a bit off! </p>\n<p>We've had reports of a malicious, hijacking ad. <strong>THIS IS NOT OKAY BY US.</strong> Sometimes bad ads can get through the ad service we use, much to our chagrin. If this happens to you, please email issues@paradoxspace.com with as much information as you can get! This includes the ad itself, where the ad sent you, what browser you're using, anything. Thank you! We want this to happen as little as possible, and that means getting info to the ad service as fast as we can to get the offending ad axed.</p>\n<p>We've had some stories from new contributors lately! Big PXS welcomes to <a href=\"https://web.archive.org/web/20140802131502/http://www.maryborsellino.com/mary/\">Mary Borsellino</a> and <a href=\"https://web.archive.org/web/20140802131502/http://www.monster-pulse.com/\">Magnolia Porter</a>! Thanks for being a part of this little experiment!</p>\n<p>We are still going through some of the portfolios that we've been linked, both for writers and inkers. We may soon be looking for colorists; keep an eye on this space, and get your portfolios ready! </p>\n<p>Thanks everyone; have a great weekend!</p>\n</div>",
+        "date": "August  1, 2014",
+        "timestamp": 1406847600.0,
+        "title": "TGIK: Thank Goodness It's Kanaya"
+      },
+      {
+        "author": "What Pumpkin",
+        "body": "<div class=\"media-body\">\n<p>\n</p><p><img alt=\"Troll Hoodie Sale\" src=\"assets://archive/comics/pxs/news/tumblr_n9ul1jqOOI1ruddclo1_1280.jpg\"/></p>\n<p><a href=\"https://web.archive.org/web/20140903185233/http://www.whatpumpkin.com/Troll-Hoodies-and-Tees/\">Troll Hoodies</a> go on sale tomorrow, Wednesday, August 6th, from midnight to midnight EDT! All Troll Hoodies will be 20% off during that time.</p>\n</div>",
+        "date": "August  5, 2014",
+        "timestamp": 1407193200.0,
+        "title": "Troll Hoodie Sale!"
+      },
+      {
+        "author": "Rachel",
+        "body": "<div class=\"media-body\">\n<p>\n</p><p>Hey again everyone!</p>\n<p>I hope you're enjoying this latest comic! Speaking as a huge fan of Equius, it's one of my favorites. <a href=\"https://web.archive.org/web/20140903185233/http://beyondthecanopy.com/\">Jon's</a> script is great, and as always <a href=\"https://web.archive.org/web/20140903185233/http://pukind.tumblr.com/\">Mallory's</a> art is gorgeous! Look at all those darling, sweaty Equius faces. My heart! </p>\n<p>We got a great response to our last invitation for writers, but most of the people writing in were men. We'd really love for others to write in, too, so please, if you were waiting for a sign, this should be it! If you're a skilled writer, especially if you have experience writing for comics, please send me an email: rachel@whatpumpkin.com. Thank you!</p>\n<p>I'm sure you've also noticed that our tag system is still not working right. I'm really sorry about that! Our technical guy <a href=\"https://web.archive.org/web/20140903185233/https://twitter.com/mhink1103\">Matt</a> has been super busy. Thank you all for your patience and understanding!</p>\n<p>D --&gt; Now you will all enjoy</p>\n<p>D --&gt; This cultural odyssey</p>\n<p>D --&gt; I command it </p>\n</div>",
+        "date": "August 13, 2014",
+        "timestamp": 1407884400.0,
+        "title": "Writers, tags, etc"
+      },
+      {
+        "author": "Rachel",
+        "body": "<div class=\"media-body\">\n<p>\n</p><p>Hey! I've already gotten a TON of writers emailing and I wanted to clarify, the same instructions hold as last time:</p>\n<p><strong>Please email with your full name, a link to your professional portfolio, and a description of your experience level. You should have some experience writing for sequential art, as well as some experience doing freelance work.</strong></p>\n<p>Thanks!</p>\n</div>",
+        "date": "August 14, 2014",
+        "timestamp": 1407970800.0,
+        "title": "Note about call for writers"
+      },
+      {
+        "author": "What Pumpkin",
+        "body": "<div class=\"media-body\">\n<p>\n</p><p><img alt=\"Alpha and Beta Kid Tees Sale\" src=\"assets://archive/comics/pxs/news/tumblr_nbaeuo46AS1ruddclo1_1280.jpg\"/></p>\n<p><a href=\"https://web.archive.org/web/20140903185233/http://www.whatpumpkin.com/Alpha-Kids-Tees/\">Alpha Kid Tees</a> and <a href=\"https://web.archive.org/web/20140903185233/http://www.whatpumpkin.com/Beta-Kids-Tees/\">Beta Kid Tees</a> go on sale tomorrow, Wednesday, September 3rd, from midnight to midnight EDT. <a href=\"https://web.archive.org/web/20140903185233/http://www.whatpumpkin.com/Alpha-Kids-Cosplay-Tees/\">Alpha Kid Cosplay Tees</a> too! All of those T-shirts will be 20% off.</p>\n</div>",
+        "date": "September  2, 2014",
+        "timestamp": 1409612400.0,
+        "title": "Alpha/Beta Kid Tees Sale!"
+      },
+      {
+        "author": "Blueberry",
+        "body": "<div class=\"media-body\">\n<p>\n</p><p>Okay, so the holiday wishes are a bit early, but DAMARA is an extra-spooky comic especially produced for Halloween, so! Here we are.</p>\n<p>You may have noticed that this comic is in black and white! That's because DAMARA is an homage to the work of Junji Ito, particularly \"TOMIE\". If you like spooky manga, check it out! (You can read DAMARA without reading TOMIE first, but it may make more sense if you do.) (A note: TOMIE has some mature content, particularly gore.)</p>\n<p>In less-specific news: new contributors!! It's been a while since our last news post (not a lot to report, sorry!) but you should be sure to check out the contributor panel for info and links on our new artists!! DAMARA is inked by the fantastic Tom Siddell (go read <a href=\"https://web.archive.org/web/20141024091325/http://www.gunnerkrigg.com/\">Gunnerkrigg Court</a> right now. It's okay, I'll wait here until you finish) and I also want to give shout-outs to Incineraptor and Mary Cagle!!\nOh, and there's me I guess. Hi! My name is Blueberry and I'm an Assistant Editor here at Paradox Space. I also have a really cute cat.</p>\n<p>I think that's everything for now. Thanks for reading!!</p>\n</div>",
+        "date": "October 23, 2014",
+        "timestamp": 1414018800.0,
+        "title": "Happy Halloween!"
+      },
+      {
+        "author": "Rachel",
+        "body": "<div class=\"media-body\">\n<p>\n</p><p>It's not March, but you know, it seemed like a good time to hang out with some leprechauns. </p>\n<p>Starting today and continuing for the next five weeks, we'll be exploring a very green mansion, led by Mister Seven himself. This comic was laid out and sketched by the incredibly skilled <a href=\"https://web.archive.org/web/20141211214647/http://deadwinter.cc/\">Allison Shabet</a>, who will probably be talking a bit about the process at <a href=\"https://web.archive.org/web/20141211214647/http://rallyyy.tumblr.com/\">her blog</a> (or <a href=\"https://web.archive.org/web/20141211214647/http://www.patreon.com/deadwinter\">her Patreon</a>?) sometime over the next few weeks. It was drawn, colored and lettered by the amazing <a href=\"https://web.archive.org/web/20141211214647/http://helvetica.jnwiedle.com/\">Jones Wiedle</a>, whose lettering has been invaluable on past comics, and whose comic <a href=\"https://web.archive.org/web/20141211214647/http://helvetica.jnwiedle.com/\">Helvetica</a> has just restarted! You can back <a href=\"https://web.archive.org/web/20141211214647/http://www.patreon.com/helvetica\">Jones on Patreon</a>, too.</p>\n<p>Oh yeah, I guess <a href=\"https://web.archive.org/web/20141211214647/http://www.mspaintadventures.com/\">some guy wrote it</a>, too. Real newcomer to the scene, let's all give him a big hand in welcome, make sure he feels right at home.</p>\n</div>",
+        "date": "November  4, 2014",
+        "timestamp": 1415059200.0,
+        "title": "Hope you like green."
+      },
+      {
+        "author": "Blueberry",
+        "body": "<div class=\"media-body\">\n<p>\n</p><p>I hope you all are enjoying this wonderful, and very green, story about some of our favorite soft, plushy, also very green, mobster guys. I bet you wish you had more content involving The Felt to complete your life after reading this great comic.</p>\n<p>Well, I have news for you!!! The brand new <a href=\"https://web.archive.org/web/20141211214647/http://www.whatpumpkin.com/The-Felt-Playing-Cards.html\">FELT PLAYING CARD DECK</a> is now available from What Pumpkin!\n<img alt=\"Felt Playing Cards\" src=\"assets://archive/comics/pxs/news/felt-deck1.jpg\"/>\nYou can also purchase it as a set with the Midnight Crew playing card deck, which was previously an exclusive to the Homestuck Adventure Game kickstarter!</p>\n<p>What Pumpkin has been rolling out a whole ton of sweet loot for you to put on your body and/or surfaces in your home. <a href=\"https://web.archive.org/web/20141211214647/http://www.whatpumpkin.com/home.php\">Check it out!</a></p>\n</div>",
+        "date": "November 23, 2014",
+        "timestamp": 1416700800.0,
+        "title": "New What Pumpkin merch!"
+      },
+      {
+        "author": "Blueberry",
+        "body": "<div class=\"media-body\">\n<p>\n</p><p>I hope you are all enjoying Secret Sufferer! It's been super fun to work on.</p>\n<p>As a holiday present, we got you these Activity Pages by the wonderful <a href=\"https://web.archive.org/web/20141222165151/http://www.gastrophobia.com/\">Daisy McGuire</a>. They're black and white so you can print them out at home and do them on paper!!! Wow!!!</p>\n</div>",
+        "date": "December 21, 2014",
+        "timestamp": 1419120000.0,
+        "title": "Happy Holidays!"
+      },
+      {
+        "author": "Kory Bing",
+        "body": "<div class=\"media-body\">\n<p>\n</p><p>Blueberry already mentioned that the wonderful <a href=\"https://web.archive.org/web/20141226071941/http://gastrophobia.com/\">Daisy McGuire</a> did our surprise holiday Activity Pages, but I just uploaded some nice <a href=\"https://web.archive.org/web/20141226071941/http://pxscomics.tumblr.com/post/105841176530/here-are-proper-print-sized-activity-sheets-for\">print-sized versions of them over at the Paradox Space Tumblr</a> so y'all can have some nice print outs!</p>\n<p>I'd also like to mention that Secret Sufferer is at 25 page long comic, but it's broken up into a couple smaller stories, so don't be alarmed that Friday's page and today's page seem to take a jump! It will all come around in the end, I promise! Also take note! This week is a special 2X UPDATE COMBO week! Just for you! Happy Holidays! Big thanks to <a href=\"https://web.archive.org/web/20141226071941/http://poinko.tumblr.com/\">Phil Gibson</a> and <a href=\"https://web.archive.org/web/20141226071941/http://www.eiffelart.ca/\">Matt Cummings</a>!</p>\n</div>",
+        "date": "December 22, 2014",
+        "timestamp": 1419206400.0,
+        "title": "More Holiday Things!"
+      },
+      {
+        "author": "What Pumpkin",
+        "body": "<div class=\"media-body\">\n<p>\n</p><p><img src=\"assets://archive/comics/pxs/news/CAk1FbtUYAAg5A9.jpg\"/>\nNew items in the <a href=\"https://web.archive.org/web/20150321085902/http://www.whatpumpkin.com/home.php\">What Pumpkin store</a>, including last year's limited con-exclusive tees, which will never exist ever again!\nAlso, this weekend (9:00pm EDT on March 20 - 11:59pm EDT on March 22) all Trickster tees and the graphic tees are 20% off! Including Paradox Space tees! Wow!!</p>\n</div>",
+        "date": "March 20, 2015",
+        "timestamp": 1426806000.0,
+        "title": "WP Weekend Sale + More!"
+      },
+      {
+        "author": "Rachel",
+        "body": "<div class=\"media-body\">\n<p>\n</p><p>Hey all! </p>\n<p>As you might have heard from <a href=\"https://web.archive.org/web/20150417023211/http://www.mspaintadventures.com/\">the latest newspost</a>, PXS will be taking a hiatus starting today! Keep an eye out here and on MSPA for news as it occurs. (Speaking of which, if you haven't seen <a href=\"https://web.archive.org/web/20150417023211/https://twitter.com/pxscomics/status/585199014221651970\">this teaser</a> yet, now's the time to see it and get excited!) In the meantime, we'd like to thank each and every one of you who've supported us during this past year. It's been a new experience for all of us, and we're so grateful you came along with us on this weird little journey!</p>\n<p>From myself personally, I'd like to extend an extra thanks to everyone we've worked with--especially my coworkers, the other editors of PXS, who are hardworking, tireless, and lovely. I'd also like to thank all the visual artists, writers, designers, and other freelancers we've worked with, who have sweat blood for what are objectively very silly stories, and to whom I could not be more grateful or appreciative. Working with, as they say, \"creatives\" is my favorite part of the job and I feel very humbled and lucky to have worked with you all!</p>\n<p>Happy 413, everyone. :)</p>\n</div>",
+        "date": "April 13, 2015",
+        "timestamp": 1428879600.0,
+        "title": "A particularly unusual year!"
+      },
+      {
+        "author": "Kory Bing",
+        "body": "<div class=\"media-body\">\n<p>\n</p><p>Hey y'all! Long time no see! We've been super busy getting the second Paradox Space book ready for you! This one includes Mister 7 and also a BRAND NEW story not seen on this site, drawn by Mallory Dyer and written by Andrew Hussie! Who could it 8e a8out????????</p>\n<p><a href=\"https://web.archive.org/web/20160224185441/http://www.welovefine.com/paradox-space-book-two-11039.html\"><img src=\"assets://archive/comics/pxs/news/tumblr_o2t8gvs9lG1qe75x7o3_500.jpg\"/></a></p>\n<p>Pre-order now!!</p>\n</div>",
+        "date": "February 21, 2016",
+        "timestamp": 1456012800.0,
+        "title": "Paradox Space Book 2 up for Preorder!"
+      }
+    ]
+  },
+  "snaps": {
+    "list": [
+      "2016-10-24",
+      "2016-10-31",
+      "2016-11-11",
+      "2016-11-18",
+      "2016-11-24",
+      "2016-12-02",
+      "2016-12-23",
+      "2016-12-25",
+      "2017-08-29"
+    ],
+    "comics": {
+      "2016-10-24": {
+        "name": "2016-10-24",
+        "pages": [
+          "/archive/comics/snaps/2016-10-24/1.jpg",
+          "/archive/comics/snaps/2016-10-24/2.jpg",
+          "/archive/comics/snaps/2016-10-24/3.jpg",
+          "/archive/comics/snaps/2016-10-24/4.jpg",
+          "/archive/comics/snaps/2016-10-24/5.jpg",
+          "/archive/comics/snaps/2016-10-24/6.jpg",
+          "/archive/comics/snaps/2016-10-24/7.jpg",
+          "/archive/comics/snaps/2016-10-24/8.jpg",
+          "/archive/comics/snaps/2016-10-24/9.jpg",
+          "/archive/comics/snaps/2016-10-24/10.jpg",
+          "/archive/comics/snaps/2016-10-24/11.jpg"
+        ]
+      },
+      "2016-10-31": {
+        "name": "2016-10-31",
+        "pages": [
+          "/archive/comics/snaps/2016-10-31/1.jpg",
+          "/archive/comics/snaps/2016-10-31/2.jpg",
+          "/archive/comics/snaps/2016-10-31/3.jpg",
+          "/archive/comics/snaps/2016-10-31/4.jpg",
+          "/archive/comics/snaps/2016-10-31/5.jpg",
+          "/archive/comics/snaps/2016-10-31/6.jpg",
+          "/archive/comics/snaps/2016-10-31/7.jpg",
+          "/archive/comics/snaps/2016-10-31/8.jpg",
+          "/archive/comics/snaps/2016-10-31/9.jpg",
+          "/archive/comics/snaps/2016-10-31/10.jpg",
+          "/archive/comics/snaps/2016-10-31/11.jpg"
+        ]
+      },
+      "2016-11-11": {
+        "name": "2016-11-11",
+        "pages": [
+          "/archive/comics/snaps/2016-11-11/1.jpg",
+          "/archive/comics/snaps/2016-11-11/2.jpg",
+          "/archive/comics/snaps/2016-11-11/3.jpg",
+          "/archive/comics/snaps/2016-11-11/4.jpg",
+          "/archive/comics/snaps/2016-11-11/5.jpg",
+          "/archive/comics/snaps/2016-11-11/6.jpg",
+          "/archive/comics/snaps/2016-11-11/7.jpg",
+          "/archive/comics/snaps/2016-11-11/8.jpg",
+          "/archive/comics/snaps/2016-11-11/9.jpg",
+          "/archive/comics/snaps/2016-11-11/10.jpg",
+          "/archive/comics/snaps/2016-11-11/11.jpg",
+          "/archive/comics/snaps/2016-11-11/12.jpg",
+          "/archive/comics/snaps/2016-11-11/13.jpg",
+          "/archive/comics/snaps/2016-11-11/14.jpg"
+        ]
+      },
+      "2016-11-18": {
+        "name": "2016-11-18",
+        "pages": ["/archive/comics/snaps/2016-11-18/1.jpg"]
+      },
+      "2016-11-24": {
+        "name": "2016-11-24",
+        "pages": [
+          "/archive/comics/snaps/2016-11-24/1.jpg",
+          "/archive/comics/snaps/2016-11-24/2.jpg",
+          "/archive/comics/snaps/2016-11-24/3.jpg",
+          "/archive/comics/snaps/2016-11-24/4.jpg",
+          "/archive/comics/snaps/2016-11-24/5.jpg",
+          "/archive/comics/snaps/2016-11-24/6.jpg"
+        ]
+      },
+      "2016-12-02": {
+        "name": "2016-12-02",
+        "pages": [
+          "/archive/comics/snaps/2016-12-02/1.jpg",
+          "/archive/comics/snaps/2016-12-02/2.jpg",
+          "/archive/comics/snaps/2016-12-02/3.jpg",
+          "/archive/comics/snaps/2016-12-02/4.jpg"
+        ]
+      },
+      "2016-12-23": {
+        "name": "2016-12-23",
+        "pages": [
+          "/archive/comics/snaps/2016-12-23/1.jpg",
+          "/archive/comics/snaps/2016-12-23/2.jpg",
+          "/archive/comics/snaps/2016-12-23/3.jpg",
+          "/archive/comics/snaps/2016-12-23/4.jpg",
+          "/archive/comics/snaps/2016-12-23/5.jpg",
+          "/archive/comics/snaps/2016-12-23/6.jpg",
+          "/archive/comics/snaps/2016-12-23/7.jpg",
+          "/archive/comics/snaps/2016-12-23/8.jpg",
+          "/archive/comics/snaps/2016-12-23/9.jpg",
+          "/archive/comics/snaps/2016-12-23/10.jpg",
+          "/archive/comics/snaps/2016-12-23/11.jpg",
+          "/archive/comics/snaps/2016-12-23/12.jpg",
+          "/archive/comics/snaps/2016-12-23/13.jpg",
+          "/archive/comics/snaps/2016-12-23/14.jpg",
+          "/archive/comics/snaps/2016-12-23/15.jpg",
+          "/archive/comics/snaps/2016-12-23/16.jpg",
+          "/archive/comics/snaps/2016-12-23/17.jpg"
+        ]
+      },
+      "2016-12-25": {
+        "name": "2016-12-25",
+        "pages": ["/archive/comics/snaps/2016-12-25/1.jpg"]
+      },
+      "2017-08-29": {
+        "name": "2017-08-29",
+        "pages": ["/archive/comics/snaps/2017-08-29/1.mp4"]
+      }
+    }
+  }
+}
