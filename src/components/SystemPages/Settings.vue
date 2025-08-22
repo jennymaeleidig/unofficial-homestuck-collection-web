@@ -473,11 +473,7 @@
           <strong>v{{ $data.$appVersion }}</strong>
           <br />
           <span class="hint">Asset pack version: </span>
-          <strong>v{{ $archive.version }}</strong>
-          <span v-if="$archive.version != $data.$expectedAssetVersion">
-            <br />
-            <span class="hint">Expected asset pack version: </span>
-            <strong>v{{ $data.$expectedAssetVersion }}</strong>
+          <strong>web</strong>
           </span>
           <br />
           <div v-if="!$isWebApp">

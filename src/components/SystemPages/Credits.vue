@@ -147,7 +147,7 @@ export default {
     return {
       archiveCredits: [
         {
-          name: "Jenny",
+          name: "Jenny Leidig",
           link: "https://jennyleidig.straw.page/",
           desc: `I've really just stripped out the electron dependencies and made it work (somewhat) in the browser. Added a basic login system so you can track your progress and save your settings. All real credit goes to the folks below.`
         },

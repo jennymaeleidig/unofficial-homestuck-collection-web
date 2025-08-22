@@ -27,9 +27,9 @@ RUN yarn install --frozen-lockfile --ignore-engines
 COPY . .
 
 # Define build arguments with default values
-ARG ASSET_PACK_HREF=https://assets.homestuck.barb.date//:${ASSET_PACK_PORT:-7413}/
-ARG AUTH_SERVER_URL=https://auth.homestuck.barb.date:${AUTH_PORT:-9413}
-ARG APP_VERSION=2.7.2
+ARG ASSET_PACK_HREF=https://asset_server//:${ASSET_PACK_PORT:-7413}/
+ARG AUTH_SERVER_URL=https://auth_server:${AUTH_PORT:-9413}
+ARG APP_VERSION=1.0.0
 ARG ASSET_DIR=/assets/
 ARG WEB_PORT=8413
 

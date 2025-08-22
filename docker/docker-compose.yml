@@ -8,17 +8,17 @@ services:
       args:
         - ASSET_PACK_HREF=[PUT SERVER HOSTNAME]:${ASSET_PACK_PORT:-7413}/
         - AUTH_SERVER_URL=[PUT SERVER HOSTNAME]:${AUTH_PORT:-9413}
-        - APP_VERSION=2.7.2
+        - APP_VERSION=1.0.0
         - ASSET_DIR=/assets/
     ports:
       - "${WEB_PORT:-8413}:80"
     environment:
       - ASSET_PACK_HREF=[PUT SERVER HOSTNAME]:${ASSET_PACK_PORT:-7413}/
       - AUTH_SERVER_URL=[PUT SERVER HOSTNAME]:${AUTH_PORT:-9413}
-      - APP_VERSION=2.7.2
+      - APP_VERSION=1.0.0
       - ASSET_DIR=/assets/
     volumes:
-      - {HOST_PATH_TO_ASSETS}:/assets
+      - /path/to/your/assets:/assets
     depends_on:
       - asset_server
       - auth_server
@@ -30,7 +30,7 @@ services:
     ports:
       - "${ASSET_PACK_PORT:-7413}:${ASSET_PACK_PORT:-7413}"
     volumes:
-      - {HOST_PATH_TO_ASSETS}:/assets
+      - /path/to/your/assets:/assets
       # For Unraid deployment, you can replace the named volume with a direct path:
       # - /path/to/your/assets:/assets
     environment:
@@ -43,7 +43,7 @@ services:
     ports:
       - "${AUTH_PORT:-9413}:${AUTH_PORT:-9413}"
     volumes:
-      - {HOST_PATH_TO_AUTH_DB}:/data
+      - /path/to/your/auth/db:/data
       # For Unraid deployment, you can replace the named volume with a direct path:
       # - /path/to/your/auth/db:/data
     environment:

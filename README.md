@@ -2,6 +2,8 @@
 
 Migration of the Unofficial Homestuck Collection to a pure webapp architecture.
 
+I tried to keep the changes as minimal as possible while still achieving the desired functionality.
+
 ### Changes Made
 
 - Streamlined settings menu.
@@ -17,6 +19,47 @@ Migration of the Unofficial Homestuck Collection to a pure webapp architecture.
 - update the asset pack to account for serverification of assets.
 - Updated the jinja2 templates for better maintainability.
 - Extra configuration options to env.
+
+### Runnin
+
+You'll need to get the new web asset pack [here]().
+
+and then configure your environment.
+
+```properties
+# Dirs need trailing slash.
+ASSET_DIR=""
+ASSET_PACK_HREF=""
+AUTH_SERVER_URL=""
+
+ASSET_PACK_PORT=7413
+WEB_PORT=8413
+AUTH_PORT=9413
+```
+
+Then spin her up!
+
+#### DEV
+
+Baremetal:
+
+```shell
+make serve
+```
+
+Via Docker:
+
+```shell
+docker-compose -f docker/docker-compose.dev.yml up --build
+```
+
+#### Prod
+
+```shell
+docker-compose -f docker/docker-compose.yml up --build
+```
+
+Note: If running on docker, be sure to update the compose files with the necessary environment variables / args / volumes.
 
 ## Legal
 

@@ -6,8 +6,6 @@ ASSET_PACK_HREF ?= http://localhost:8413/
 # Default auth server configuration
 AUTH_SERVER_URL ?= http://localhost:9413
 
-CONFIG_JSON_PATH = "${APPDATA}/unofficial-homestuck-collection/config.json"
-
 .SECONDEXPANSION:
 .SUFFIXES:
 
@@ -45,8 +43,6 @@ SHARED_INTERMEDIATE=src/imods.tar.gz src/js/crc_imods.json
 src/imods.tar.gz: $(wildcard src/imods/*) $(wildcard src/imods/*/*)
 	# cd src && tar -czf imods.tar.gz imods/
 	cd src && tar -cf - imods/ | gzip -9 - > imods.tar.gz
-# 	-jq '.appVersion = "2.0.0"' ${CONFIG_JSON_PATH} > ${CONFIG_JSON_PATH}.tmp
-# 	-mv ${CONFIG_JSON_PATH}.tmp ${CONFIG_JSON_PATH}
 
 src/js/crc_imods.json: src/imods.tar.gz
 	yarn exec node src/js/validation.js src/imods/ src/js/crc_imods.json
