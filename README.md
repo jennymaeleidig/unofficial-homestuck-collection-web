@@ -4,6 +4,8 @@ Migration of the Unofficial Homestuck Collection to a pure webapp architecture.
 
 I tried to keep the changes as minimal as possible while still achieving the desired functionality.
 
+Also there are like a million things I could probably improve... but thats for later :)
+
 ### Changes Made
 
 - Streamlined settings menu.
