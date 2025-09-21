@@ -24,7 +24,7 @@ Also there are like a million things I could probably improve... but thats for l
 
 ### Runnin
 
-You'll need to get the new web asset pack [here]().
+You'll need to get the new web asset pack [here](https://archive.org/details/asset-pack-web).
 
 and then configure your environment.
 
